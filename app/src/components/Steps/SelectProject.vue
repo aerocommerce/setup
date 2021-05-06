@@ -12,7 +12,7 @@
 
 		<div class="mb-12">
 
-			<ContentGroup defaultOpen="true" group="project">
+			<ContentGroup defaultOpen="true">
 
 				<template #title>
 					Create new project
@@ -29,7 +29,7 @@
 
 		<div>
 
-			<ContentGroup group="project">
+			<ContentGroup>
 
 				<template #title>
 					Select existing project
