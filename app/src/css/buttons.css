@@ -1,0 +1,15 @@
+@layer components {
+
+    .button {
+        @apply flex items-center px-6 py-4 bg-alpha rounded font-medium;
+    }
+
+    .button-transparent {
+        @apply px-0 bg-transparent rounded-none;
+    }
+
+    .button svg {
+        @apply h-5 pointer-events-none;
+    }
+
+}
