@@ -7,56 +7,59 @@
 
 		<template #description>
 			Projects are used to manage your stores Aero credentials.
-			You can create a new project if you're starting local development or you can choose an existing project if you're continuing development or setting up on a live server.
+			You can create a new project if you'redeveloping locally or you can choose an existing project to continue development.
 		</template>
 
-		<div class="mb-9">
+    <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
 
-			<ContentGroup id="new-project" :selected="true" group="project">
+    <form @submit.prevent="attemptAdvance" method="post">
 
-				<template #title>
-					Create new project
-				</template>
+      <div class="mb-9">
 
-				<!-- <ErrorMessage>A project using this name already exists, please choose a different name or select an existing project</ErrorMessage> -->
+        <ContentGroup id="new-project" v-model="setupData.project.type" name="projectType" value="new_project">
 
-				<label for="project-name" class="mb-1">Project name</label>
-				<input type="text" id="project-name" name="project-name" placeholder="Enter project name" autofocus v-model="setupData.projectName">
+          <template #title>
+            Create new project
+          </template>
 
-			</ContentGroup>
+          <label for="project-name" class="mb-1">Project name</label>
+          <input type="text" id="project-name" ref="projectName" v-model="setupData.project.name" placeholder="Enter project name" autocomplete="off">
 
-		</div>
+        </ContentGroup>
 
-		<div>
+      </div>
 
-			<ContentGroup id="existing-project" :selected="false" group="project">
+      <div>
 
-				<template #title>
-					Select existing project
-				</template>
+        <ContentGroup id="existing-project" v-model="setupData.project.type" name="projectType" value="existing_project">
 
-				<label for="exisiting-project" class="mb-1">Select project</label>
-				<select id="exisiting-project" name="exisiting-project">
-					<option value="" selected>Create a new project</option>
-					<option value="demo-store">Demo store</option>
-					<option value="music-store">Music store</option>
-					<option value="techquity">Techquity</option>
-				</select>
+          <template #title>
+            Select existing project
+          </template>
 
-			</ContentGroup>
+          <label for="exisiting-project" class="mb-1">Select project</label>
+          <select id="exisiting-project" v-model="setupData.project.id">
+            <option :value="null">Create a new project</option>
+            <option v-for="project in existingProjects" :value="project.id">{{ project.name }}</option>
+          </select>
 
-		</div>
+        </ContentGroup>
 
-		<template #footer="{ advanceStep, retreatStep }">
+      </div>
+
+      <button class="hidden" />
+    </form>
+
+		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />
-			<NextButton :action="advanceStep" />
+			<NextButton :action="attemptAdvance" />
 		</template>
 
 	</Step>
 </template>
 
 <script>
-	import { inject } from 'vue'
+import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
@@ -71,12 +74,93 @@
 			ContentGroup,
 			ErrorMessage
 		},
-
 		setup() {
 			const setupData = inject('setupData')
+      const advanceStep = inject('advanceStep')
+      const errorMessage = ref(null)
+      const existingProjects = ref([])
+
+      errorMessage.value = null
+
+      fetch('https://agora.test/api/projects', {
+        headers: {
+          'Authorization': `Bearer ${setupData.agora.token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+          .then((result) => {
+            let json = result.json()
+                .then(json => {
+                  if (! result.ok) throw new Error(json.message)
+
+                  return json
+                })
+                .then((json) => {
+                  existingProjects.value = json.projects
+                })
+                .catch((e) => {
+                  errorMessage.value = e.message
+                })
+          })
+          .catch((e) => {
+            errorMessage.value = e.message
+          })
+
+      const projectName = ref(null)
+      const selectedProject = computed(() => setupData.project.id)
+      const selectedProjectType = computed(() => setupData.project.type)
+
+      watch(selectedProject, (value) => {
+        existingProjects.value.forEach((project) => {
+          if (project.id === value) {
+            setupData.project.name = project.name
+
+            return
+          }
+        })
+      })
+
+      watch(selectedProjectType, (value) => {
+        setupData.project.id = null
+        setupData.project.name = ''
+        errorMessage.value = null
+
+        nextTick(() => {
+          if (value === 'new_project' && projectName.value) projectName.value.focus()
+        })
+      })
+
+      onMounted(() => {
+        nextTick(() => {
+          setTimeout(() => {
+            !setupData.project.name.length && projectName.value && projectName.value.focus()
+          }, 50)
+        })
+      })
+
+      const attemptAdvance = () => {
+			  if (selectedProjectType.value === 'new_project') {
+          if (!setupData.project.name.length) {
+            errorMessage.value = 'Please enter a project name.'
+            return
+          }
+        } else {
+          if (!setupData.project.id) {
+            errorMessage.value = 'Please select a project.'
+            return
+          }
+        }
+
+			  return advanceStep()
+      }
 			
 			return {
+        attemptAdvance,
+        errorMessage,
+        projectName,
+        existingProjects,
 				setupData,
+        selectedProject,
 			}
 		},
 	}

@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <label class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top" :class="selected ? 'active' : ''" :for="id" :key="id" :style="'background-image: url(' + thumbnail + ');'">
+        <label class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top cursor-pointer" :class="selected ? 'active' : ''" :for="id" :key="id" :style="thumbnail ? 'background-image: url(' + thumbnail + ');' : null">
             <input type="radio" :id="id" :checked="selected" :key="id" :name="group" v-model="selected">
         </label>
 
@@ -16,7 +16,7 @@
 <script>
 	
 	export default {
-		props: ['id', 'selected', 'group', 'title', 'author', 'thumbnail']
+		props: ['id', 'selected', 'group', 'title', 'author', 'thumbnail'],
 	}
 
 </script>

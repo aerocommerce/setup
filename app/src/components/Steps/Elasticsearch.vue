@@ -6,7 +6,8 @@
 		</template>
 
 		<template #description>
-			Elasticsearch is used to index your products, pages and other content in order for the data to be easily searchable, sortable and filterable. You can choose to connect to a local or remote database depending on your setup.
+			Elasticsearch is used to index your product listings in order for the data to be rapidly searchable, sortable and filterable.
+      You can choose to connect to a local or remote instance depending on your setup.
 		</template>
 
 		<div class="mb-9">

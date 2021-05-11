@@ -16,14 +16,14 @@ class ServiceProvider extends BaseServiceProvider
         if (file_exists(storage_path('app/setup.json'))) {
             Route::get('/assets/{file}', [AssetController::class, 'file']);
 
-            Route::options('/set-up/{endpoint}', function () {
+            Route::options('/setup/{endpoint}', function () {
                 return response('')
                     ->header('Access-Control-Allow-Origin', '*')
                     ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
                     ->header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
             })->where('endpoint', '.*');
 
-            Route::post('/set-up/actions/database-connections', function (Request $request) {
+            Route::post('/setup/actions/database-connections', function (Request $request) {
                 $name = $request->input('name', config('app.name'));
 
                 $options = [
@@ -75,12 +75,12 @@ class ServiceProvider extends BaseServiceProvider
                     ->header('Access-Control-Allow-Origin', '*');
             });
 
-            Route::get('/set-up', function () {
+            Route::get('/setup', function () {
                 return file_get_contents(__DIR__.'/../app/dist/index.html');
-            })->name('aero.set-up');
+            })->name('aero.setup');
 
             Route::fallback(function () {
-                return redirect()->route('aero.set-up');
+                return redirect()->route('aero.setup');
             });
         }
     }

@@ -6,135 +6,138 @@
 		</template>
 
 		<template #description>
-			The database is used to store your products and everything else to do with your store, you can choose to connect to a local or remote database depending on your setup.
+			The database is used to store your products and everything else to do with your store.
+      You can choose to connect to a local or remote database depending on your setup.
 		</template>
 
-		<div class="mb-9">
+    <!-- <ErrorMessage>Connection failed please try again</ErrorMessage> -->
 
-			<ContentGroup id="local-db-server" :selected="true" group="db-server">
+    <form @submit.prevent="attemptAdvance" method="post">
 
-				<template #title>
-					Local database setup
-				</template>
+      <div class="mb-9">
 
-				<!-- <ErrorMessage>Connection failed please try again</ErrorMessage> -->
+        <ContentGroup id="local-db-server" v-model="setupData.project.databaseType" name="databaseType" value="local">
 
-				<div class="mb-6 flex items-center">
+          <template #title>
+            Local database setup
+          </template>
 
-					<div class="w-full">
-						<label for="local-host-name" class="mb-1">Host name</label>
-						<input type="text" id="local-host-name" name="local-host-name" placeholder="Enter host name" autofocus value="127.0.0.1">
-					</div>
+          <div class="mb-6 flex items-center">
 
-					<div class="px-6">
-						<label class="mb-1">&nbsp;</label>
-						<p>:</p>
-					</div>
+            <div class="w-full">
+              <label for="local-host-name" class="mb-1">Host name</label>
+              <input type="text" id="local-host-name" placeholder="Enter host name" v-model="setupData.project.databaseHost">
+            </div>
 
-					<div class="">
-						<label for="local-port-number" class="mb-1">Port number</label>
-						<input type="text" id="local-port-number" name="local-port-number" placeholder="Enter port no" autofocus value="3306">
-					</div>
+            <div class="px-6">
+              <label class="mb-1">&nbsp;</label>
+              <p>:</p>
+            </div>
 
-				</div>
+            <div class="">
+              <label for="local-port-number" class="mb-1">Port number</label>
+              <input type="text" id="local-port-number" placeholder="Enter port no" v-model="setupData.project.databasePort">
+            </div>
 
-				<div class="mb-6">
-					<SingleAccordion>
+          </div>
 
-						<template #title>
-							<span class="text-sm uppercase underline">Advanced settings</span>
-						</template>
+          <div class="mb-6">
+            <SingleAccordion v-model="setupData.project.showAdvancedDatabaseOptions">
 
-						<div class="mb-6">
-							<label for="local-username" class="mb-1">Database username</label>
-							<input type="text" id="local-username" name="local-username" placeholder="Enter database username" value="root">
-						</div>
+              <template #title>
+                <span class="text-sm uppercase underline">Advanced settings</span>
+              </template>
 
-						<div>
-							<label for="local-pasword" class="mb-1">Database pasword</label>
-							<input type="password" id="local-pasword" name="local-pasword" placeholder="Enter database pasword">
-						</div>
+              <div class="mb-6">
+                <label for="local-username" class="mb-1">Database username</label>
+                <input type="text" id="local-username" placeholder="Enter database username" v-model="setupData.project.databaseUsername">
+              </div>
 
-					</SingleAccordion>
-				</div>
+              <div>
+                <label for="local-pasword" class="mb-1">Database pasword</label>
+                <input type="password" id="local-pasword" placeholder="Enter database pasword" v-model="setupData.project.databasePassword">
+              </div>
 
-				<button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
-					<RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
-					Test connection
-				</button>
-				
-			</ContentGroup>
+            </SingleAccordion>
+          </div>
 
-		</div>
+          <button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
+            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
+            Test connection
+          </button>
 
-		<div>
+        </ContentGroup>
 
-			<ContentGroup id="remote-db-server" :selected="false" group="db-server">
+      </div>
 
-				<template #title>
-					Remote database setup
-				</template>
+      <div>
 
-				<!-- <ErrorMessage>Connection failed please try again</ErrorMessage> -->
+        <ContentGroup id="remote-db-server" v-model="setupData.project.databaseType" name="databaseType" value="remote">
 
-				<div class="mb-6 flex items-center">
+          <template #title>
+            Remote database setup
+          </template>
 
-					<div class="w-full">
-						<label for="remote-host-name" class="mb-1">Host name</label>
-						<input type="text" id="remote-host-name" name="remote-host-name" placeholder="Enter host name" autofocus value="">
-					</div>
+          <div class="mb-6 flex items-center">
 
-					<div class="px-6">
-						<label class="mb-1">&nbsp;</label>
-						<p>:</p>
-					</div>
+            <div class="w-full">
+              <label for="remote-host-name" class="mb-1">Host name</label>
+              <input type="text" id="remote-host-name" name="remote-host-name" placeholder="Enter host name" autofocus value="">
+            </div>
 
-					<div class="">
-						<label for="remote-port-number" class="mb-1">Port number</label>
-						<input type="text" id="remote-port-number" name="remote-port-number" placeholder="Enter port no" autofocus value="">
-					</div>
+            <div class="px-6">
+              <label class="mb-1">&nbsp;</label>
+              <p>:</p>
+            </div>
 
-				</div>
+            <div class="">
+              <label for="remote-port-number" class="mb-1">Port number</label>
+              <input type="text" id="remote-port-number" name="remote-port-number" placeholder="Enter port no" autofocus value="">
+            </div>
 
-				<div class="mb-6">
-					<SingleAccordion>
+          </div>
 
-						<template #title>
-							<span class="text-sm uppercase underline">Advanced settings</span>
-						</template>
+          <div class="mb-6">
+            <SingleAccordion>
 
-						<div class="mb-6">
-							<label for="remote-username" class="mb-1">Database username</label>
-							<input type="text" id="remote-username" name="remote-username" placeholder="Enter database username">
-						</div>
+              <template #title>
+                <span class="text-sm uppercase underline">Advanced settings</span>
+              </template>
 
-						<div>
-							<label for="remote-pasword" class="mb-1">Database pasword</label>
-							<input type="password" id="remote-pasword" name="remote-pasword" placeholder="Enter database pasword">
-						</div>
+              <div class="mb-6">
+                <label for="remote-username" class="mb-1">Database username</label>
+                <input type="text" id="remote-username" name="remote-username" placeholder="Enter database username">
+              </div>
 
-					</SingleAccordion>
-				</div>
+              <div>
+                <label for="remote-pasword" class="mb-1">Database pasword</label>
+                <input type="password" id="remote-pasword" name="remote-pasword" placeholder="Enter database pasword">
+              </div>
 
-				<button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
-					<RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
-					Test connection
-				</button>
+            </SingleAccordion>
+          </div>
 
-			</ContentGroup>
+          <button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
+            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
+            Test connection
+          </button>
 
-		</div>
+        </ContentGroup>
 
-		<template #footer="{ advanceStep, retreatStep }">
+      </div>
+
+    </form>
+
+		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />
-			<NextButton :action="advanceStep" />
+			<NextButton :action="attemptAdvance" />
 		</template>
 
 	</Step>
 </template>
 
 <script>
-	import { inject } from 'vue'
+	import { inject, computed, watch } from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
@@ -151,14 +154,35 @@
 			ContentGroup,
 			ErrorMessage,
 			SingleAccordion,
-			RefreshIcon
+			RefreshIcon,
 		},
 
 		setup() {
 			const setupData = inject('setupData')
+      const advanceStep = inject('advanceStep')
+
+      const connectionInfo = computed(() => {
+        return {
+          type: setupData.project.databaseType.value,
+          host: setupData.project.databaseHost.value,
+          port: setupData.project.databasePort.value,
+          username: setupData.project.databaseUsername.value,
+          password: setupData.project.databasePassword.value,
+        }
+      })
+
+      watch(connectionInfo, (value) => {
+        setupData.project.databaseTestPassed = false
+      })
+
+      const attemptAdvance = () => {
+
+
+        advanceStep()
+      }
 			
 			return {
-				testing: false,
+        attemptAdvance,
 				setupData,
 			}
 		},

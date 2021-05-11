@@ -54,15 +54,15 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from 'vue'
 import {
 	Listbox,
 	ListboxLabel,
 	ListboxButton,
 	ListboxOptions,
 	ListboxOption,
-} from "@headlessui/vue";
-import { GlobeIcon, CheckIcon, ChevronDownIcon } from '@heroicons/vue/outline/esm'
+} from '@headlessui/vue'
+import { GlobeIcon, CheckIcon, ChevronDownIcon } from '@heroicons/vue/outline'
 
 export default {
 	components: {
@@ -73,21 +73,22 @@ export default {
 		ListboxOption,
 		CheckIcon,
 		ChevronDownIcon,
-		GlobeIcon
+		GlobeIcon,
 	},
 
 	setup() {
 		const languages = [
 			{ name: "English" },
-			{ name: "French" },
-			{ name: "Spanish" },
-		];
-		const selectedLanguage = ref(languages[0]);
+			// { name: "French" },
+			// { name: "Spanish" },
+		]
+
+		const selectedLanguage = ref(languages[0])
 
 		return {
 			languages,
 			selectedLanguage,
-		};
+		}
 	},
-};
+}
 </script>

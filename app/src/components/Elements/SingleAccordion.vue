@@ -1,25 +1,24 @@
 <template>
-    <Disclosure v-slot="{ open }" :defaultOpen="defaultOpen">
-        <DisclosureButton class="flex justify-between items-center w-full text-white">
-            <slot name="title"/>
-            <ChevronRightIcon class="ml-2 w-4 h-4 transform transition-transform duration-150" :class="open ? 'rotate-90' : 'rotate-0'" />
-        </DisclosureButton>
-        <DisclosurePanel class="pt-3" v-if="open">
-            <slot />
-        </DisclosurePanel>
-    </Disclosure>
+  <div>
+    <Switch v-model="modelValue" class="flex justify-between items-center text-white">
+      <div><slot name="title" /></div>
+      <ChevronRightIcon class="ml-2 w-4 h-4 transform transition-transform duration-150" :class="modelValue ? 'rotate-90' : 'rotate-0'" />
+    </Switch>
+    <div v-if="modelValue" class="pt-3">
+      <slot />
+    </div>
+  </div>
 </template>
 
 <script>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronRightIcon } from "@heroicons/vue/outline/esm";
+import { Switch } from '@headlessui/vue'
+import { ChevronRightIcon } from '@heroicons/vue/outline'
 
 export default {
-  	components: {
-		Disclosure,
-		DisclosureButton,
-		DisclosurePanel,
-		ChevronRightIcon,
-	},
+  props: ['modelValue'],
+  components: {
+    Switch,
+    ChevronRightIcon,
+  },
 };
 </script>

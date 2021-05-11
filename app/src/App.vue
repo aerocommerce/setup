@@ -3,7 +3,7 @@
 	<aside class="relative xl:flex-grow pb-48 md:pb-72 xl:order-2 overflow-hidden">
 
 		<div class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
-			<language-selector />
+			<LanguageSelector />
 		</div>
 
 		<div class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform duration-1000 delay-150" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 8 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }">
@@ -15,15 +15,15 @@
 		</div>
 
 		<div class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
-			<p class="text-xl md:text-3xl uppercase font-medium mb-2" style="line-height: 0.7;">{{ setupData.projectName }}&nbsp;</p>
-			<span class="text-sm md:text-base text-alphaLight-900">demo-store.test</span>
+			<p class="text-xl md:text-3xl uppercase font-medium mb-2" style="line-height: 0.7;" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
+			<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
 		</div>
 
 		<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:w-auto">
 
-			<div v-if="currentStep >= 1" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
-				<p class="text-lg md:text-2xl text-alpha-100">Hi, Steven!</p>
-				<span class="text-xl md:text-4xl" :class="{ 'animation-wave' : currentStep >= 1 }">👋</span>
+			<div v-if="setupData.agora" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
+				<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
+				<span class="text-xl md:text-4xl animation-wave">👋</span>
 			</div>
 
 			<ol class="flex space-x-3 items-center text-alpha">
@@ -70,7 +70,7 @@
 				<path id="Path_1617" data-name="Path 1617" d="M0,0H1008V192H0Z" transform="translate(1008 192) rotate(180)" fill="url(#linear-gradient-3)"/>
 			</svg> -->
 
-			<div class="relative mt-36 px-12 flex flex-col h-full overflow-scroll z-20">
+			<div class="relative mt-36 px-12 flex flex-col h-full overflow-auto z-20">
 				<div class="mb-96">
 					
 					<h2 class="text-4xl font-medium text-white mb-1">Blank theme</h2>
@@ -103,8 +103,8 @@
 
 	</aside>
 
-	<main class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-scroll xl:overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl' : 'xl:max-w-screen-1/2' ]">
-		<div class="p-6 md:p-12 xl:py-0 xl:px-12 ">
+	<main class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl 2xl:max-w-2xl' : 'xl:max-w-screen-1/2' ]">
+		<div class="xl:relative md:px-6 xl:py-0 h-full">
 			<component :is="currentStepEntry.component" />
 		</div>
 	</main>
@@ -112,32 +112,41 @@
 </template>
 
 <script>
-import {ref, computed, provide} from 'vue'
+import {ref, computed, provide, reactive} from 'vue'
 
 import Illustration from './components/Elements/Illustration.vue'
 import Logo from './components/Elements/Logo.vue'
 import LanguageSelector from './components/Elements/LanguageSelector.vue'
 import Steps from './steps'
+import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(7)
+const currentStep = ref(0)
 const currentStepEntry = computed(() => steps[currentStep.value])
 const totalSteps = steps.length
 
-const setupData = ref({
-	projectName: '',
-	testingDb: false
+let baseData = {
+  agora: null,
+  project: baseProject,
+}
+
+const setupData = reactive({
+  ...JSON.parse(JSON.stringify(baseData)),
+  reset() {
+    let data = JSON.parse(JSON.stringify(baseData))
+    this.agora = data.agora
+    this.project = data.project
+  },
+	testingDb: false,
 })
 
 export default {
-
 	components: {
 		Illustration,
 		Logo,
-		LanguageSelector
+		LanguageSelector,
 	},
-	
 	setup() {
 		provide('advanceStep', () => {
 			currentStep.value++
@@ -152,9 +161,12 @@ export default {
 		provide('totalSteps', totalSteps)
 		provide('setupData', setupData)
 
+    const storeDomain = document.location.hostname
+
 		return {
 			setupData,
 			steps,
+      storeDomain,
 			currentStep,
 			currentStepEntry,
 		}
