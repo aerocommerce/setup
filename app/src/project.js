@@ -7,6 +7,7 @@ export default {
     databasePort: '3306',
     databaseUsername: 'root',
     databasePassword: '',
+    databases: [],
     showAdvancedDatabaseOptions: false,
     databaseTestPassed: false,
 }

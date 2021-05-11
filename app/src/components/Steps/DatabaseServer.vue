@@ -10,7 +10,7 @@
       You can choose to connect to a local or remote database depending on your setup.
 		</template>
 
-    <!-- <ErrorMessage>Connection failed please try again</ErrorMessage> -->
+    <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
 
     <form @submit.prevent="attemptAdvance" method="post">
 
@@ -19,7 +19,7 @@
         <ContentGroup id="local-db-server" v-model="setupData.project.databaseType" name="databaseType" value="local">
 
           <template #title>
-            Local database setup
+            Local database server
           </template>
 
           <div class="mb-6 flex items-center">
@@ -61,8 +61,11 @@
             </SingleAccordion>
           </div>
 
-          <button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
-            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
+          <div v-if="setupData.project.databaseTestPassed">
+            <SuccessMessage>Successful connection</SuccessMessage>
+          </div>
+          <button v-else class="button button-secondary" type="button" @click="testConnection">
+            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': testingDb }" />
             Test connection
           </button>
 
@@ -75,7 +78,7 @@
         <ContentGroup id="remote-db-server" v-model="setupData.project.databaseType" name="databaseType" value="remote">
 
           <template #title>
-            Remote database setup
+            Remote database server
           </template>
 
           <div class="mb-6 flex items-center">
@@ -117,8 +120,11 @@
             </SingleAccordion>
           </div>
 
-          <button class="button button-secondary" type="button" @click="setupData.testingDb = !setupData.testingDb">
-            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': setupData.testingDb }" />
+          <div v-if="setupData.project.databaseTestPassed">
+            <SuccessMessage>Successful connection</SuccessMessage>
+          </div>
+          <button v-else class="button button-secondary" type="button" @click="testConnection">
+            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': testingDb }" />
             Test connection
           </button>
 
@@ -126,6 +132,7 @@
 
       </div>
 
+      <button class="hidden" />
     </form>
 
 		<template #footer="{ retreatStep }">
@@ -137,12 +144,13 @@
 </template>
 
 <script>
-	import { inject, computed, watch } from 'vue'
+	import { ref, inject, computed, watch } from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
 	import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
+  import SuccessMessage from '../Elements/SuccessMessage.vue'
 	import Step from '../Step.vue'
 	import { RefreshIcon } from '@heroicons/vue/outline'
 
@@ -154,34 +162,89 @@
 			ContentGroup,
 			ErrorMessage,
 			SingleAccordion,
+      SuccessMessage,
 			RefreshIcon,
 		},
 
 		setup() {
+      const errorMessage = ref(null)
 			const setupData = inject('setupData')
       const advanceStep = inject('advanceStep')
+      const testingDb = ref(false)
+      const attemptedToAdvance = ref(false)
 
       const connectionInfo = computed(() => {
         return {
-          type: setupData.project.databaseType.value,
-          host: setupData.project.databaseHost.value,
-          port: setupData.project.databasePort.value,
-          username: setupData.project.databaseUsername.value,
-          password: setupData.project.databasePassword.value,
+          type: setupData.project.databaseType,
+          host: setupData.project.databaseHost,
+          port: setupData.project.databasePort,
+          username: setupData.project.databaseUsername,
+          password: setupData.project.databasePassword,
         }
       })
 
       watch(connectionInfo, (value) => {
         setupData.project.databaseTestPassed = false
+        attemptedToAdvance.value = false
       })
 
+      const testConnection = () => {
+			  if (testingDb.value) return
+
+        errorMessage.value = null
+
+        testingDb.value = true
+        setupData.project.databaseTestPassed = false
+
+        let host = window.location.origin
+
+        host = 'http://test.test'
+
+        fetch(`${host}/setup/actions/test-database-connection`, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(connectionInfo.value)
+        })
+            .then((result) => {
+              let json = result.json()
+                  .then(json => {
+                    if (! result.ok) throw new Error(json.message)
+
+                    return json
+                  })
+                  .then((json) => {
+                    setupData.project.databaseTestPassed = true
+                    setupData.project.databases = json.databases
+
+                    testingDb.value = false
+
+                    if (attemptedToAdvance.value) attemptAdvance()
+                  })
+                  .catch((e) => {
+                    errorMessage.value = e.message
+                    testingDb.value = false
+                  })
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+              testingDb.value = false
+            })
+      }
+
       const attemptAdvance = () => {
+        attemptedToAdvance.value = true
 
+        if (setupData.project.databaseTestPassed) return advanceStep()
 
-        advanceStep()
+        testConnection()
       }
 			
 			return {
+        errorMessage,
+        testingDb,
+        testConnection,
         attemptAdvance,
 				setupData,
 			}

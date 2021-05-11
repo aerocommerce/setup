@@ -1,6 +1,6 @@
 <template>
 
-	<aside class="relative xl:flex-grow pb-48 md:pb-72 xl:order-2 overflow-hidden">
+	<aside class="relative xl:flex-grow pb-48 md:pb-64 xl:order-2 overflow-hidden">
 
 		<div class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
 			<LanguageSelector />
@@ -103,7 +103,7 @@
 
 	</aside>
 
-	<main class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl 2xl:max-w-2xl' : 'xl:max-w-screen-1/2' ]">
+	<main v-if="!setupComplete" class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl 2xl:max-w-2xl' : 'xl:max-w-screen-1/2' ]">
 		<div class="xl:relative md:px-6 xl:py-0 h-full">
 			<component :is="currentStepEntry.component" />
 		</div>
@@ -123,6 +123,7 @@ import baseProject from './project'
 const steps = Steps
 
 const currentStep = ref(0)
+const setupComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])
 const totalSteps = steps.length
 
@@ -138,7 +139,6 @@ const setupData = reactive({
     this.agora = data.agora
     this.project = data.project
   },
-	testingDb: false,
 })
 
 export default {
@@ -167,6 +167,7 @@ export default {
 			setupData,
 			steps,
       storeDomain,
+      setupComplete,
 			currentStep,
 			currentStepEntry,
 		}

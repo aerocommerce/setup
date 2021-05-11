@@ -6,7 +6,8 @@
 		</template>
 
 		<template #description>
-			Now we’ll set up your catalog. The catalogue includes products, categories, tags and other parts of your store’s information. You can choose to import sample products or skip this step if you already have catalog data or wish to add it later.
+			Now we’ll set up your catalog, which includes products, categories, tags and other parts of your store's information.
+      You can choose to import sample products or skip this step if you already have catalog data or wish to add it later.
 		</template>
 		
 		<div class="mb-9">
