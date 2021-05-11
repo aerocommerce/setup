@@ -121,7 +121,7 @@ import Steps from './steps'
 
 const steps = Steps
 
-const currentStep = ref(8)
+const currentStep = ref(6)
 const currentStepEntry = computed(() => steps[currentStep.value])
 const totalSteps = steps.length
 
