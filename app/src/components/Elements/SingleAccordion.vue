@@ -12,7 +12,7 @@
 
 <script>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronRightIcon } from "@heroicons/vue/outline/esm";
+import { ChevronRightIcon } from "@heroicons/vue/outline";
 
 export default {
   	components: {

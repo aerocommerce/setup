@@ -3,7 +3,7 @@
 	<aside class="relative xl:flex-grow pb-48 md:pb-72 xl:order-2 overflow-hidden">
 
 		<div class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
-			<language-selector />
+			<LanguageSelector />
 		</div>
 
 		<div class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform duration-1000 delay-150" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 8 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }">
@@ -103,7 +103,7 @@
 
 	</aside>
 
-	<main class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-scroll xl:overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl' : 'xl:max-w-screen-1/2' ]">
+	<main v-if="!setupData.setupComplete" class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-scroll xl:overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl' : 'xl:max-w-screen-1/2' ]">
 		<div class="p-6 md:p-12 xl:py-0 xl:px-12 ">
 			<component :is="currentStepEntry.component" />
 		</div>
@@ -121,13 +121,14 @@ import Steps from './steps'
 
 const steps = Steps
 
-const currentStep = ref(7)
+const currentStep = ref(8)
 const currentStepEntry = computed(() => steps[currentStep.value])
 const totalSteps = steps.length
 
 const setupData = ref({
 	projectName: '',
-	testingDb: false
+	testingDb: false,
+	setupComplete: false
 })
 
 export default {
@@ -145,6 +146,11 @@ export default {
 
 		provide('retreatStep', () => {
 			currentStep.value--
+		})
+
+		provide('completeSetup', () => {
+			console.log('complete');
+			// this.setupData.setupComplete = true;
 		})
 
 		provide('currentStep', currentStep)

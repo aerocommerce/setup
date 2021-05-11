@@ -62,7 +62,7 @@ import {
 	ListboxOptions,
 	ListboxOption,
 } from "@headlessui/vue";
-import { GlobeIcon, CheckIcon, ChevronDownIcon } from '@heroicons/vue/outline/esm'
+import { GlobeIcon, CheckIcon, ChevronDownIcon } from '@heroicons/vue/outline'
 
 export default {
 	components: {

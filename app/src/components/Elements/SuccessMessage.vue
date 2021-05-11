@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {CheckCircleIcon} from '@heroicons/vue/outline/esm'
+import {CheckCircleIcon} from '@heroicons/vue/outline'
 
 export default {
     components: {
