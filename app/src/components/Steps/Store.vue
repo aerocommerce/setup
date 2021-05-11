@@ -61,7 +61,7 @@
 			</div>
 
 			<div>
-				<label for="sender-email" class="mb-1">Sender email address</label>
+				<label for="sender-email" class="mb-1">Sender email address <small>(optional)</small></label>
 				<input type="text" id="sender-email" name="sender-email" placeholder="Enter email address" required>
 				<small class="block text-alphaLight-800 mt-3">The email address entered here will be the address used to communicate with customers</small>
 			</div>
@@ -78,13 +78,51 @@
 		</div>
 
 		<div class="mb-6">
-			<label for="store-upload" class="mb-1">Upload store logo</label>
-			<input type="file" id="store-upload" name="store-upload">
-			<small class="block text-alphaLight-800 mt-3">The logo you upload here will be used to populate the theme and email templates. Please upload an SVG if possible (we will convert the SVG to a PNG for use in emails)</small>
+			<label for="file" class="mb-1">Upload store logo <small>(optional)</small></label>
+			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the theme and email templates. Please upload an SVG if possible (we will convert the SVG to a PNG for use in emails)</small>
+
+			<label for="file" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo">
+
+				<ul v-if="files.length">
+					<li v-for="file in files" :key="file.id">
+					<span>{{file.name}}</span> -
+					<span>{{$formatSize(file.size)}}</span> -
+					<span v-if="file.error">{{file.error}}</span>
+					<span v-else-if="file.success">success</span>
+					<span v-else-if="file.active">active</span>
+					<span v-else></span>
+					</li>
+				</ul>
+
+				<div v-else class="flex items-center">
+					<UploadIcon class="w-5 h-5 mr-2" />
+					Drag and drop or click here to select a file
+				</div>
+
+				<div v-show="$refs.upload && $refs.upload.dropActive" class="fixed z-50 top-0 left-0 w-full h-full bg-alphaLight-100 text-alpha-900 bg-opacity-80 flex flex-col items-center justify-center">
+					<UploadIcon class="w-12 h-12 mb-6" />
+					<h3 class="text-3xl  font-medium">Drop files to upload</h3>
+				</div>
+				
+				<div class="hidden">
+					<file-upload post-action="/upload/logo" :multiple="false" :drop="true" :drop-directory="false" v-model="files" ref="upload">
+					</file-upload>
+				</div>
+				
+			</label>
+
+			<button type="button" class="button button-secondary" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+				<UploadIcon class="mr-2" />
+				Start Upload
+			</button>
+
+			<button type="button" class="button button-secondary" v-else @click.prevent="$refs.upload.active = false">
+				Stop Upload
+			</button>
 		</div>
 
 		<div class="mb-6">
-			<h2 class="text-xl font-medium mb-1">Store address</h2>
+			<h2 class="text-xl font-medium mb-1">Store address <small>(optional)</small></h2>
 			<small class="block text-alphaLight-800">The address entered here will be used to populate customer emails and the footer of your store</small>
 		</div>
 		
@@ -112,7 +150,12 @@
 
 			<div>
 				<label for="address-tel" class="mb-1">Telephone number</label>
-				<input type="text" id="address-tel" name="address-tel" placeholder="Enter telephone number">
+				<input type="tel" id="address-tel" name="address-tel" placeholder="Enter telephone number">
+			</div>
+
+			<div>
+				<label for="tax-id" class="mb-1">Tax ID</label>
+				<input type="text" id="tax-id" name="tax-id" placeholder="Enter tax ID">
 			</div>
 
 		</div>
@@ -130,12 +173,23 @@
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import Step from '../Step.vue'
+	import { UploadIcon } from '@heroicons/vue/outline/esm'
+
+	import FileUpload from 'vue-upload-component'
 
 	export default {
 		components: {
 			BackButton,
 			NextButton,
 			Step,
+			FileUpload,
+			UploadIcon,
+		},
+
+		data: function () {
+			return {
+				files: [],
+			}
 		},
 
 		setup() {

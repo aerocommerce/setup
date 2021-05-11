@@ -37,7 +37,7 @@
 
     .selector:hover::after,
     .selector:focus::after {
-        @apply border-alpha-100;
+        @apply border-bravo;
     }
 
     .selector.active::after {

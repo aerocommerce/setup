@@ -18,23 +18,43 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Project</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Project</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">{{ setupData.projectName }}</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Database server</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Database server</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">127.0.0.1:3306</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Database name</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Database name</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">demo-store</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Elasticsearch server</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Elasticsearch server</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">127.0.0.1:9200</dd>
 					</div>
 
@@ -52,63 +72,123 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Name</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Name</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">Demo Store</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Industry</dt>
-						<dd class="break-all">–</dd>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Industry</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
+						<dd class="break-all">Industry</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Store country</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Store country</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">United Kingdom</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Default currency</dt>
-						<dd class="break-all">Bitish Pounds (GBP)</dd>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Default currency</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
+						<dd class="break-all">British Pounds (GBP)</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Language</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Language</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">English</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Sender email address</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Sender email address</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">info@demo-store.test</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Logo uploaded</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Logo uploaded</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">demo-store-logo.svg</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Address line 1</dt>
-						<dd class="break-all">Commerce House</dd>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Address line 1</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
+						<dd class="break-all">Commerce house</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Address line 2</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Address line 2</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">1 Exchange Square</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">City</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>City</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">Middlesbrough</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Postal code</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Postal code</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">TS1 1DE</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Telephone number</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Telephone number</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">–</dd>
 					</div>
 
@@ -126,13 +206,23 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Catalog</dt>
-						<dd class="break-all">DB has catalog data</dd>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Catalog</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
+						<dd class="break-all">Database has catalog data</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Theme</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Theme</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">Metal</dd>
 					</div>
 
@@ -150,13 +240,23 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Email address</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Email address</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">steven@aerocommerce.com</dd>
 					</div>
 
-					<div>
-						<dt class="text-alphaLight-900 text-sm">Password</dt>
+					<div class="group cursor-pointer">
+						<dt class="text-alphaLight-900 text-sm flex items-center relative">
+							<span>Password</span>
+							<span class="absolute top-0 right-0 hidden group-hover:block ml-1">
+								<PencilIcon class="w-3 h-3" />
+							</span>
+						</dt>
 						<dd class="break-all">*********************</dd>
 					</div>
 
@@ -179,6 +279,7 @@
 	import NextButton from '../Elements/NextButton.vue'
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
 	import Step from '../Step.vue'
+	import { PencilIcon } from '@heroicons/vue/outline/esm'
 
 	export default {
 		components: {
@@ -186,6 +287,7 @@
 			NextButton,
 			SingleAccordion,
 			Step,
+			PencilIcon
 		},
 		setup() {
 			const setupData = inject('setupData')
