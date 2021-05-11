@@ -10,9 +10,9 @@
 			You can create a new project if you're starting local development or you can choose an existing project if you're continuing development or setting up on a live server.
 		</template>
 
-		<div class="mb-12">
+		<div class="mb-9">
 
-			<ContentGroup defaultOpen="true">
+			<ContentGroup id="new-project" :selected="true" group="project">
 
 				<template #title>
 					Create new project
@@ -29,7 +29,7 @@
 
 		<div>
 
-			<ContentGroup>
+			<ContentGroup id="existing-project" :selected="false" group="project">
 
 				<template #title>
 					Select existing project

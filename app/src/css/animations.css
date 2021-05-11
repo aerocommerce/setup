@@ -22,4 +22,49 @@
         }
     }
 
+    .animation-rotate {
+        animation: rotate 1000ms infinite linear forwards;
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+
+    .animation-draw path {
+        animation: draw 2s 350ms forwards;
+    }
+
+    .animation-draw .delay path {
+        animation-delay: 1000ms;
+    }
+
+    .animation-draw .delay-2 path {
+        animation-delay: 1500ms;
+    }
+
+    @keyframes draw {
+
+        80% {
+            fill: transparent;
+        }
+
+        100% {
+            stroke-dashoffset: 0;
+            fill: theme('colors.green');
+        }
+        
+    }
+
+    .animation-float > * {
+        animation: float 30s infinite linear;
+    }
+
+    @keyframes float {
+        50% {
+            transform: translateX(-3em);
+        }
+    }
+
 }

@@ -1,11 +1,15 @@
 @layer components {
 
     .button {
-        @apply flex items-center px-6 py-4 bg-alpha rounded font-medium;
+        @apply flex items-center px-6 py-3 bg-alpha rounded-lg font-medium border-2 border-alpha;
+    }
+
+    .button-secondary {
+        @apply bg-transparent border-white text-white px-4 py-3;
     }
 
     .button-transparent {
-        @apply px-0 bg-transparent rounded-none;
+        @apply px-0 bg-transparent rounded-none border-transparent;
     }
 
     .button svg {

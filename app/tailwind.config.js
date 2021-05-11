@@ -53,6 +53,7 @@ module.exports = {
 				bravo: '#54E0E4',
 				green: '#7CC43F',
 				red: '#C43F3F',
+				orange: '#C4873F',
 				gray: colors.trueGray,
 			},
 			fontFamily: {
@@ -80,7 +81,8 @@ module.exports = {
 				'56': '15.1013rem',
 				'64': '17.258666688rem',
 				'72': '19.416000024rem',
-				'96': '25.888000024'
+				'96': '25.888000024',
+				'full' : '100%'
 			},
 			maxWidth: {
 				'1': '0.269666667rem',
@@ -102,7 +104,8 @@ module.exports = {
 				'48': '12.944rem',
 				'56': '15.1013rem',
 				'64': '17.258666688rem',
-				'desktop': '1920px'
+				'desktop': '1920px',
+				'screen-1/2': '50vw'
 			},
 			minWidth: {
 				'1': '0.269666667rem',
@@ -173,6 +176,12 @@ module.exports = {
 			screens: {
 				'illustration': {'raw': '(min-width: 1280px) and (min-height: 768px)'},
 				// => @media (orientation: portrait) { ... }
+			},
+			transitionProperty: {
+				'border': 'border'
+			},
+			borderWidth: {
+				'6': '6px'
 			}
 		},
 	},

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {ArrowNarrowLeftIcon} from '@heroicons/vue/solid'
+import {ArrowNarrowLeftIcon} from '@heroicons/vue/outline/esm'
 
 export default {
   props: ['action'],

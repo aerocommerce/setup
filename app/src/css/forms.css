@@ -4,7 +4,7 @@
 	input,
 	select,
 	textarea {
-		@apply font-primary w-full border border border-alpha-1200 py-3 px-4 bg-white rounded-md text-gray-700;
+		@apply font-primary w-full border-2 border border-alpha-1200 py-3 px-4 bg-white rounded-md text-gray-700;
     }
 
     input:disabled,
@@ -69,25 +69,30 @@
     /* Default style for checkboxes */
     input[type='checkbox'],
     input[type='radio'] {
-        @apply absolute opacity-0 pointer-events-none w-0 m-0 invisible;
+        @apply absolute opacity-0 pointer-events-none w-0 m-0 invisible transition-colors duration-150;
     }
 
     input[type='checkbox'] + label,
     input[type='radio'] + label {
-        @apply flex;
+        @apply flex items-center text-alphaLight-900 uppercase transition-colors duration-150;
     }
 
     input[type='checkbox'] + label::before,
     input[type='radio'] + label::before {
         content: '';
-        @apply w-6 h-6 border border-alpha-0 mr-3 rounded-md flex-none;
+        @apply w-5 h-5 border-2 border-alphaLight-900 mr-3 rounded-md flex-none;
+    }
+
+    input[type='checkbox']:checked + label,
+    input[type='radio']:checked + label {
+        @apply text-white;
     }
 
     input[type='checkbox']:checked + label::before,
     input[type='radio']:checked + label::before {
         content: '';
-        @apply bg-bravo;
-        box-shadow: 0 0 0 theme('spacing.1') theme('colors.alpha.1100') inset;
+        @apply bg-white;
+        box-shadow: 0 0 0 theme('spacing.1') theme('colors.alpha.900') inset;
     }
 
     /* Fully round radio buttons */
@@ -97,7 +102,7 @@
 
 	/* Default styling for fieldset */
 	fieldset {
-		@apply p-6 border border-alpha-1200 rounded-md;
+		@apply p-6 border-2 border-alpha-1200 rounded-md;
 	}
 
 	/* Default styling for legend */
@@ -135,6 +140,6 @@
     input::-moz-placeholder {
 		/* Firefox 19+ */
 		@apply text-alpha-0 opacity-100;
-	}
+    }
 
 }

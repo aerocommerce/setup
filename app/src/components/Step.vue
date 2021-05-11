@@ -1,6 +1,7 @@
 <template>
 
-	<form action="" class="xl:absolute flex flex-col h-full overflow-scroll xl:pr-12 xl:py-12">
+	<!-- <form action="" class="xl:absolute flex flex-col h-full overflow-scroll xl:pr-12 xl:py-12"> -->
+	<div class="xl:absolute flex flex-col h-full overflow-scroll xl:pr-12 xl:py-12">
 
 		<div class="flex justify-between">
 
@@ -28,7 +29,7 @@
 
 		<p class="text-alphaLight-800 mb-12"><slot name="description" /></p>
 
-        <div class="mb-12">
+        <div class="mb-9">
 			<slot />
 		</div>
 
@@ -43,7 +44,8 @@
 			</div>
 		</div>
 
-	</form>
+	</div>
+	<!-- </form> -->
 
 </template>
 
@@ -51,7 +53,7 @@
 import { inject } from 'vue'
 
 import Logo from './Elements/Logo.vue'
-import {QuestionMarkCircleIcon} from '@heroicons/vue/outline/esm'
+import { QuestionMarkCircleIcon } from '@heroicons/vue/outline/esm'
 
 export default {
 	components: {

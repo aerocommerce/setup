@@ -40,7 +40,7 @@ export default [
     {
         icon: ShoppingBagIcon,
         component: Store,
-        size: 'small',
+        size: 'large',
     },
     {
         icon: CollectionIcon,
