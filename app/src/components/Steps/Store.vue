@@ -173,7 +173,7 @@
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import Step from '../Step.vue'
-	import { UploadIcon } from '@heroicons/vue/outline/esm'
+	import { UploadIcon } from '@heroicons/vue/outline'
 
 	import FileUpload from 'vue-upload-component'
 

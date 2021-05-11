@@ -55,7 +55,7 @@
 import { ref, inject, onMounted, onBeforeUnmount } from 'vue'
 
 import Logo from './Elements/Logo.vue'
-import { QuestionMarkCircleIcon } from '@heroicons/vue/outline/esm'
+import { QuestionMarkCircleIcon } from '@heroicons/vue/outline'
 
 export default {
 	components: {

@@ -17,23 +17,41 @@
 			<ContentGroup id="retail" :selected="false" group="catalog">
 
 				<template #title>
-					Import clothing retail sample
+					Import sample data
 				</template>
-
-				<WarningMessage>Importing sample data will override any catalog data that already exists</WarningMessage>
 				
-			</ContentGroup>
-		</div>
-
-		<div class="mb-9">
-			<ContentGroup id="music" :selected="false" group="catalog">
-
-				<template #title>
-					Import music retail sample
-				</template>
-
-				<WarningMessage>Importing sample data will override any catalog data that already exists</WarningMessage>
+				<div class="mb-6">
+					<WarningMessage>Importing sample data will override any catalog data that already exists</WarningMessage>
+				</div>
 				
+				<div class="mb-6">
+					<label for="select-sample" class="mb-1">Select sample</label>
+					<select id="select-sample" name="select-sample">
+						<option value="" selected disabled>Please select</option>
+						<option value="clothing-store">Clothing store</option>
+						<option value="music-store">Music store</option>
+					</select>
+				</div>
+
+				<p class="mb-1 text-sm text-alphaLight-800">Sample preview;</p>
+
+				<div class="grid grid-cols-4 gap-6">
+					
+					<div class="relative pb-full bg-alpha-300">
+						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+					</div>
+					<div class="relative pb-full bg-alpha-300">
+						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />						
+					</div>
+					<div class="relative pb-full bg-alpha-300">
+						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+					</div>
+					<div class="relative pb-full bg-alpha-300">
+						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+					</div>
+
+				</div>
+
 			</ContentGroup>
 		</div>
 
@@ -62,6 +80,7 @@
 	import SuccessMessage from '../Elements/SuccessMessage.vue'
 	import WarningMessage from '../Elements/WarningMessage.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
+	import { PhotographIcon } from '@heroicons/vue/outline'
 
 	export default {
 		components: {
@@ -70,7 +89,8 @@
 			Step,
 			SuccessMessage,
 			WarningMessage,
-			ContentGroup
+			ContentGroup,
+			PhotographIcon
 		},
 	}
 </script>

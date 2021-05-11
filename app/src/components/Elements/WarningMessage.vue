@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {ExclamationIcon} from '@heroicons/vue/outline/esm'
+import {ExclamationIcon} from '@heroicons/vue/outline'
 
 export default {
     components: {

@@ -144,7 +144,7 @@
 	import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
 	import Step from '../Step.vue'
-	import { RefreshIcon } from '@heroicons/vue/outline/esm'
+	import { RefreshIcon } from '@heroicons/vue/outline'
 
 	export default {
 		components: {
