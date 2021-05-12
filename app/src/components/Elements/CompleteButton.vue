@@ -1,7 +1,7 @@
 <template>
-	<button @click="action" type="button" class="button">
-		<CheckCircleIcon class="mr-4" />
-		<span>Save and start setup</span>
+	<button @click="action" type="button" class="button bg-bravo">
+		<span>Save and install</span>
+    <span class="ml-4">🚀</span>
 	</button>
 </template>
 

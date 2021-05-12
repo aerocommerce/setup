@@ -16,7 +16,7 @@
 
       <div class="mb-9">
 
-        <ContentGroup id="local-db-server" v-model="setupData.project.databaseType" name="databaseType" value="local">
+        <ContentGroup id="local-db-server" v-model="setupData.project.databaseConnectionType" name="databaseConnectionType" value="local">
 
           <template #title>
             Local database server
@@ -34,31 +34,21 @@
               <p>:</p>
             </div>
 
-            <div class="">
+            <div>
               <label for="local-port-number" class="mb-1">Port number</label>
-              <input type="text" id="local-port-number" placeholder="Enter port no" v-model="setupData.project.databasePort">
+              <input type="number" id="local-port-number" placeholder="Enter port no" autocomplete="off" v-model="setupData.project.databasePort">
             </div>
 
           </div>
 
           <div class="mb-6">
-            <SingleAccordion v-model="setupData.project.showAdvancedDatabaseOptions">
+            <label for="local-username" class="mb-1">Database username</label>
+            <input type="text" id="local-username" placeholder="Enter database username" autocomplete="off" v-model="setupData.project.databaseUsername">
+          </div>
 
-              <template #title>
-                <span class="text-sm uppercase underline">Advanced settings</span>
-              </template>
-
-              <div class="mb-6">
-                <label for="local-username" class="mb-1">Database username</label>
-                <input type="text" id="local-username" placeholder="Enter database username" v-model="setupData.project.databaseUsername">
-              </div>
-
-              <div>
-                <label for="local-pasword" class="mb-1">Database pasword</label>
-                <input type="password" id="local-pasword" placeholder="Enter database pasword" v-model="setupData.project.databasePassword">
-              </div>
-
-            </SingleAccordion>
+          <div class="mb-6">
+            <label for="local-pasword" class="mb-1">Database pasword <small>(optional)</small></label>
+            <input type="password" id="local-pasword" placeholder="Enter database pasword" autocomplete="off" v-model="setupData.project.databasePassword">
           </div>
 
           <div v-if="setupData.project.databaseTestPassed">
@@ -75,7 +65,7 @@
 
       <div>
 
-        <ContentGroup id="remote-db-server" v-model="setupData.project.databaseType" name="databaseType" value="remote">
+        <ContentGroup id="remote-db-server" v-model="setupData.project.databaseConnectionType" name="databaseConnectionType" value="remote">
 
           <template #title>
             Remote database server
@@ -85,7 +75,7 @@
 
             <div class="w-full">
               <label for="remote-host-name" class="mb-1">Host name</label>
-              <input type="text" id="remote-host-name" name="remote-host-name" placeholder="Enter host name" autofocus value="">
+              <input type="text" id="remote-host-name" placeholder="Enter host name" autocomplete="off" v-model="setupData.project.databaseHost">
             </div>
 
             <div class="px-6">
@@ -93,31 +83,21 @@
               <p>:</p>
             </div>
 
-            <div class="">
+            <div>
               <label for="remote-port-number" class="mb-1">Port number</label>
-              <input type="text" id="remote-port-number" name="remote-port-number" placeholder="Enter port no" autofocus value="">
+              <input type="number" id="remote-port-number" placeholder="Enter port no" autocomplete="off" v-model="setupData.project.databasePort">
             </div>
 
           </div>
 
           <div class="mb-6">
-            <SingleAccordion>
+            <label for="remote-username" class="mb-1">Database username</label>
+            <input type="text" id="remote-username" placeholder="Enter database username" autocomplete="off" v-model="setupData.project.databaseUsername">
+          </div>
 
-              <template #title>
-                <span class="text-sm uppercase underline">Advanced settings</span>
-              </template>
-
-              <div class="mb-6">
-                <label for="remote-username" class="mb-1">Database username</label>
-                <input type="text" id="remote-username" name="remote-username" placeholder="Enter database username">
-              </div>
-
-              <div>
-                <label for="remote-pasword" class="mb-1">Database pasword</label>
-                <input type="password" id="remote-pasword" name="remote-pasword" placeholder="Enter database pasword">
-              </div>
-
-            </SingleAccordion>
+          <div class="mb-6">
+            <label for="remote-pasword" class="mb-1">Database pasword</label>
+            <input type="password" id="remote-pasword" placeholder="Enter database pasword" autocomplete="off" v-model="setupData.project.databasePassword">
           </div>
 
           <div v-if="setupData.project.databaseTestPassed">
@@ -132,7 +112,7 @@
 
       </div>
 
-      <button class="hidden" />
+      <button class="hidden" aria-hidden="true" />
     </form>
 
 		<template #footer="{ retreatStep }">
@@ -175,7 +155,7 @@
 
       const connectionInfo = computed(() => {
         return {
-          type: setupData.project.databaseType,
+          type: setupData.project.databaseConnectionType,
           host: setupData.project.databaseHost,
           port: setupData.project.databasePort,
           username: setupData.project.databaseUsername,

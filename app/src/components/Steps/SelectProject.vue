@@ -47,7 +47,7 @@
 
       </div>
 
-      <button class="hidden" />
+      <button class="hidden" aria-hidden="true" />
     </form>
 
 		<template #footer="{ retreatStep }">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
+  import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
@@ -109,6 +109,7 @@ import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
       const projectName = ref(null)
       const selectedProject = computed(() => setupData.project.id)
       const selectedProjectType = computed(() => setupData.project.type)
+      const selectProjectName = computed(() => setupData.project.name)
 
       watch(selectedProject, (value) => {
         existingProjects.value.forEach((project) => {
@@ -130,6 +131,13 @@ import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
         })
       })
 
+
+
+      watch(selectProjectName, (value) => {
+        setupData.project.database = ''
+        setupData.project.storeName = value
+      })
+
       onMounted(() => {
         nextTick(() => {
           setTimeout(() => {
@@ -139,6 +147,8 @@ import {computed, inject, ref, watch, onMounted, nextTick} from 'vue'
       })
 
       const attemptAdvance = () => {
+        errorMessage.value = null
+
 			  if (selectedProjectType.value === 'new_project') {
           if (!setupData.project.name.length) {
             errorMessage.value = 'Please enter a project name.'

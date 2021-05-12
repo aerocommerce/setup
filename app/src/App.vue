@@ -21,10 +21,12 @@
 
 		<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:w-auto">
 
-			<div v-if="setupData.agora && !stepsComplete" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
-				<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
-				<span class="text-xl md:text-4xl animation-wave">👋</span>
-			</div>
+      <transition name="fade">
+        <div v-if="!currentStepEntry.hasOwnProperty('subComponent') && setupData.agora && !stepsComplete" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
+          <p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
+          <span class="text-xl md:text-4xl animation-wave">👋</span>
+        </div>
+      </transition>
 
 			<ol class="flex space-x-3 items-center text-alpha">
 				<li v-for="(step, stepIndex) in steps">
@@ -36,7 +38,6 @@
 			</ol>
 		</div>
 
-		<!-- Theme overlay -->
     <transition name="fade">
       <component v-if="currentStepEntry.hasOwnProperty('subComponent')" :is="currentStepEntry.subComponent" />
     </transition>

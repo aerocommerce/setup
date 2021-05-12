@@ -1,8 +1,8 @@
 <template>
 
     <div>
-        <label class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top cursor-pointer" :class="selected ? 'active' : ''" :for="id" :key="id" :style="thumbnail ? 'background-image: url(' + thumbnail + ');' : null">
-            <input type="radio" :id="id" :checked="selected" :key="id" :name="group" v-model="selected">
+        <label class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top cursor-pointer" :class="modelValue === value ? 'active' : ''" :for="id" :key="id" :style="thumbnail ? 'background-image: url(' + thumbnail + ');' : null">
+            <input type="radio" :id="id" :name="name" v-model="modelValue" :value="value" @input="$emit('update:modelValue', $event.target.value)">
         </label>
 
         <label class="block mt-3" :for="id">
@@ -16,7 +16,7 @@
 <script>
 	
 	export default {
-		props: ['id', 'selected', 'group', 'title', 'author', 'thumbnail'],
+		props: ['id', 'modelValue', 'value', 'name', 'title', 'author', 'thumbnail'],
 	}
 
 </script>

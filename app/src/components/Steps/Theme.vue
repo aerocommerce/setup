@@ -11,11 +11,11 @@
 
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-x-6 gap-y-9">
 
-			<ThemeSelector id="blank" :selected="true" group="theme" title="Blank" author="Aero Commerce" />
-			<ThemeSelector id="metal" :selected="false" group="theme" title="Metal" author="Aero Commerce" thumbnail="src/images/theme-metal-thumb.png" />
-			<ThemeSelector id="shadow" :selected="false" group="theme" title="Shadow" author="Aero Commerce" thumbnail="src/images/theme-shadow-thumb.png" />
-			<ThemeSelector id="blade" :selected="false" group="theme" title="Blade" author="Aero Commerce" thumbnail="src/images/theme-blade-thumb.png" />
-			<ThemeSelector id="highway" :selected="false" group="theme" title="Highway" author="Aero Commerce" thumbnail="src/images/theme-highway-thumb.png" />
+			<ThemeSelector id="metal" name="theme" v-model="theme" value="metal" title="Metal" author="Aero Commerce" thumbnail="src/images/theme-metal-thumb.png" />
+			<ThemeSelector id="shadow" name="theme" v-model="theme" value="shadow" title="Shadow" author="Aero Commerce" thumbnail="src/images/theme-shadow-thumb.png" />
+			<ThemeSelector id="blade" name="theme" v-model="theme" value="blade" title="Blade" author="Aero Commerce" thumbnail="src/images/theme-blade-thumb.png" />
+			<ThemeSelector id="highway" name="theme" v-model="theme" value="highway" title="Highway" author="Aero Commerce" thumbnail="src/images/theme-highway-thumb.png" />
+			<ThemeSelector id="blank" name="theme" v-model="theme" value="blank" title="Blank" author="Aero Commerce" />
 
 		</div>
 
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import {ref} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ThemeSelector from '../Elements/ThemeSelector.vue'
@@ -40,5 +41,12 @@
 			ThemeSelector,
 			Step,
 		},
+    setup() {
+		  const theme = ref('metal')
+
+      return {
+		    theme,
+      }
+    },
 	}
 </script>

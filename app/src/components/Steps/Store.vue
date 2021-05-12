@@ -6,14 +6,16 @@
 		</template>
 
 		<template #description>
-			Now we’ll take some information about the store you’re creating. We’ll use this information to populate your theme and email content. This information can be easily updated later from the store settings page.
+			Now we'll take some information about the store you're creating.
+      We'll use this information to populate your theme and email content.
+      This information can be easily updated later from the store settings page in the admin.
 		</template>
 
 		<div class="grid md:grid-cols-2 gap-6 mb-6">
 
 			<div>
 				<label for="store-name" class="mb-1">Store name</label>
-				<input type="text" id="store-name" name="store-name" placeholder="Enter host name" autofocus :value="setupData.projectName" required>
+				<input type="text" id="store-name" name="store-name" placeholder="Enter store name" :value="setupData.project.storeName" required>
 			</div>
 
 			<div class="hidden md:block">&nbsp;</div>
@@ -85,12 +87,12 @@
 
 				<ul v-if="files.length">
 					<li v-for="file in files" :key="file.id">
-					<span>{{file.name}}</span> -
-					<span>{{$formatSize(file.size)}}</span> -
-					<span v-if="file.error">{{file.error}}</span>
-					<span v-else-if="file.success">success</span>
-					<span v-else-if="file.active">active</span>
-					<span v-else></span>
+            <span>{{file.name}}</span> -
+            <span>{{$formatSize(file.size)}}</span> -
+            <span v-if="file.error">{{file.error}}</span>
+            <span v-else-if="file.success">success</span>
+            <span v-else-if="file.active">active</span>
+            <span v-else></span>
 					</li>
 				</ul>
 
@@ -105,8 +107,7 @@
 				</div>
 				
 				<div class="hidden">
-					<file-upload post-action="/upload/logo" :multiple="false" :drop="true" :drop-directory="false" v-model="files" ref="upload">
-					</file-upload>
+					<FileUpload post-action="/upload/logo" :multiple="false" :drop="true" :drop-directory="false" v-model="files" ref="upload" />
 				</div>
 				
 			</label>
@@ -144,13 +145,13 @@
 			</div>
 
 			<div>
-				<label for="address-postcode" class="mb-1">Post code</label>
-				<input type="text" id="address-postcode" name="address-postcode" placeholder="Enter post code">
+				<label for="address-postcode" class="mb-1">Postcode</label>
+				<input type="text" id="address-postcode" name="address-postcode" placeholder="Enter postcode">
 			</div>
 
 			<div>
-				<label for="address-tel" class="mb-1">Telephone number</label>
-				<input type="tel" id="address-tel" name="address-tel" placeholder="Enter telephone number">
+				<label for="address-tel" class="mb-1">Phone number</label>
+				<input type="tel" id="address-tel" name="address-tel" placeholder="Enter phone number">
 			</div>
 
 			<div>
