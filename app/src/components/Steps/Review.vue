@@ -265,9 +265,9 @@
 			</SingleAccordion>
 		</div>
 
-		<template #footer="{ retreatStep, completeSetup }">
+		<template #footer="{ retreatStep, advanceStep }">
 			<BackButton :action="retreatStep" />
-			<CompleteButton :action="completeSetup" />
+			<CompleteButton :action="advanceStep" />
 		</template>
 
 	</Step>
@@ -287,7 +287,7 @@
 			CompleteButton,
 			SingleAccordion,
 			Step,
-			PencilIcon
+			PencilIcon,
 		},
 		setup() {
 			const setupData = inject('setupData')

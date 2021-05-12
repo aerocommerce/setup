@@ -2,7 +2,7 @@
 	<Step>
 
 		<template #title>
-			Admin Account
+			Admin account
 		</template>
 
 		<template #description>

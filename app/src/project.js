@@ -10,4 +10,5 @@ export default {
     databases: [],
     showAdvancedDatabaseOptions: false,
     databaseTestPassed: false,
+    theme: null,
 }
