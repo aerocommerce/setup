@@ -48,7 +48,6 @@
 					<option value="">Select currency</option>
 					<option value="gbp" selected>British Pounds (GBP)</option>
 					<option value="euro">Euros (EUR)</option>
-					<option value="spain">Spain</option>
 				</select>
 			</div>
 
@@ -81,18 +80,61 @@
 
 		<div class="mb-6">
 			<label for="file" class="mb-1">Upload store logo <small>(optional)</small></label>
-			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the theme and email templates. Please upload an SVG if possible (we will convert the SVG to a PNG for use in emails)</small>
+			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the theme. Uploading an SVG will ensure the best quality on all devices and screens.</small>
 
 			<label for="file" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo">
 
 				<ul v-if="files.length">
 					<li v-for="file in files" :key="file.id">
-            <span>{{file.name}}</span> -
-            <span>{{$formatSize(file.size)}}</span> -
-            <span v-if="file.error">{{file.error}}</span>
-            <span v-else-if="file.success">success</span>
-            <span v-else-if="file.active">active</span>
-            <span v-else></span>
+						<span>{{file.name}}</span> -
+						<span>{{$formatSize(file.size)}}</span> -
+						<span v-if="file.error">{{file.error}}</span>
+						<span v-else-if="file.success">success</span>
+						<span v-else-if="file.active">active</span>
+						<span v-else></span>
+					</li>
+				</ul>
+
+				<div v-else class="flex items-center">
+					<UploadIcon class="w-5 h-5 mr-2" />
+					Drag and drop or click here to select a file
+				</div>
+
+				<div v-show="$refs.upload && $refs.upload.dropActive" class="fixed z-50 top-0 left-0 w-full h-full bg-alphaLight-100 text-alpha-900 bg-opacity-80 flex flex-col items-center justify-center">
+					<UploadIcon class="w-12 h-12 mb-6" />
+					<h3 class="text-3xl  font-medium">Drop files to upload</h3>
+				</div>
+				
+				<div class="hidden">
+					<FileUpload post-action="/upload/logo" :multiple="false" :drop="true" :drop-directory="false" v-model="files" ref="upload" />
+				</div>
+				
+			</label>
+
+			<button type="button" class="button button-secondary" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+				<UploadIcon class="mr-2" />
+				Start Upload
+			</button>
+
+			<button type="button" class="button button-secondary" v-else @click.prevent="$refs.upload.active = false">
+				Stop Upload
+			</button>
+		</div>
+
+		<div class="mb-6">
+			<label for="file" class="mb-1">Upload email logo <small>(optional)</small></label>
+			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the email templates. Please upload a PNG or JPG image of your logo.</small>
+
+			<label for="file" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo">
+
+				<ul v-if="files.length">
+					<li v-for="file in files" :key="file.id">
+						<span>{{file.name}}</span> -
+						<span>{{$formatSize(file.size)}}</span> -
+						<span v-if="file.error">{{file.error}}</span>
+						<span v-else-if="file.success">success</span>
+						<span v-else-if="file.active">active</span>
+						<span v-else></span>
 					</li>
 				</ul>
 
@@ -128,6 +170,16 @@
 		</div>
 		
 		<div class="grid md:grid-cols-2 gap-6">
+
+			<div>
+				<label for="address-country" class="mb-1">Address Country</label>
+				<select id="address-country" name="address-country">
+					<option value="">Select country</option>
+					<option value="UK" selected>United Kingdom</option>
+					<option value="france">France</option>
+					<option value="spain">Spain</option>
+				</select>
+			</div>
 
 			<div>
 				<label for="address-1" class="mb-1">Address line 1</label>

@@ -94,7 +94,7 @@ import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(0)
+const currentStep = ref(5)
 const setupComplete = ref(false)
 const stepsComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])

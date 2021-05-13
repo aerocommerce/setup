@@ -33,10 +33,12 @@
 
     <transition name="delayFade">
       <div v-if="setupData.installComplete" class="flex flex-col items-center">
-          <span class="w-full max-w-48 mb-6">
+          <span class="w-full max-w-64 mb-6">
             <Logo />
           </span>
-          <h3 class="text-xl font-medium">We're all set</h3>
+          <h3 class="text-2xl mb-24">We're all set</h3>
+          <a href="#" class="button bg-green border-green text-alpha-1000 hover:no-underline uppercase px-12 py-4 mb-3">View store</a>
+          <a href="#" class="button button-transparent uppercase text-white underline">Login to admin</a>
       </div>
     </transition>
 
