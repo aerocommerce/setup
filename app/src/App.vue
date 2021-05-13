@@ -21,33 +21,37 @@
 			</div>
 
 			<transition name="fade">
-				<div v-if="!stepsComplete" class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
-					<p class="text-xl md:text-3xl uppercase font-medium mb-2" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
-					<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
+				<div v-if="!stepsComplete">
+					<div class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
+						<p class="text-xl md:text-3xl uppercase font-medium mb-2" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
+						<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
+					</div>
+
+					<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:pl-24">
+
+						<div v-if="setupData.agora" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
+							<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
+							<span class="text-xl md:text-4xl animation-wave">👋</span>
+						</div>
+
+						<div class="flex justify-between items-center">
+
+							<span class="w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400 mr-12" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
+
+							<ol class="flex space-x-3 items-center text-alpha">
+								<li v-for="(step, stepIndex) in steps" class="flex items-center">
+									<button @click.prevent="!stepsComplete && currentStep > stepIndex ? jumpToStep(stepIndex) : null" :disabled="stepsComplete || currentStep <= stepIndex">
+										<component :is="step.icon" class="h-6 w-6 transition-color duration-300"
+												:class="[ (currentStep > stepIndex || stepsComplete) ? 'text-green' : currentStep === stepIndex ? 'text-alpha-100' : 'text-alpha' ]" aria-hidden="true" />
+									</button>
+								</li>
+							</ol>
+
+						</div>
+
+					</div>
 				</div>
 			</transition>
-
-			<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:w-auto">
-
-				<transition name="fade">
-					<div v-if="setupData.agora && !stepsComplete" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
-						<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
-						<span class="text-xl md:text-4xl animation-wave">👋</span>
-					</div>
-				</transition>
-
-				<transition name="fade">
-					<ol v-if="!stepsComplete" class="flex space-x-3 items-center text-alpha">
-						<li v-for="(step, stepIndex) in steps">
-							<button @click.prevent="!stepsComplete && currentStep > stepIndex ? jumpToStep(stepIndex) : null" :disabled="stepsComplete || currentStep <= stepIndex">
-								<component :is="step.icon" class="h-6 w-6 transition-color duration-300"
-										:class="[ (currentStep > stepIndex || stepsComplete) ? 'text-green' : currentStep === stepIndex ? 'text-alpha-100' : 'text-alpha' ]" aria-hidden="true" />
-							</button>
-						</li>
-					</ol>
-				</transition>
-
-			</div>
 			
 			<!-- Theme overlay -->
 			<transition name="delayFade">
@@ -58,7 +62,7 @@
 
 		<transition name="slide">
 
-			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-xl 2xl:max-w-2xl' : 'w-full xl:w-screen-1/2 2xl:max-w-224' ]">
+			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-xl 2xl:max-w-2xl' : 'w-full xl:w-screen-1/2 2xl:max-w-[75rem]' ]">
 				<div class="xl:relative md:px-6 xl:py-0 h-full">
 					<component :is="currentStepEntry.component" />
 				</div>
@@ -96,8 +100,18 @@ const stepsComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])
 const totalSteps = steps.length
 
+let serviceWorker = {
+	status: true,
+	statusText: 'Service worker connected'
+}
+
 let baseData = {
-  agora: null,
+  agora: { 
+	user: {
+		  'name': 'Steven',
+		  'email': 'steven@aerocommerce.com'
+  	} 
+  },
   project: baseProject,
 }
 
@@ -153,6 +167,7 @@ export default {
       setupComplete,
 			currentStep,
 			currentStepEntry,
+			serviceWorker
 		}
 	},
 }

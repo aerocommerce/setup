@@ -12,9 +12,11 @@
     <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
 
     <template v-if="setupData.agora && setupData.agora.user">
-      <p>You are connected as {{ setupData.agora.user.name }}</p>
+      <SuccessMessage>You are connected as {{ setupData.agora.user.name }}</SuccessMessage>
 
-      <button @click.prevent="setupData.reset">Log out</button>
+      <button @click.prevent="setupData.reset" class="button button-secondary">
+        <span class="mr-4"><LoginIcon /></span> Log out
+      </button>
     </template>
     <template v-else>
       <form @submit.prevent="attemptAdvance" method="post">
@@ -55,6 +57,8 @@
 	import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
+  import SuccessMessage from '../Elements/SuccessMessage.vue'
+  import { LoginIcon } from '@heroicons/vue/outline'
 	import Step from '../Step.vue'
 
 	export default {
@@ -62,7 +66,9 @@
 			ErrorMessage,
 			BackButton,
 			NextButton,
+      SuccessMessage,
 			Step,
+      LoginIcon
 		},
     setup() {
 		  const errorMessage = ref(null)

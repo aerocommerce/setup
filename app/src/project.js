@@ -1,6 +1,6 @@
 export default {
     type: 'new_project',
-    name: '',
+    name: 'Storey McStore Store',
     id: null,
     databaseConnectionType: 'local',
     databaseHost: '127.0.0.1',
@@ -19,6 +19,6 @@ export default {
     storeIdentifier: null,
     showAdvancedElasticsearchOptions: false,
     elasticsearchTestPassed: false,
-    theme: null,
-    storeName: '',
+    theme: 'Metal',
+    storeName: 'Storey McStore Store',
 }
