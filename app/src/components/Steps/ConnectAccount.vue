@@ -15,7 +15,7 @@
       <SuccessMessage>You are connected as {{ setupData.agora.user.name }}</SuccessMessage>
 
       <button @click.prevent="setupData.reset" class="button button-secondary">
-        <span class="mr-4"><LoginIcon /></span> Log out
+        <span class="mr-4"><LogoutIcon class="transform rotate-180" /></span> Log out
       </button>
     </template>
     <template v-else>
@@ -58,7 +58,7 @@
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
   import SuccessMessage from '../Elements/SuccessMessage.vue'
-  import { LoginIcon } from '@heroicons/vue/outline'
+  import { LogoutIcon } from '@heroicons/vue/outline'
 	import Step from '../Step.vue'
 
 	export default {
@@ -68,7 +68,7 @@
 			NextButton,
       SuccessMessage,
 			Step,
-      LoginIcon
+      LogoutIcon,
 		},
     setup() {
 		  const errorMessage = ref(null)

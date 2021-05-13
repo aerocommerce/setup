@@ -1,4 +1,5 @@
-import {DatabaseIcon, LoginIcon, SearchIcon, ShoppingBagIcon, StarIcon, TableIcon, ColorSwatchIcon, InformationCircleIcon, CollectionIcon, UserCircleIcon} from '@heroicons/vue/outline'
+import {DatabaseIcon, SearchIcon, ShoppingBagIcon, StarIcon, TableIcon, ColorSwatchIcon, InformationCircleIcon, CollectionIcon, UserCircleIcon} from '@heroicons/vue/outline'
+import LoginIcon from './components/Elements/LoginIcon.vue'
 
 import ConnectAccount from './components/Steps/ConnectAccount.vue'
 import SelectProject from './components/Steps/SelectProject.vue'

@@ -94,7 +94,7 @@ import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(9)
+const currentStep = ref(0)
 const setupComplete = ref(false)
 const stepsComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])
@@ -102,16 +102,11 @@ const totalSteps = steps.length
 
 let serviceWorker = {
 	status: true,
-	statusText: 'Service worker connected'
+	statusText: 'Service worker connected',
 }
 
 let baseData = {
-  agora: { 
-	user: {
-		  'name': 'Steven',
-		  'email': 'steven@aerocommerce.com'
-  	} 
-  },
+  agora: null,
   project: baseProject,
 }
 
