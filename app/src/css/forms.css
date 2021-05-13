@@ -112,23 +112,19 @@
 
 	/* Default styling for native progress bars */
 	progress {
-		@apply bg-alpha rounded-sm shadow-none w-full h-1 relative block overflow-hidden appearance-none;
-    }
-
-    progress[value] {
-        @apply appearance-none shadow-none border-0 rounded-sm w-full text-alpha transition-colors duration-150;
+        @apply bg-alpha rounded-full w-full h-2 relative block overflow-hidden appearance-none;
     }
 
     progress[value]::-moz-progress-bar {
-        @apply bg-alpha rounded-sm transition-colors duration-150;
+        @apply bg-green rounded-full transition-colors duration-150;
     }
 
     progress[value]::-webkit-progress-bar {
-        @apply shadow-inner bg-alpha rounded-sm;
+        @apply shadow-inner bg-alpha rounded-full;
     }
 
     progress[value]::-webkit-progress-value {
-        @apply bg-alpha rounded-sm transition-colors duration-150;
+        @apply bg-green rounded-full transition-colors duration-150;
     }
 
 	/* Style placeholders */

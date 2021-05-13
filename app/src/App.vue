@@ -1,58 +1,80 @@
 <template>
 
-	<aside class="relative xl:flex-grow pb-48 md:pb-64 xl:order-2 overflow-hidden">
+	<div class="bg-alpha-1100 min-h-screen text-white flex flex-col xl:flex-row h-screen overflow-hidden xl:overflow-auto xl:h-auto">
 
-		<div v-if="!stepsComplete" class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
-			<LanguageSelector />
-		</div>
+		<aside class="relative xl:flex-grow pb-48 md:pb-64 xl:order-2 overflow-hidden">
 
-		<div class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform duration-1000 delay-150" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 7 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }">
-      <Illustration :step="currentStep" />
-		</div>
+			<transition name="fade">
+				<div v-if="!stepsComplete" class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
+					<LanguageSelector />
+				</div>
+			</transition>
 
-		<div class="hidden xl:block illustration:hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full max-w-48 opacity-70">
-			<Logo />
-		</div>
+			<transition name="fade">
+				<div v-if="!stepsComplete" class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform duration-1000 delay-150" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 7 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }">
+					<Illustration :step="currentStep" />
+				</div>
+			</transition>
 
-		<div class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
-			<p class="text-xl md:text-3xl uppercase font-medium mb-2" style="line-height: 0.7;" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
-			<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
-		</div>
-
-		<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:w-auto">
-
-			<div v-if="setupData.agora && !stepsComplete" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
-				<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
-				<span class="text-xl md:text-4xl animation-wave">👋</span>
+			<div v-if="!stepsComplete" class="hidden xl:block illustration:hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full max-w-48 opacity-70">
+				<Logo />
 			</div>
 
-			<ol class="flex space-x-3 items-center text-alpha">
-				<li v-for="(step, stepIndex) in steps">
-          <button @click.prevent="!stepsComplete && currentStep > stepIndex ? jumpToStep(stepIndex) : null" :disabled="stepsComplete || currentStep <= stepIndex">
-            <component :is="step.icon" class="h-6 w-6 transition-color duration-300"
-                       :class="[ currentStep > stepIndex ? 'text-green' : currentStep === stepIndex ? 'text-alpha-100' : 'text-alpha' ]" aria-hidden="true" />
-          </button>
-				</li>
-			</ol>
-		</div>
+			<transition name="fade">
+				<div v-if="!stepsComplete" class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
+					<p class="text-xl md:text-3xl uppercase font-medium mb-2" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
+					<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
+				</div>
+			</transition>
 
-		<!-- Theme overlay -->
-    <transition name="fade">
-      <component v-if="currentStepEntry.hasOwnProperty('subComponent')" :is="currentStepEntry.subComponent" />
-    </transition>
+			<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:w-auto">
 
-	</aside>
+				<transition name="fade">
+					<div v-if="setupData.agora && !stepsComplete" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
+						<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
+						<span class="text-xl md:text-4xl animation-wave">👋</span>
+					</div>
+				</transition>
 
-	<transition name="fade">
-    <main v-if="!stepsComplete" class="relative flex-grow bg-alpha-900 shadow z-10 w-full xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'xl:max-w-xl 2xl:max-w-2xl' : 'xl:max-w-screen-1/2' ]">
-      <div class="xl:relative md:px-6 xl:py-0 h-full">
-        <component :is="currentStepEntry.component" />
-      </div>
-    </main>
-    <main v-else>
-      <InstallProgress />
-    </main>
-  </transition>
+				<transition name="fade">
+					<ol v-if="!stepsComplete" class="flex space-x-3 items-center text-alpha">
+						<li v-for="(step, stepIndex) in steps">
+							<button @click.prevent="!stepsComplete && currentStep > stepIndex ? jumpToStep(stepIndex) : null" :disabled="stepsComplete || currentStep <= stepIndex">
+								<component :is="step.icon" class="h-6 w-6 transition-color duration-300"
+										:class="[ (currentStep > stepIndex || stepsComplete) ? 'text-green' : currentStep === stepIndex ? 'text-alpha-100' : 'text-alpha' ]" aria-hidden="true" />
+							</button>
+						</li>
+					</ol>
+				</transition>
+
+			</div>
+			
+			<!-- Theme overlay -->
+			<transition name="delayFade">
+				<component v-if="currentStepEntry.hasOwnProperty('subComponent')" :is="currentStepEntry.subComponent" />
+			</transition>
+
+		</aside>
+
+		<transition name="slide">
+
+			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-xl 2xl:max-w-2xl' : 'w-full xl:w-screen-1/2 2xl:max-w-224' ]">
+				<div class="xl:relative md:px-6 xl:py-0 h-full">
+					<component :is="currentStepEntry.component" />
+				</div>
+			</main>
+
+		</transition>
+
+		<transition name="slowFade">
+
+			<main v-if="stepsComplete" class="fixed z-40 w-full h-full top-0 left-0 flex flex-col items-center justify-center">
+				<InstallProgress />
+			</main>
+
+		</transition>
+
+	</div>
 
 </template>
 
@@ -68,7 +90,7 @@ import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(0)
+const currentStep = ref(9)
 const setupComplete = ref(false)
 const stepsComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])
