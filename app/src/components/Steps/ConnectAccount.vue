@@ -28,7 +28,7 @@
           <input type="password" id="password" name="password" v-model="form.password" placeholder="Enter password" autocomplete="current-password">
         </div>
 
-        <button class="hidden" />
+        <button class="hidden" aria-hidden="true" />
       </form>
 
       <div class="mb-6">

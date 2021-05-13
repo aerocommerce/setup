@@ -4,11 +4,11 @@ namespace Aero\Setup\Controllers;
 
 use Aero\Setup\CanPretendToBeAFile;
 
-class AssetController
+class ServeAsset
 {
     use CanPretendToBeAFile;
     
-    public function file(string $file)
+    public function __invoke(string $file)
     {
         $path = __DIR__.'/../../app/dist/assets/'.$file;
 

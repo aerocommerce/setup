@@ -22,12 +22,12 @@
 
 				<div class="mb-6">
 					<label for="admin-username" class="mb-1">Name</label>
-					<input type="text" id="admin-username" name="admin-username" placeholder="Enter your name" autofocus>
+					<input type="text" id="admin-username" name="admin-username" placeholder="Enter your name">
 				</div>
 
 				<div class="mb-6">
 					<label for="admin-email" class="mb-1">Email address</label>
-					<input type="email" id="admin-email" name="admin-email" placeholder="Enter email address" autofocus>
+					<input type="email" id="admin-email" name="admin-email" placeholder="Enter email address">
 				</div>
 
 				<div>

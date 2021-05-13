@@ -37,7 +37,7 @@
     </transition>
 
 		<div class="mt-auto">
-			<div class="flex items-center justify-end mb-9">
+			<div class="flex items-center mb-9">
 				<QuestionMarkCircleIcon class="w-4 h-4 mr-2 text-bravo" />
 				<a href="#" target="_blank" rel="noopener noreferrer">I need help with this</a>
 			</div>

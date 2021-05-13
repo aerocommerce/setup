@@ -6,11 +6,11 @@
 		</template>
 
 		<template #description>
-			Review your setup, by clicking the save and start setup button you will not be able to make any changes and your store will be installed.
+			Review your setup, by clicking the save and install button you will not be able to make any changes and your store will be installed.
 		</template>
 
 		<div class="mb-9">
-			<SingleAccordion :defaultOpen="true">
+			<SingleAccordion :model-value="true">
 				
 				<template #title>
 					<span class="text-xl py-3">Project information</span>
@@ -18,44 +18,44 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(1)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Project</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">{{ setupData.projectName }}</dd>
+						<dd class="break-all">{{ setupData.project.name }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(2)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Database server</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">127.0.0.1:3306</dd>
+						<dd class="break-all">{{ setupData.project.databaseHost }}:{{ setupData.project.databasePort }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(3)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Database name</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">demo-store</dd>
+						<dd class="break-all">{{ setupData.project.database }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(4)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Elasticsearch server</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">127.0.0.1:9200</dd>
+						<dd class="break-all">{{ setupData.project.elasticsearchHost }}:{{ setupData.project.elasticsearchPort }}</dd>
 					</div>
 
 				</dl>
@@ -64,7 +64,7 @@
 		</div>
 
 		<div class="mb-9">
-			<SingleAccordion :defaultOpen="true">
+			<SingleAccordion :model-value="true">
 				
 				<template #title>
 					<span class="text-xl py-3">Store information</span>
@@ -72,14 +72,14 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(4)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Name</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">Demo Store</dd>
+						<dd class="break-all">{{ setupData.project.storeName }}</dd>
 					</div>
 
 					<div class="group cursor-pointer">
@@ -198,7 +198,7 @@
 		</div>
 
 		<div class="mb-9">
-			<SingleAccordion :defaultOpen="true">
+			<SingleAccordion :model-value="true">
 				
 				<template #title>
 					<span class="text-xl py-3">Catalog & theme</span>
@@ -232,7 +232,7 @@
 		</div>
 
 		<div>
-			<SingleAccordion :defaultOpen="true">
+			<SingleAccordion :model-value="true">
 				
 				<template #title>
 					<span class="text-xl py-3">Admin account</span>
@@ -291,9 +291,11 @@
 		},
 		setup() {
 			const setupData = inject('setupData')
+      const jumpToStep = inject('jumpToStep')
 			
 			return {
 				setupData,
+        jumpToStep,
 			}
 		},
 	}
