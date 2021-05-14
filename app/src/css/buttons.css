@@ -1,15 +1,29 @@
 @layer components {
 
     .button {
-        @apply flex items-center px-6 py-3 bg-alpha rounded-lg font-medium border-2 border-alpha;
+        @apply flex items-center px-6 py-3 bg-alpha rounded-lg font-medium border-2 border-alpha transition-colors duration-150;
+        @apply hover:bg-alpha-450;
+        @apply ring-offset-alpha-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-bravo;
+    }
+
+    .button-red {
+        @apply bg-red border-red;
+        @apply hover:bg-[#c74949] hover:border-[#c74949];
+    }
+
+    .button-green {
+        @apply bg-green border-green text-alpha-1200;
+        @apply hover:bg-[#89ca52] hover:border-[#89ca52];
     }
 
     .button-secondary {
         @apply bg-transparent border-white text-white px-4 py-3;
+        @apply hover:bg-white hover:text-alpha-1200;
     }
 
     .button-transparent {
         @apply px-6 -mx-6 bg-transparent rounded-none border-transparent;
+        @apply hover:bg-transparent hover:underline;
     }
 
     .button svg {

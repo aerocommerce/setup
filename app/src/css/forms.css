@@ -4,7 +4,8 @@
 	input,
 	select,
 	textarea {
-		@apply font-primary w-full border-2 border border-alpha-1200 py-3 px-4 bg-white rounded-md text-gray-700;
+		@apply font-primary w-full border-2 border-transparent py-3 px-4 bg-white rounded-md text-gray-700 outline-none;
+        @apply ring-offset-alpha-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-bravo;
     }
 
     input:disabled,
@@ -58,13 +59,6 @@
 	label {
 		@apply block;
 	}
-
-	/* Style focus state */
-	input:focus,
-	textarea:focus,
-	select:focus {
-		@apply border-alpha shadow-none outline-none;
-    }
 
     /* Default style for checkboxes */
     input[type='checkbox'],

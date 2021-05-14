@@ -1,7 +1,7 @@
 <template>
   <div class="hidden xl:block absolute z-10 top-0 left-0 w-full h-full bg-alpha-900">
 
-    <svg class="absolute z-10 top-0 left-0 w-full h-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="318" viewBox="0 0 1008 318">
+    <svg class="absolute z-10 top-0 left-0 w-full h-auto pointer-events-none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="318" viewBox="0 0 1008 318">
       <defs>
         <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
           <stop offset="0" stop-color="#181926" stop-opacity="0"/>
@@ -12,7 +12,7 @@
       <path id="Path_1083" data-name="Path 1083" d="M0,0H1008V318H0Z" fill="url(#linear-gradient)"/>
     </svg>
 
-    <svg  class="absolute z-30 bottom-0 left-0 w-full h-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="312" viewBox="0 0 1008 312">
+    <svg class="absolute z-30 bottom-0 left-0 w-full h-auto pointer-events-none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="312" viewBox="0 0 1008 312">
       <defs>
         <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
           <stop offset="0" stop-color="#181926" stop-opacity="0"/>
