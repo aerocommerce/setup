@@ -1,6 +1,6 @@
 export default {
     type: 'new_project',
-    name: 'Demo store',
+    name: '',
     id: null,
     databaseConnectionType: 'local',
     databaseHost: '127.0.0.1',

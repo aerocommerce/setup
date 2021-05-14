@@ -110,7 +110,7 @@
 
         </ContentGroup>
 
-      </div>@heroicons/vue/outline/esm"hidden" aria-hidden="true" />
+      </div>
     </form>
 
 		<template #footer="{ retreatStep }">

@@ -2,7 +2,7 @@
 
   <div class="w-full xl:max-w-screen-1/3 px-12">
 
-    <div class="absolute max-w-screen-1/3 w-full top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center" :class="setupData.installComplete ? 'animate-up' : '-translate-y-1/2'">
+    <div class="absolute xl:max-w-screen-1/3 px-12 w-full top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center" :class="setupData.installComplete ? 'animate-up' : '-translate-y-1/2'">
       <div class="mb-12 text-center">
         <p class="text-xl md:text-3xl uppercase font-medium mb-2">{{ setupData.project.name }}</p>
         <span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
@@ -12,7 +12,7 @@
 
       <p class="mb-12 text-sm text-alphaLight-800" v-html="setupData.progressText"></p>
 
-      <ol class="flex space-x-3 items-center text-alpha">
+      <ol class="flex flex-wrap gap-3 items-center text-alpha px-12 xl:px-0">
         <li v-for="(step, stepIndex) in steps">
           {{setupData.progressStep.split}}
           <span>
@@ -22,7 +22,7 @@
       </ol>
     </div>
 
-    <ol class="absolute top-0 left-1/2 flex space-x-3 items-center text-alpha transform -translate-x-1/2 duration-300 delay-300" :class="setupData.installComplete ? 'opacity-100 translate-y-6' : 'opacity-0'">
+    <ol class="absolute top-0 left-1/2 flex flex-wrap gap-3 items-center text-alpha transform -translate-x-1/2 duration-300 delay-300" :class="setupData.installComplete ? 'opacity-100 translate-y-6' : 'opacity-0'">
       <li v-for="(step, stepIndex) in steps">
         {{setupData.progressStep.split}}
         <span>

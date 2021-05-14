@@ -141,7 +141,7 @@ import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(9)
+const currentStep = ref(0)
 const setupComplete = ref(false)
 const stepsComplete = ref(false)
 const installModal = ref(false)
@@ -154,12 +154,7 @@ let serviceWorker = {
 }
 
 let baseData = {
-//   agora: null,
-	agora: {
-		user: {
-			name: 'Steven'
-		}
-	},
+  agora: null,
   project: baseProject,
 }
 
