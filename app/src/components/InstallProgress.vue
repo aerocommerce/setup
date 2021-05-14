@@ -83,7 +83,7 @@ export default {
           setTimeout(() => {
             updateProgress()
             updateText(setupData.progress)
-          }, 20)
+          }, 100)
 
       } else if (setupData.progress === 100) {
         

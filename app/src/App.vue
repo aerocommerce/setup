@@ -11,7 +11,7 @@
 			</transition>
 
 			<transition name="fade">
-				<div v-if="!stepsComplete" class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform duration-1000 delay-150" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 7 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }">
+				<div v-if="!stepsComplete" class="hidden illustration:block fixed top-1/2 ml-12 max-h-illustration h-full w-auto transition-transform" :style="{ transform: 'translateX(calc(-33vh *' + (currentStep < 6 ? currentStep : (currentStep+1.75)) + ')) translateY(-50%)' }" :class="currentStep === 6 ? 'duration-150 delay-1000' : 'duration-1000 delay-150'">
 					<Illustration :step="currentStep" />
 				</div>
 			</transition>
@@ -62,7 +62,7 @@
 
 		<transition name="slide">
 
-			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-xl 2xl:max-w-2xl' : 'w-full xl:w-screen-1/2 2xl:max-w-[75rem]' ]">
+			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300 delay-300 ease-linear" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-xl 2xl:max-w-2xl' : 'w-full xl:w-screen-1/2 2xl:max-w-[75rem]' ]">
 				<div class="xl:relative md:px-6 xl:py-0 h-full">
 					<component :is="currentStepEntry.component" />
 				</div>
@@ -94,7 +94,7 @@ import baseProject from './project'
 
 const steps = Steps
 
-const currentStep = ref(5)
+const currentStep = ref(9)
 const setupComplete = ref(false)
 const stepsComplete = ref(false)
 const currentStepEntry = computed(() => steps[currentStep.value])

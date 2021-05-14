@@ -183,6 +183,9 @@ module.exports = {
 			transitionProperty: {
 				'border': 'border'
 			},
+			transitionDelay: {
+				'1000': '1000ms'
+			},
 			borderWidth: {
 				'6': '6px'
 			}
