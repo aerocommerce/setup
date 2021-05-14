@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full max-w-screen-1/3">
+  <div class="w-full xl:max-w-screen-1/3 px-12">
 
     <div class="absolute max-w-screen-1/3 w-full top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center" :class="setupData.installComplete ? 'animate-up' : '-translate-y-1/2'">
       <div class="mb-12 text-center">
@@ -37,7 +37,7 @@
             <Logo />
           </span>
           <h3 class="text-2xl mb-24">We're all set</h3>
-          <a href="#" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3">View store</a>
+          <a href="#" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center">View store</a>
           <a href="#" class="button button-transparent uppercase text-white underline">Login to admin</a>
       </div>
     </transition>

@@ -23,21 +23,10 @@
       <path id="Path_1084" data-name="Path 1084" d="M0,0H1008V312H0Z" transform="translate(1008 312) rotate(180)" fill="url(#linear-gradient-2)"/>
     </svg>
 
-    <!-- <svg class="absolute z-40 bottom-24 w-full h-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="192" viewBox="0 0 1008 192">
-      <defs>
-        <linearGradient id="linear-gradient-3" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
-          <stop offset="0" stop-color="#181926" stop-opacity="0"/>
-          <stop offset="0.507" stop-color="#181926" stop-opacity="0.78"/>
-          <stop offset="1" stop-color="#181926"/>
-        </linearGradient>
-      </defs>
-      <path id="Path_1617" data-name="Path 1617" d="M0,0H1008V192H0Z" transform="translate(1008 192) rotate(180)" fill="url(#linear-gradient-3)"/>
-    </svg> -->
-
     <div class="relative mt-36 px-12 flex flex-col h-full overflow-auto z-20">
       <div class="mb-96">
 
-        <h2 class="text-4xl font-medium text-white mb-1">Blank theme</h2>
+        <h2 class="text-5xl font-medium text-white mb-1">Blank theme</h2>
         <p class="text-alphaLight-800">Aero Commerce</p>
 
         <hr class="my-6">

@@ -42,7 +42,7 @@
 				<a href="#" target="_blank" rel="noopener noreferrer">I need help with this</a>
 			</div>
 			
-			<div class="flex justify-between items-center">
+			<div class="flex flex-wrap gap-6 justify-between items-center">
 				<slot name="footer" v-bind="{ advanceStep, retreatStep }" />
 			</div>
 		</div>

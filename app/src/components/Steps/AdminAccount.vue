@@ -20,19 +20,21 @@
 					Create admin account
 				</template>
 
-				<div class="mb-6">
-					<label for="admin-username" class="mb-1">Name</label>
-					<input type="text" id="admin-username" name="admin-username" placeholder="Enter your name">
-				</div>
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6">
+					<div>
+						<label for="admin-username" class="mb-1">Name</label>
+						<input type="text" id="admin-username" name="admin-username" placeholder="Enter your name">
+					</div>
 
-				<div class="mb-6">
-					<label for="admin-email" class="mb-1">Email address</label>
-					<input type="email" id="admin-email" name="admin-email" placeholder="Enter email address">
-				</div>
+					<div>
+						<label for="admin-email" class="mb-1">Email address</label>
+						<input type="email" id="admin-email" name="admin-email" placeholder="Enter email address">
+					</div>
 
-				<div>
-					<label for="admin-password" class="mb-1">Password</label>
-					<input type="password" id="admin-password" name="admin-password" placeholder="Enter password">
+					<div>
+						<label for="admin-password" class="mb-1">Password</label>
+						<input type="password" id="admin-password" name="admin-password" placeholder="Enter password">
+					</div>
 				</div>
 
 			</ContentGroup>

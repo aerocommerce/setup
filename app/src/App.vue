@@ -1,11 +1,11 @@
 <template>
 
-	<div class="bg-alpha-1100 min-h-screen text-white flex flex-col xl:flex-row h-screen overflow-hidden xl:overflow-auto xl:h-auto">
+	<div class="bg-alpha-1100 min-h-screen text-white xl:flex xl:flex-row h-screen xl:overflow-auto xl:h-auto">
 
-		<aside class="relative xl:flex-grow pb-48 md:pb-64 xl:order-2 overflow-hidden">
+		<aside class="relative xl:flex-grow p-6 xl:order-2 overflow-hidden">
 
 			<transition name="fade">
-				<div v-if="!stepsComplete" class="absolute z-20 top-3 right-3 md:top-6 md:right-6">
+				<div v-if="!stepsComplete" class="float-right xl:float-none mb-6 xl:mb-0 xl:absolute xl:top-6 xl:right-6">
 					<LanguageSelector />
 				</div>
 			</transition>
@@ -16,31 +16,37 @@
 				</div>
 			</transition>
 
-			<div v-if="!stepsComplete" class="hidden xl:block illustration:hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full max-w-48 opacity-70">
-				<Logo />
-			</div>
+			<transition name="fade">
+				<div v-if="!stepsComplete" class="hidden xl:block illustration:hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full max-w-48 opacity-70">
+					<Logo />
+				</div>
+			</transition>
 
 			<transition name="fade">
 				<div v-if="!stepsComplete">
-					<div class="absolute z-20 top-6 left-6 md:top-12 md:left-12">
-						<p class="text-xl md:text-3xl uppercase font-medium mb-2" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
-						<span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
+					<div class="mb-12 xl:absolute z-20 top-6 left-6 md:top-12 md:left-12">
+						<p class="text-3xl uppercase font-medium xl:mb-2" v-show="setupData.project.name.length">{{ setupData.project.name }}&nbsp;</p>
+						<span class="text-lg text-alphaLight-900">{{ storeDomain }}</span>
 					</div>
 
-					<div class="absolute z-20 bottom-6 left-6 md:bottom-12 md:left-12 md:flex md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full pr-12 md:pr-24 xl:pr-0 xl:pl-24">
+					<div class="xl:absolute z-20 xl:bottom-12 flex flex-col md:flex-row gap-6 md:flex-wrap md:items-center md:justify-between xl:inline xl:left-auto xl:right-12 w-full xl:pr-0 xl:pl-24">
 
 						<transition name="fade">
-							<div v-if="setupData.agora && !currentStepEntry.subComponent" class="flex items-center xl:justify-end space-x-2 mb-3 md:mb-0 xl:mb-9">
-								<p class="text-lg md:text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
-								<span class="text-xl md:text-4xl animation-wave">👋</span>
+							<div v-if="setupData.agora && !currentStepEntry.subComponent" class="hidden xl:flex items-center xl:justify-end gap-2 xl:mb-6">
+								<p class="text-2xl text-alpha-100">Hi, {{ setupData.agora.user.name }}!</p>
+								<span class="text-4xl" :class="setupData.agora && currentStep === 2 ? 'animation-wave' : ''">👋</span>
 							</div>
 						</transition>
 
-						<div class="flex justify-between items-center">
+						<div class="flex flex-col xl:flex-row gap-6 justify-between xl:items-center">
 
-							<span class="flex-shrink-0 w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400 mr-12" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
+							<div class="flex items-center gap-3">
+								<span class="flex-shrink-0 w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
+								<span class="text-sm text-alpha-100 xl:hidden">{{ serviceWorker.statusText }}</span>
+							</div>
+							
 
-							<ol class="flex space-x-3 items-center text-alpha">
+							<ol class="flex flex-wrap gap-3 items-center text-alpha">
 								<li v-for="(step, stepIndex) in steps" class="flex items-center">
 									<button @click.prevent="!stepsComplete && currentStep > stepIndex ? jumpToStep(stepIndex) : null" :disabled="stepsComplete || currentStep <= stepIndex">
 										<component :is="step.icon" class="h-6 w-6 transition-color duration-300"
@@ -89,7 +95,7 @@
 				We have lost connection to the service worker, please run the following command in terminal<br><br>
 				<code>aero install reboot</code>
 			</template>
-			<div class="flex justify-end">
+			<div class="flex flex-wrap justify-end gap-6">
 				<!-- Not sure how to best go about closing the modal, button (focusable element) is required for the modal component -->
 				<button type="button" class="button button-secondary">
 					Got it, thanks!
@@ -105,7 +111,7 @@
 			<template #description>
 				The installation process will take a short time so grab a cup of tea, sit back and relax while we install your store. 
 			</template>
-			<div class="flex justify-between">
+			<div class="flex flex-wrap justify-between gap-6">
 				<button type="button" class="button button-red" @click="installModal = false">
 					Cancel
 				</button>

@@ -104,15 +104,13 @@
             <SuccessMessage>Successful connection</SuccessMessage>
           </div>
           <button v-else class="button button-secondary" type="button" @click="testConnection">
-            <RefreshIcon class="mr-2 transition-transform duration-300 rotate-0" :class="{ 'animation-rotate': testingDb }" />
+            <RefreshIcon class="mr-2" :class="{ 'animation-rotate': testingDb }" />
             Test connection
           </button>
 
         </ContentGroup>
 
-      </div>
-
-      <button class="hidden" aria-hidden="true" />
+      </div>@heroicons/vue/outline/esm"hidden" aria-hidden="true" />
     </form>
 
 		<template #footer="{ retreatStep }">

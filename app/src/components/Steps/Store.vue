@@ -11,14 +11,16 @@
       This information can be easily updated later from the store settings page in the admin.
 		</template>
 
-		<div class="grid md:grid-cols-2 gap-6 mb-6">
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6 mb-6">
 
 			<div>
 				<label for="store-name" class="mb-1">Store name</label>
 				<input type="text" id="store-name" name="store-name" placeholder="Enter store name" :value="setupData.project.storeName" required>
 			</div>
 
-			<div class="hidden md:block">&nbsp;</div>
+		</div>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6 mb-6">
 
 			<div>
 				<label for="industry" class="mb-1">Industry <small>(optional)</small></label>
@@ -169,7 +171,7 @@
 			<small class="block text-alphaLight-800">The address entered here will be used to populate customer emails and the footer of your store</small>
 		</div>
 		
-		<div class="grid md:grid-cols-2 gap-6">
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6">
 
 			<div>
 				<label for="address-country" class="mb-1">Address Country</label>

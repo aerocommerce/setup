@@ -1,7 +1,7 @@
 <template>
 	<Listbox v-model="selectedLanguage">
 	  <div class="relative flex-grow text-alpha-150">
-		<ListboxButton class="relative w-full pr-10 text-left cursor-default py-2 flex items-center">
+		<ListboxButton class="relative w-full pr-10 text-left cursor-default flex items-center">
 			<div class="w-6 h-6 mr-3 text-alpha-150">
 				<GlobeIcon />
 			</div>
