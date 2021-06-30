@@ -10,6 +10,7 @@ export default {
     databases: [],
     databaseType: 'new_database',
     database: '',
+    token: '',
     showAdvancedDatabaseOptions: false,
     databaseTestPassed: false,
     elasticsearchConnectionType: 'local',
@@ -19,6 +20,13 @@ export default {
     storeIdentifier: null,
     showAdvancedElasticsearchOptions: false,
     elasticsearchTestPassed: false,
-    theme: null,
+    theme: {
+        id: '',
+        name: '',
+        author: '',
+        description: '',
+        thumbnail: '',
+        frameworks: '',
+    },
     storeName: '',
 }

@@ -196,11 +196,7 @@
         setupData.project.elasticsearchTestPassed = false
         setupData.project.elasticsearchVersion = null
 
-        let host = window.location.origin
-
-        host = 'http://test.test'
-
-        fetch(`${host}/setup/actions/test-elasticsearch-connection`, {
+        fetch(`${setupData.host}/setup/actions/test-elasticsearch-connection`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',

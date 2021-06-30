@@ -156,7 +156,20 @@ let serviceWorker = {
 let baseData = {
   agora: null,
   project: baseProject,
+  host: window.location.origin,
 }
+
+if (baseData.host.indexOf(':3000') !== -1) {
+  baseData.host = baseData.host.replace(':3000', '');
+}
+
+// baseData.agora = {
+//   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJqdGkiOiJjMjA1NWU2ZC1lNDk1LTQxOTctODJiNi1kNWZmNDc1NDc5MjYiLCJpYXQiOjE2MjQ5NjkyNTAsImV4cCI6MTYyNDk5MDg1MH0.N-fubZdd0Z2wYS-tWhVa5QcBhV0hTxodbA33y5FJFXg",
+//   user: {
+//     name: 'Szymon Kowalski',
+//     email: 'szymon@aerocommerce.com'
+//   }
+// }
 
 const setupData = reactive({
   ...JSON.parse(JSON.stringify(baseData)),
@@ -206,7 +219,7 @@ export default {
 		provide('totalSteps', totalSteps)
 		provide('setupData', setupData)
 
-    	const storeDomain = document.location.hostname
+    const storeDomain = document.location.hostname
 
 		return {
       		jumpToStep,

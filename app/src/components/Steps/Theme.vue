@@ -9,30 +9,31 @@
 			Themes are a way to customise your store to fit your brand. In order to create your store we need to pick a theme to start with. If you have your own theme you wish to use you, select our blank theme and you can import or create your custom theme later.
 		</template>
 
+    <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
+
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-x-6 gap-y-9">
 
-			<ThemeSelector id="metal" name="theme" v-model="theme" value="metal" title="Metal" author="Aero Commerce" thumbnail="src/images/theme-metal-thumb.png" />
-			<ThemeSelector id="shadow" name="theme" v-model="theme" value="shadow" title="Shadow" author="Aero Commerce" thumbnail="src/images/theme-shadow-thumb.png" />
-			<ThemeSelector id="blade" name="theme" v-model="theme" value="blade" title="Blade" author="Aero Commerce" thumbnail="src/images/theme-blade-thumb.png" />
-			<ThemeSelector id="highway" name="theme" v-model="theme" value="highway" title="Highway" author="Aero Commerce" thumbnail="src/images/theme-highway-thumb.png" />
-			<ThemeSelector id="blank" name="theme" v-model="theme" value="blank" title="Blank" author="Aero Commerce" />
+      <div v-for="(theme, name) in existingThemes">
+        <ThemeSelector :id="name" v-model="setupData.project.theme.id" :value="theme.id" name="theme" :author="'by ' + theme.author.name" :title="name" :thumbnail="theme.media[1].url"></ThemeSelector>
+      </div>
 
 		</div>
 
-		<template #footer="{ advanceStep, retreatStep }">
+		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />
-			<NextButton :action="advanceStep" />
+			<NextButton :action="attemptAdvance" />
 		</template>
 
 	</Step>
 </template>
 
 <script>
-  import {ref} from 'vue'
-	import BackButton from '../Elements/BackButton.vue'
-	import NextButton from '../Elements/NextButton.vue'
-	import ThemeSelector from '../Elements/ThemeSelector.vue'
-	import Step from '../Step.vue'
+import {computed, inject, ref, watch} from 'vue'
+import BackButton from '../Elements/BackButton.vue'
+import NextButton from '../Elements/NextButton.vue'
+import ThemeSelector from '../Elements/ThemeSelector.vue'
+import ErrorMessage from '../Elements/ErrorMessage.vue'
+import Step from '../Step.vue'
 
 	export default {
 		components: {
@@ -40,12 +41,83 @@
 			NextButton,
 			ThemeSelector,
 			Step,
+      ErrorMessage,
 		},
     setup() {
-		  const theme = ref('metal')
+      const setupData = inject('setupData')
+      const advanceStep = inject('advanceStep')
+      const errorMessage = ref(null)
+      const existingThemes = ref([])
+
+      errorMessage.value = null
+
+      fetch('https://agora.test/api/themes', {
+        headers: {
+          'Authorization': 'Basic ' + setupData.project.token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((result) => {
+        result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
+
+              return json
+            })
+            .then((json) => {
+              existingThemes.value = json.themes
+
+              Object.entries(existingThemes.value).forEach((theme, count) => {
+                if (count > 0) return;
+
+                setupData.project.theme.id = theme[1].id
+                setupData.project.theme.name = theme[0]
+                setupData.project.theme.author = theme[1].author
+                setupData.project.theme.description = theme[1].description
+                setupData.project.theme.thumbnail = theme[1].media[1].url
+                setupData.project.theme.frameworks = theme[1].frameworks
+              })
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+            })
+      })
+      .catch((e) => {
+        errorMessage.value = e.message
+      })
+
+      const selectedTheme = computed(() => setupData.project.theme.id)
+
+      watch(selectedTheme, (value) => {
+        Object.entries(existingThemes.value).forEach((theme) => {
+          if (parseInt(theme[1].id) === parseInt(value)) {
+            setupData.project.theme.name = theme[0]
+            setupData.project.theme.author = theme[1].author
+            setupData.project.theme.description = theme[1].description
+            setupData.project.theme.thumbnail = theme[1].media[1].url
+            setupData.project.theme.frameworks = theme[1].frameworks
+          }
+        })
+      })
+
+      const attemptAdvance = () => {
+        errorMessage.value = null
+
+        if (selectedTheme === null) {
+          errorMessage.value = 'You must choose a theme before proceeding.'
+
+          return;
+        }
+
+        return advanceStep()
+      }
 
       return {
-		    theme,
+        attemptAdvance,
+		    selectedTheme,
+        existingThemes,
+        errorMessage,
+        setupData,
       }
     },
 	}

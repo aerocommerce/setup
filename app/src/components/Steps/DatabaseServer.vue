@@ -174,11 +174,7 @@
         testingDb.value = true
         setupData.project.databaseTestPassed = false
 
-        let host = window.location.origin
-
-        host = 'http://test.test'
-
-        fetch(`${host}/setup/actions/test-database-connection`, {
+        fetch(`${setupData.host}/setup/actions/test-database-connection`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',

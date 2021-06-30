@@ -7,7 +7,7 @@
 
 		<template #description>
 			Projects are used to manage your stores Aero credentials.
-			You can create a new project if you'redeveloping locally or you can choose an existing project to continue development.
+			You can create a new project if you're developing locally or you can choose an existing project to continue development.
 		</template>
 
     <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
@@ -114,6 +114,7 @@
       watch(selectedProject, (value) => {
         existingProjects.value.forEach((project) => {
           if (project.id === value) {
+            setupData.project.token = project.token;
             setupData.project.name = project.name
 
             return
@@ -130,8 +131,6 @@
           if (value === 'new_project' && projectName.value) projectName.value.focus()
         })
       })
-
-
 
       watch(selectProjectName, (value) => {
         setupData.project.database = ''

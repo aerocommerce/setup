@@ -26,31 +26,61 @@
     <div class="relative mt-36 px-12 flex flex-col h-full overflow-auto z-20">
       <div class="mb-96">
 
-        <h2 class="text-5xl font-medium text-white mb-1">Blank theme</h2>
-        <p class="text-alphaLight-800">Aero Commerce</p>
+        <h2 class="text-5xl font-medium text-white mb-1" v-text="setupData.project.theme.name"></h2>
+
+        <template v-if="setupData.project.theme.organization">
+          <p class="text-alphaLight-800" v-text="'by ' + setupData.project.theme.author.name + '(' + setupData.project.theme.organization + ')'"></p>
+        </template>
+        <template v-else>
+          <p class="text-alphaLight-800" v-text="'by ' + setupData.project.theme.author.name"></p>
+        </template>
 
         <hr class="my-6">
 
         <div class="flex flex-wrap">
 
           <div class="mr-12 mb-6">
-            <p class="text-xs text-alphaLight-800">CSS framework</p>
-            <p class="text-white">–</p>
-          </div>
-
-          <div class="mr-12 mb-6">
-            <p class="text-xs text-alphaLight-800">JS framework</p>
-            <p class="text-white">–</p>
+            <p class="text-xs text-alphaLight-800">Frameworks</p>
+            <div v-for="(framework, index) in setupData.project.theme.frameworks" class="inline-flex">
+              <span class="text-white inline" v-text="framework"></span>
+              <span v-if="index !== Object.keys(setupData.project.theme.frameworks).length - 1">,&nbsp</span>
+            </div>
           </div>
 
         </div>
 
-        <p class="text-alphaLight-800 mb-12">The blank theme will create all of the required files and output basic HTML elements but with no styling. This is a good place to start if you want to create your own theme.</p>
+        <p class="text-alphaLight-800 mb-12" v-text="setupData.project.theme.description"></p>
 
-        <img src="/src/images/theme-blade-thumb.png" alt="">
+        <img :src="setupData.project.theme.thumbnail" alt="">
 
       </div>
     </div>
 
   </div>
 </template>
+
+<script>
+import {ref, inject, onMounted, onBeforeUnmount, computed, watch} from 'vue'
+
+import Logo from './Elements/Logo.vue'
+import { QuestionMarkCircleIcon } from '@heroicons/vue/outline'
+
+export default {
+  components: {
+    Logo,
+    QuestionMarkCircleIcon,
+  },
+
+  setup() {
+    const setupData = inject('setupData')
+    const advanceStep = inject('advanceStep')
+    const errorMessage = ref(null)
+
+    return {
+      setupData,
+      advanceStep,
+      errorMessage,
+    }
+  },
+}
+</script>
