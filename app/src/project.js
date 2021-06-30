@@ -29,4 +29,7 @@ export default {
         frameworks: '',
     },
     storeName: '',
+    catalog: {
+        type: 'import',
+    }
 }
