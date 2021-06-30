@@ -29,31 +29,33 @@
 
 				<div class="mb-6">
 					<label for="select-sample" class="mb-1">Select sample</label>
-					<select id="select-sample" name="select-sample">
+					<select id="select-sample" name="select-sample" @change="changePreview">
 						<option value="" selected disabled>Please select</option>
 						<option value="clothing-store">Clothing store</option>
 						<option value="music-store">Music store</option>
 					</select>
 				</div>
 
-				<p class="mb-1 text-sm text-alphaLight-800">Sample preview:</p>
+        <template v-if="setupData.project.catalog.preview">
+          <p class="mb-1 text-sm text-alphaLight-800">Sample preview:</p>
 
-				<div class="grid grid-cols-4 gap-6">
+          <div class="grid grid-cols-4 gap-6">
 
-					<div class="relative pb-full bg-alpha-300">
-						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-					</div>
-					<div class="relative pb-full bg-alpha-300">
-						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-					</div>
-					<div class="relative pb-full bg-alpha-300">
-						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-					</div>
-					<div class="relative pb-full bg-alpha-300">
-						<PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-					</div>
+            <div class="relative pb-full bg-alpha-300">
+              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+            <div class="relative pb-full bg-alpha-300">
+              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+            <div class="relative pb-full bg-alpha-300">
+              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+            <div class="relative pb-full bg-alpha-300">
+              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
 
-				</div>
+          </div>
+        </template>
 
 			</ContentGroup>
 		</div>
@@ -68,9 +70,9 @@
 			</ContentGroup>
 		</div>
 
-		<template #footer="{ advanceStep, retreatStep }">
+		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />
-			<NextButton :action="advanceStep" />
+			<NextButton :action="attemptAdvance" />
 		</template>
 
 	</Step>
@@ -85,11 +87,7 @@
 	import WarningMessage from '../Elements/WarningMessage.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
 	import { PhotographIcon } from '@heroicons/vue/outline'
-  import {inject, ref} from "vue";
-
-  const setupData = inject('setupData')
-  const advanceStep = inject('advanceStep')
-  const errorMessage = ref(null)
+  import {computed, inject, ref, watch} from "vue";
 
 	export default {
 		components: {
@@ -111,18 +109,27 @@
       const attemptAdvance = () => {
         errorMessage.value = null
 
-        if (selectedTheme === null) {
-          errorMessage.value = 'You must choose a theme before proceeding.'
+        if (setupData.project.catalog.type === 'import') {
+          let select = document.getElementById('select-sample');
+          if (select.value === '') {
+            errorMessage.value = 'You must choose sample data if you wish to import, otherwise skip this step and continue!'
 
-          return;
+            return;
+          }
         }
 
         return advanceStep()
       }
 
+      const changePreview = (value) => {
+        setupData.project.catalog.preview = value.target.value !== '';
+      }
+
       return {
         errorMessage,
         setupData,
+        attemptAdvance,
+        changePreview,
       }
     }
 	}

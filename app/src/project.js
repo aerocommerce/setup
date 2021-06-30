@@ -31,5 +31,6 @@ export default {
     storeName: '',
     catalog: {
         type: 'import',
+        preview: false,
     }
 }
