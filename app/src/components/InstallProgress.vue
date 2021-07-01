@@ -132,7 +132,7 @@ export default {
         if(progress = 70) {
             setupData.progressStep = 6;
         }
-        setupData.progressText = 'Applying the ' + setupData.project.theme + ' theme'
+        setupData.progressText = 'Applying the ' + setupData.project.theme.name + ' theme'
       } else if (progress < 80) {
         if(progress = 80) {
             setupData.progressStep = 7;

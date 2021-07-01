@@ -44,7 +44,7 @@
 								<span class="flex-shrink-0 w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
 								<span class="text-sm text-alpha-100 xl:hidden">{{ serviceWorker.statusText }}</span>
 							</div>
-							
+
 
 							<ol class="flex flex-wrap gap-3 items-center text-alpha">
 								<li v-for="(step, stepIndex) in steps" class="flex items-center">

@@ -89,7 +89,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Industry</span>
+              <span>Industry (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -134,7 +134,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Sender email address</span>
+              <span>Sender email address (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -149,7 +149,7 @@
 
 					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Logo uploaded</span>
+							<span>Logo uploaded (optional)</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
@@ -168,7 +168,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Address line 1</span>
+              <span>Address line 1 (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -183,7 +183,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Address line 2</span>
+              <span>Address line 2 (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -198,7 +198,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>City</span>
+              <span>City (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -213,7 +213,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Postal code</span>
+              <span>Postal code (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
@@ -228,7 +228,7 @@
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
-              <span>Telephone number</span>
+              <span>Telephone number (optional)</span>
               <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
               <PencilIcon class="w-3 h-3" />
             </span>
