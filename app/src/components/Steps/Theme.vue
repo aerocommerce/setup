@@ -13,8 +13,8 @@
 
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-x-6 gap-y-9">
 
-      <div v-for="(theme, name) in existingThemes">
-        <ThemeSelector :id="name" v-model="setupData.project.theme.id" :value="theme.id" name="theme" :author="'by ' + theme.author.name" :title="name" :thumbnail="theme.media[1].url"></ThemeSelector>
+      <div v-for="(theme, name) in existingThemes" :key="theme.id">
+        <ThemeSelector :id="name" v-model="setupData.project.theme.id" :value="theme.id" name="theme" :author="'by ' + theme.author.name" :title="name" :thumbnail="theme.media[0].url"></ThemeSelector>
       </div>
 
 		</div>
@@ -49,6 +49,8 @@ import Step from '../Step.vue'
       const errorMessage = ref(null)
       const existingThemes = ref([])
 
+      const selectedTheme = computed(() => setupData.project.theme.id)
+
       errorMessage.value = null
 
       fetch('https://agora.test/api/themes', {
@@ -67,16 +69,18 @@ import Step from '../Step.vue'
             .then((json) => {
               existingThemes.value = json.themes
 
-              Object.entries(existingThemes.value).forEach((theme, count) => {
-                if (count > 0) return;
+              if (setupData.project.theme.id === '') {
+                Object.entries(existingThemes.value).forEach((theme, count) => {
+                  if (count > 0) return;
 
-                setupData.project.theme.id = theme[1].id
-                setupData.project.theme.name = theme[0]
-                setupData.project.theme.author = theme[1].author
-                setupData.project.theme.description = theme[1].description
-                setupData.project.theme.thumbnail = theme[1].media[1].url
-                setupData.project.theme.frameworks = theme[1].frameworks
-              })
+                  setupData.project.theme.id = theme[1].id
+                  setupData.project.theme.name = theme[0]
+                  setupData.project.theme.author = theme[1].author
+                  setupData.project.theme.description = theme[1].description
+                  setupData.project.theme.thumbnail = theme[1].media[1].url
+                  setupData.project.theme.frameworks = theme[1].frameworks
+                })
+              }
             })
             .catch((e) => {
               errorMessage.value = e.message
@@ -85,8 +89,6 @@ import Step from '../Step.vue'
       .catch((e) => {
         errorMessage.value = e.message
       })
-
-      const selectedTheme = computed(() => setupData.project.theme.id)
 
       watch(selectedTheme, (value) => {
         Object.entries(existingThemes.value).forEach((theme) => {

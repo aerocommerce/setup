@@ -31,6 +31,14 @@ export default {
     storeName: '',
     catalog: {
         type: 'import',
+        name: '',
         preview: false,
-    }
+        images: []
+    },
+    admin: {
+        create: true,
+        name: '',
+        email: '',
+        password: '',
+    },
 }

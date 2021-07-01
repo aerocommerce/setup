@@ -206,24 +206,30 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(7)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Catalog</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">Database has catalog data</dd>
+            <template v-if="setupData.project.catalog.type === 'import'">
+              <dd class="break-all">Importing catalog data:</dd>
+              <dd class="text-gray-300" v-text="setupData.project.catalog.name.replace('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())"></dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">Not importing catalog data</dd>
+            </template>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(6)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Theme</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">Metal</dd>
+						<dd class="break-all" v-text="setupData.project.theme.name"></dd>
 					</div>
 
 				</dl>
@@ -231,39 +237,41 @@
 			</SingleAccordion>
 		</div>
 
-		<div>
-			<SingleAccordion :model-value="true">
-				
-				<template #title>
-					<span class="text-xl py-3">Admin account</span>
-				</template>
-				
-				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
+    <template v-if="setupData.project.admin.create === true">
+      <div>
+        <SingleAccordion :model-value="true">
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Email address</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+          <template #title>
+            <span class="text-xl py-3">Admin account</span>
+          </template>
+
+          <dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
+
+            <div class="group cursor-pointer" @click="jumpToStep(8)">
+              <dt class="text-alphaLight-900 text-sm flex items-center relative">
+                <span>Email address</span>
+                <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
-						</dt>
-						<dd class="break-all">steven@aerocommerce.com</dd>
-					</div>
+              </dt>
+              <dd class="break-all" v-text="setupData.project.admin.email"></dd>
+            </div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Password</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+            <div class="group cursor-pointer" @click="jumpToStep(8)">
+              <dt class="text-alphaLight-900 text-sm flex items-center relative">
+                <span>Password</span>
+                <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
-						</dt>
-						<dd class="break-all">*********************</dd>
-					</div>
+              </dt>
+              <dd class="break-all" v-text="setupData.project.admin.password"></dd>
+            </div>
 
-				</dl>
-			
-			</SingleAccordion>
-		</div>
+          </dl>
+
+        </SingleAccordion>
+      </div>
+    </template>
 
 		<template #footer="{ retreatStep, advanceStep }">
 			<BackButton :action="retreatStep" />

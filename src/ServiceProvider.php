@@ -2,6 +2,7 @@
 
 namespace Aero\Setup;
 
+use Aero\Setup\Controllers\Actions\CheckCatalogContents;
 use Aero\Setup\Controllers\Actions\TestDatabaseConnection;
 use Aero\Setup\Controllers\Actions\TestElasticsearchConnection;
 use Aero\Setup\Controllers\AssetController;
@@ -27,6 +28,7 @@ class ServiceProvider extends BaseServiceProvider
 
                 $route->post('/setup/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
                 $route->post('/setup/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
+                $route->post('/setup/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);
             });
 
             Route::get('/setup', '\\'.ServeSetup::class)->name('aero.setup');

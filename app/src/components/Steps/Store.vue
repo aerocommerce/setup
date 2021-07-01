@@ -25,7 +25,7 @@
 			<div>
 				<label for="industry" class="mb-1">Industry <small>(optional)</small></label>
 				<select id="industry" name="industry">
-					<option value="" selected>Select industry</option>
+					<option value="" selected disabled>Select industry</option>
 					<option value="fashion">Fashion and Apparel</option>
 					<option value="beauty">Beauty and Personal Care</option>
 					<option value="entertainment">Entertainment</option>
@@ -37,7 +37,7 @@
 			<div>
 				<label for="country" class="mb-1">Store country</label>
 				<select id="country" name="country" required>
-					<option value="">Select country</option>
+					<option value="" disabled>Select country</option>
 					<option value="UK" selected>United Kingdom</option>
 					<option value="france">France</option>
 					<option value="spain">Spain</option>
@@ -47,7 +47,7 @@
 			<div>
 				<label for="currency" class="mb-1">Default currency</label>
 				<select id="currency" name="currency" required>
-					<option value="">Select currency</option>
+					<option value="" disabled>Select currency</option>
 					<option value="gbp" selected>British Pounds (GBP)</option>
 					<option value="euro">Euros (EUR)</option>
 				</select>
@@ -56,7 +56,7 @@
 			<div>
 				<label for="language" class="mb-1">Default language</label>
 				<select id="language" name="language" required>
-					<option value="">Select language</option>
+					<option value="" disabled>Select language</option>
 					<option value="english" selected>English</option>
 					<option value="french">French</option>
 					<option value="spanish">Spanish</option>

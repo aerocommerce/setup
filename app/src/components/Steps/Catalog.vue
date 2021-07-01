@@ -12,9 +12,7 @@
 
     <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
 
-<!--		<div class="mb-9">-->
-<!--			<SuccessMessage>The database you have selected already has catalog data</SuccessMessage>-->
-<!--		</div>-->
+    <SuccessMessage v-if="successMessage">The database you have selected already has catalog data</SuccessMessage>
 
 		<div class="mb-9">
 			<ContentGroup id="retail" v-model="setupData.project.catalog.type" group="catalog" value="import">
@@ -29,10 +27,9 @@
 
 				<div class="mb-6">
 					<label for="select-sample" class="mb-1">Select sample</label>
-					<select id="select-sample" name="select-sample" @change="changePreview">
+					<select id="select-sample" v-model="setupData.project.catalog.name" name="select-sample" @change="changePreview">
 						<option value="" selected disabled>Please select</option>
-						<option value="clothing-store">Clothing store</option>
-						<option value="music-store">Music store</option>
+            <option v-for="catalog in existingCatalog" :value="catalog.name.replace(' ', '-').toLowerCase()">{{ catalog.name }}</option>
 					</select>
 				</div>
 
@@ -105,6 +102,78 @@
       const setupData = inject('setupData')
       const advanceStep = inject('advanceStep')
       const errorMessage = ref(null)
+      const successMessage = ref(null)
+      const existingCatalog = ref([])
+
+      const connectionInfo = computed(() => {
+        return {
+          type: setupData.project.databaseConnectionType,
+          database: setupData.project.database,
+          host: setupData.project.databaseHost,
+          port: setupData.project.databasePort,
+          username: setupData.project.databaseUsername,
+          password: setupData.project.databasePassword,
+        }
+      })
+
+      const selectedCatalog = computed(() => setupData.project.catalog.name)
+
+      fetch('https://agora.test/api/catalog', {
+        headers: {
+          'Authorization': 'Basic ' + setupData.project.token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((result) => {
+        result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
+
+              return json
+            })
+            .then((json) => {
+              existingCatalog.value = json.catalog
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+            })
+      })
+      .catch((e) => {
+        errorMessage.value = e.message
+      })
+
+      watch(selectedCatalog, (value) => {
+        Object.entries(existingCatalog.value).forEach((catalog) => {
+          if (catalog[1].name.replace(' ', '-').toLowerCase() === value) {
+            setupData.project.catalog.name = value
+          }
+        })
+      })
+
+      fetch(`${setupData.host}/setup/actions/check-catalog-contents`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(connectionInfo.value)
+      })
+          .then((result) => {
+            result.json()
+                .then(json => {
+                  if (! result.ok) throw new Error(json.message)
+
+                  return json
+                })
+                .then((json) => {
+                  successMessage.value = json.catalog
+                })
+                .catch((e) => {
+                  errorMessage.value = e.message
+                })
+          })
+          .catch((e) => {
+            errorMessage.value = e.message
+          })
 
       const attemptAdvance = () => {
         errorMessage.value = null
@@ -127,9 +196,11 @@
 
       return {
         errorMessage,
+        successMessage,
         setupData,
         attemptAdvance,
         changePreview,
+        existingCatalog,
       }
     }
 	}
