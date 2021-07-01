@@ -167,7 +167,7 @@
 
           let found = false;
           Object.entries(existingProjects.value).forEach((value) => {
-              if (value[1].name === setupData.project.name) {
+              if (value[1].name.toLowerCase() === setupData.project.name.toLowerCase()) {
                 found = true;
               }
           })

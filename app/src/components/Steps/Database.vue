@@ -150,7 +150,7 @@ import {inject, watch, ref, computed} from 'vue'
           if (setupData.project.databaseType === 'new_database') {
             let found = false;
             Object.entries(setupData.project.databases).forEach((value) => {
-              if (value[1] === setupData.project.database) {
+              if (value[1].toLowerCase() === setupData.project.database.toLowerCase()) {
                 found = true;
               }
             })
