@@ -6,7 +6,7 @@
 		</template>
 
 		<template #description>
-			Create or select the database you want to use for this store. We will create the tables needed if they don't already exist and scan for an exisiting catalog, theme and user account.
+			Create or select the database you want to use for this store. We will create the tables needed if they don't already exist and scan for an existing catalog, theme and user account.
 		</template>
 
     <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>

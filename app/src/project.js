@@ -2,6 +2,7 @@ export default {
     type: 'new_project',
     name: '',
     id: null,
+    token: '',
     databaseConnectionType: 'local',
     databaseHost: '127.0.0.1',
     databasePort: '3306',
@@ -10,7 +11,6 @@ export default {
     databases: [],
     databaseType: 'new_database',
     database: '',
-    token: '',
     showAdvancedDatabaseOptions: false,
     databaseTestPassed: false,
     elasticsearchConnectionType: 'local',
@@ -20,6 +20,28 @@ export default {
     storeIdentifier: null,
     showAdvancedElasticsearchOptions: false,
     elasticsearchTestPassed: false,
+    store: {
+        name: '',
+        industry: '',
+        country: 'United Kingdom',
+        currency: 'British Pounds (GBP)',
+        language: 'English',
+        sender_email: '',
+        tax: '',
+        logo: {
+            store: '',
+            email: '',
+        },
+        address: {
+            country: '',
+            line_1: '',
+            line_2: '',
+            city: '',
+            post_code: '',
+            phone: '',
+            tax_id: '',
+        }
+    },
     theme: {
         id: '',
         name: '',
@@ -28,7 +50,6 @@ export default {
         thumbnail: '',
         frameworks: '',
     },
-    storeName: '',
     catalog: {
         type: 'import',
         name: '',

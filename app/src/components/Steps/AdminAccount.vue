@@ -11,9 +11,7 @@
 
     <ErrorMessage v-if="errorMessage">{{ errorMessage }}</ErrorMessage>
 
-<!--		<div class="mb-9">-->
-<!--			<SuccessMessage>The database you have selected already has an admin account</SuccessMessage>-->
-<!--		</div>-->
+    <SuccessMessage v-if="successMessage">The database you have selected already has an admin account</SuccessMessage>
 
 		<div class="mb-9">
 			<ContentGroup id="create-new" v-model="setupData.project.admin.create" group="admin-account" :value="true">
@@ -67,7 +65,7 @@
 	import SuccessMessage from '../Elements/SuccessMessage.vue'
   import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import Step from '../Step.vue'
-  import {inject, ref} from "vue";
+  import {computed, inject, ref} from "vue";
 
 	export default {
 		components: {
@@ -83,6 +81,48 @@
       const setupData = inject('setupData')
       const advanceStep = inject('advanceStep')
       const errorMessage = ref(null)
+      const successMessage = ref(null)
+
+      const connectionInfo = computed(() => {
+        return {
+          type: setupData.project.databaseConnectionType,
+          database: setupData.project.database,
+          host: setupData.project.databaseHost,
+          port: setupData.project.databasePort,
+          username: setupData.project.databaseUsername,
+          password: setupData.project.databasePassword,
+        }
+      })
+
+      fetch(`${setupData.host}/setup/actions/check-admin-exists`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(connectionInfo.value)
+      })
+      .then((result) => {
+        result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
+
+              return json
+            })
+            .then((json) => {
+              successMessage.value = json.admins
+
+              if (json.admins !== false) {
+                setupData.project.admin.create = false
+                setupData.project.admin.email = json.admins[0].email
+              }
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+            })
+      })
+      .catch((e) => {
+        errorMessage.value = e.message
+      })
 
       const attemptAdvance = () => {
         errorMessage.value = null
@@ -118,6 +158,7 @@
 		    setupData,
         attemptAdvance,
         errorMessage,
+        successMessage,
       }
     }
 	}

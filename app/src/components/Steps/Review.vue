@@ -20,13 +20,15 @@
 
 					<div class="group cursor-pointer" @click="jumpToStep(1)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Project</span>
+							<span>Project name</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
 						<dd class="break-all">{{ setupData.project.name }}</dd>
 					</div>
+
+          <div></div>
 
 					<div class="group cursor-pointer" @click="jumpToStep(2)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
@@ -72,47 +74,55 @@
 				
 				<dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
-					<div class="group cursor-pointer" @click="jumpToStep(4)">
+					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Name</span>
+							<span>Store Name</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">{{ setupData.project.storeName }}</dd>
+						<dd class="break-all">{{ setupData.project.store.name }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Industry</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">Industry</dd>
-					</div>
+          <div>
+          </div>
 
-					<div class="group cursor-pointer">
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Industry</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.industry">
+              <dd class="break-all">{{ setupData.project.store.industry }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
+
+					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Store country</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">United Kingdom</dd>
+						<dd class="break-all">{{ setupData.project.store.country }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Default currency</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">British Pounds (GBP)</dd>
+						<dd class="break-all">{{ setupData.project.store.currency }}</dd>
 					</div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Language</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
@@ -122,75 +132,114 @@
 						<dd class="break-all">English</dd>
 					</div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Sender email address</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">info@demo-store.test</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Sender email address</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.sender_email">
+              <dd class="break-all">{{ setupData.project.store.sender_email }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
-					<div class="group cursor-pointer">
+					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
 							<span>Logo uploaded</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">demo-store-logo.svg</dd>
+            <template v-if="setupData.project.store.logo.store">
+              <dd class="break-all">Store: {{ setupData.project.store.logo.store }}</dd>
+
+              <template v-if="setupData.project.store.logo.email">
+                <dd class="break-all">Email: {{ setupData.project.store.logo.email }}</dd>
+              </template>
+            </template>
+            <template v-else>
+              <dd class="break-all">No</dd>
+            </template>
 					</div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Address line 1</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">Commerce house</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Address line 1</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.line_1">
+              <dd class="break-all">{{ setupData.project.store.address.line_1 }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Address line 2</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">1 Exchange Square</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Address line 2</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.line_2">
+              <dd class="break-all">{{ setupData.project.store.address.line_2 }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>City</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">Middlesbrough</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>City</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.city">
+              <dd class="break-all">{{ setupData.project.store.address.city }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Postal code</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">TS1 1DE</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Postal code</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.post_code">
+              <dd class="break-all">{{ setupData.project.store.address.post_code }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
-					<div class="group cursor-pointer">
-						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Telephone number</span>
-							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
-						</dt>
-						<dd class="break-all">–</dd>
-					</div>
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Telephone number</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.phone">
+              <dd class="break-all">{{ setupData.project.store.address.phone }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
 				</dl>
 			
@@ -215,7 +264,7 @@
 						</dt>
             <template v-if="setupData.project.catalog.type === 'import'">
               <dd class="break-all">Importing catalog data:</dd>
-              <dd class="text-gray-300" v-text="setupData.project.catalog.name.replace('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())"></dd>
+              <dd class="text-gray-300">{{ setupData.project.catalog.name.replace('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) }}</dd>
             </template>
             <template v-else>
               <dd class="break-all">Not importing catalog data</dd>
@@ -229,7 +278,7 @@
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all" v-text="setupData.project.theme.name"></dd>
+						<dd class="break-all">{{ setupData.project.theme.name }}</dd>
 					</div>
 
 				</dl>
@@ -237,41 +286,53 @@
 			</SingleAccordion>
 		</div>
 
-    <template v-if="setupData.project.admin.create === true">
-      <div>
-        <SingleAccordion :model-value="true">
+    <div>
+      <SingleAccordion :model-value="true">
 
-          <template #title>
-            <span class="text-xl py-3">Admin account</span>
-          </template>
+        <template #title>
+          <span class="text-xl py-3">Admin account</span>
+        </template>
 
-          <dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
+        <dl class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-6">
 
+          <template v-if="setupData.project.admin.create === true">
             <div class="group cursor-pointer" @click="jumpToStep(8)">
               <dt class="text-alphaLight-900 text-sm flex items-center relative">
                 <span>Email address</span>
                 <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
+              <PencilIcon class="w-3 h-3" />
+            </span>
               </dt>
-              <dd class="break-all" v-text="setupData.project.admin.email"></dd>
+              <dd class="break-all">{{ setupData.project.admin.email }}</dd>
             </div>
 
             <div class="group cursor-pointer" @click="jumpToStep(8)">
               <dt class="text-alphaLight-900 text-sm flex items-center relative">
                 <span>Password</span>
                 <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-								<PencilIcon class="w-3 h-3" />
-							</span>
+              <PencilIcon class="w-3 h-3" />
+            </span>
               </dt>
-              <dd class="break-all" v-text="setupData.project.admin.password"></dd>
+              <dd class="break-all">{{ setupData.project.admin.password }}</dd>
             </div>
+          </template>
 
-          </dl>
+          <template v-else>
+            <div class="group cursor-pointer" @click="jumpToStep(8)">
+              <dt class="text-alphaLight-900 text-sm flex items-center relative">
+                <span>Existing account</span>
+                <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+              </dt>
+              <dd class="break-all">{{ setupData.project.admin.email }}</dd>
+            </div>
+          </template>
 
-        </SingleAccordion>
-      </div>
-    </template>
+        </dl>
+
+      </SingleAccordion>
+    </div>
 
 		<template #footer="{ retreatStep, advanceStep }">
 			<BackButton :action="retreatStep" />

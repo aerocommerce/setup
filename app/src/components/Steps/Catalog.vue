@@ -157,23 +157,27 @@
         },
         body: JSON.stringify(connectionInfo.value)
       })
-          .then((result) => {
-            result.json()
-                .then(json => {
-                  if (! result.ok) throw new Error(json.message)
+      .then((result) => {
+        result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
 
-                  return json
-                })
-                .then((json) => {
-                  successMessage.value = json.catalog
-                })
-                .catch((e) => {
-                  errorMessage.value = e.message
-                })
-          })
-          .catch((e) => {
-            errorMessage.value = e.message
-          })
+              return json
+            })
+            .then((json) => {
+              successMessage.value = json.catalog
+
+              if (json.catalog) {
+                setupData.project.catalog.type = 'skip_import'
+              }
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+            })
+      })
+      .catch((e) => {
+        errorMessage.value = e.message
+      })
 
       const attemptAdvance = () => {
         errorMessage.value = null

@@ -134,7 +134,7 @@
 
       watch(selectProjectName, (value) => {
         setupData.project.database = ''
-        setupData.project.storeName = value
+        setupData.project.store.name = value
       })
 
       onMounted(() => {

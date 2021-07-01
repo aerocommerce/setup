@@ -64,6 +64,7 @@ export default {
     setupData.progress = 0
     setupData.progressText = 'Getting warmed up'
     setupData.progressStep = 0
+    setupData.highestStep = 0
     setupData.installComplete = false
 
     onMounted(() => {
@@ -106,7 +107,7 @@ export default {
         if(progress = 20) {
             setupData.progressStep = 1;
         }
-        setupData.progressText = 'Creating project'
+        setupData.progressText = 'Creating the project'
       } else if (progress < 30) {
         if(progress = 30) {
             setupData.progressStep = 2;
@@ -116,7 +117,7 @@ export default {
         if(progress = 40) {
             setupData.progressStep = 3;
         }
-        setupData.progressText = 'Creating database'
+        setupData.progressText = 'Creating the database'
       } else if (progress < 50) {
         if(progress = 50) {
             setupData.progressStep = 4;
@@ -131,27 +132,27 @@ export default {
         if(progress = 70) {
             setupData.progressStep = 6;
         }
-        setupData.progressText = 'Applying ' + setupData.project.theme + ' theme'
+        setupData.progressText = 'Applying the ' + setupData.project.theme + ' theme'
       } else if (progress < 80) {
         if(progress = 80) {
             setupData.progressStep = 7;
         }
-        setupData.progressText = 'Updating catalog'
+        setupData.progressText = 'Updating the catalog'
       } else if (progress < 90) {
         if(progress = 90) {
             setupData.progressStep = 8;
         }
-        setupData.progressText = 'Creating admin account'
+        setupData.progressText = 'Creating an admin account'
       } else if (progress < 100) {
         if(progress = 100) {
             setupData.progressStep = 9;
         }
-        setupData.progressText = 'Checking things over'
+        setupData.progressText = 'Checking things over...'
       } else if (progress = 100) {
         if(progress = 100) {
             setupData.progressStep = 10;
         }
-        setupData.progressText = 'Setup complete'
+        setupData.progressText = 'Setup complete!'
       }
 
     }
