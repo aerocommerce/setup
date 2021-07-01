@@ -80,6 +80,17 @@
       const errorMessage = ref(null)
       const existingProjects = ref([])
 
+      const connectionInfo = computed(() => {
+        return {
+          type: setupData.project.databaseConnectionType,
+          database: setupData.project.database,
+          host: setupData.project.databaseHost,
+          port: setupData.project.databasePort,
+          username: setupData.project.databaseUsername,
+          password: setupData.project.databasePassword,
+        }
+      })
+
       errorMessage.value = null
 
       fetch('https://agora.test/api/projects', {
@@ -151,6 +162,18 @@
 			  if (selectedProjectType.value === 'new_project') {
           if (!setupData.project.name.length) {
             errorMessage.value = 'Please enter a project name.'
+            return
+          }
+
+          let found = false;
+          Object.entries(existingProjects.value).forEach((value) => {
+              if (value[1].name === setupData.project.name) {
+                found = true;
+              }
+          })
+
+          if (found) {
+            errorMessage.value = 'Project with the provided name already exists!'
             return
           }
         } else {

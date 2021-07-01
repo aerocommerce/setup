@@ -146,6 +146,18 @@ import {inject, watch, ref, computed} from 'vue'
             errorMessage.value = 'Invalid database name.'
             return
           }
+
+          let found = false;
+          Object.entries(setupData.project.databases).forEach((value) => {
+            if (value[1] === setupData.project.database) {
+              found = true;
+            }
+          })
+
+          if (found) {
+            errorMessage.value = 'Database with the provided name already exists!'
+            return
+          }
         }
 
         return advanceStep()

@@ -23,11 +23,11 @@ export default {
     store: {
         name: '',
         industry: '',
-        country: 'United Kingdom',
-        currency: 'British Pounds (GBP)',
-        language: 'English',
+        country: 'GB',
+        currency: 'GBP',
+        language: 'en',
         sender_email: '',
-        tax: '',
+        tax: 'inc-tax',
         logo: {
             store: '',
             email: '',

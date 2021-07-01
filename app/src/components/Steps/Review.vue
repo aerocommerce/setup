@@ -109,7 +109,7 @@
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">{{ setupData.project.store.country }}</dd>
+						<dd class="break-all">{{ countries[setupData.project.store.country].name }}</dd>
 					</div>
 
 					<div class="group cursor-pointer" @click="jumpToStep(5)">
@@ -119,7 +119,7 @@
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">{{ setupData.project.store.currency }}</dd>
+						<dd class="break-all">{{ currencies[setupData.project.store.currency].name }}</dd>
 					</div>
 
 					<div class="group cursor-pointer" @click="jumpToStep(5)">
@@ -129,7 +129,7 @@
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">English</dd>
+						<dd class="break-all">{{ languages[setupData.project.store.language].name }}</dd>
 					</div>
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
@@ -165,6 +165,21 @@
               <dd class="break-all">No</dd>
             </template>
 					</div>
+
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Address country</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.country">
+              <dd class="break-all">{{ setupData.project.store.address.country }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
             <dt class="text-alphaLight-900 text-sm flex items-center relative">
@@ -235,6 +250,21 @@
             </dt>
             <template v-if="setupData.project.store.address.phone">
               <dd class="break-all">{{ setupData.project.store.address.phone }}</dd>
+            </template>
+            <template v-else>
+              <dd class="break-all">-</dd>
+            </template>
+          </div>
+
+          <div class="group cursor-pointer" @click="jumpToStep(5)">
+            <dt class="text-alphaLight-900 text-sm flex items-center relative">
+              <span>Tax ID (optional)</span>
+              <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
+              <PencilIcon class="w-3 h-3" />
+            </span>
+            </dt>
+            <template v-if="setupData.project.store.address.tax_id">
+              <dd class="break-all">{{ setupData.project.store.address.tax_id }}</dd>
             </template>
             <template v-else>
               <dd class="break-all">-</dd>
@@ -349,6 +379,9 @@
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
 	import Step from '../Step.vue'
 	import { PencilIcon } from '@heroicons/vue/outline'
+  import countries from "../../countries";
+	import currencies from "../../currencies"
+  import languages from "../../languages"
 
 	export default {
 		components: {
@@ -358,6 +391,7 @@
 			Step,
 			PencilIcon,
 		},
+
 		setup() {
 			const setupData = inject('setupData')
       		const jumpToStep = inject('jumpToStep')
@@ -365,6 +399,9 @@
 			return {
 				setupData,
         		jumpToStep,
+        countries,
+        currencies,
+        languages,
 			}
 		},
 	}

@@ -14,7 +14,7 @@
     <SuccessMessage v-if="successMessage">The database you have selected already has an admin account</SuccessMessage>
 
 		<div class="mb-9">
-			<ContentGroup id="create-new" v-model="setupData.project.admin.create" group="admin-account" :value="true">
+			<ContentGroup id="create-new" v-if="!successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="true">
 
 				<template #title>
 					Create admin account
@@ -109,11 +109,10 @@
               return json
             })
             .then((json) => {
-              successMessage.value = json.admins
+              successMessage.value = json
 
-              if (json.admins !== false) {
+              if (json !== false) {
                 setupData.project.admin.create = false
-                setupData.project.admin.email = json.admins[0].email
               }
             })
             .catch((e) => {

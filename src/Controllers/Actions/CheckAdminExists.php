@@ -36,18 +36,12 @@ class CheckAdminExists
             $result = $manager->connection()->select('select * from admins');
 
             if (count($result) > 0) {
-                return response([
-                    'admins' => $result,
-                ]);
+                return response([true]);
             } else {
-                return response([
-                    'admins' => false,
-                ]);
+                return response([false]);
             }
         } catch (\RuntimeException $e) {
-            return response([
-                'admins' => false,
-            ]);
+            return response([true]);
         } finally {
             config([$key => $defaults]);
         }

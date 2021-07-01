@@ -40,10 +40,7 @@
 				<label for="country" class="mb-1">Store country</label>
 				<select id="country" v-model="setupData.project.store.country" name="country" required>
 					<option value="" selected disabled>Select country</option>
-					<option selected>United Kingdom</option>
-					<option>France</option>
-					<option>Spain</option>
-          <option>Germany</option>
+          <option v-for="(country, key) in countries" :value="key">{{ country.name }}</option>
 				</select>
 			</div>
 
@@ -51,9 +48,7 @@
 				<label for="currency" class="mb-1">Default currency</label>
 				<select id="currency" v-model="setupData.project.store.currency" name="currency" required>
 					<option value="" disabled>Select currency</option>
-					<option selected>British Pounds (GBP)</option>
-					<option>Euros (EUR)</option>
-          <option>Dollars (USD)</option>
+          <option v-for="(currency, key) in currencies" :value="key">{{ currency.name }}</option>
 				</select>
 			</div>
 
@@ -61,10 +56,7 @@
 				<label for="language" class="mb-1">Default language</label>
 				<select id="language" v-model="setupData.project.store.language" name="language" required>
 					<option value="" disabled>Select language</option>
-					<option selected>English</option>
-          <option>German</option>
-					<option>French</option>
-					<option>Spanish</option>
+          <option v-for="(language, key) in languages" :value="key">{{ language.name }}</option>
 				</select>
 			</div>
 
@@ -78,8 +70,8 @@
 				<label for="tax-settings" class="mb-1">Tax settings</label>
 				<select id="tax-settings" v-model="setupData.project.store.tax" name="tax-settings" required>
           <option value="" disabled>Select tax setting</option>
-					<option value="inc-tax" selected>All prices include tax</option>
-					<option value="exc-tax">All prices exclude tax</option>
+					<option value="inc-tax" selected>Prices include tax</option>
+					<option value="exc-tax">Prices exclude tax</option>
 				</select>
 				<small class="block text-alphaLight-800 mt-3">Advanced tex settings can be managed in the admin</small>
 			</div>
@@ -180,13 +172,10 @@
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6">
 
 			<div>
-				<label for="address-country" class="mb-1">Address Country</label>
+				<label for="address-country" class="mb-1">Address country</label>
 				<select id="address-country" v-model="setupData.project.store.address.country" name="address-country">
 					<option value="" disabled selected>Select country</option>
-					<option>United Kingdom</option>
-					<option>France</option>
-					<option>Spain</option>
-          <option>Germany</option>
+					<option v-for="(country, key) in countries" :value="key">{{ country.name }}</option>
 				</select>
 			</div>
 
@@ -206,7 +195,7 @@
 			</div>
 
 			<div>
-				<label for="address-postcode" class="mb-1">Postcode</label>
+				<label for="address-postcode" class="mb-1">Postal code</label>
 				<input type="text" id="address-postcode" v-model="setupData.project.store.address.post_code" name="address-postcode" placeholder="Enter postcode">
 			</div>
 
@@ -241,6 +230,9 @@ import {inject, ref} from 'vue'
   import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import Step from '../Step.vue'
 	import { UploadIcon } from '@heroicons/vue/outline'
+  import countries from "../../countries";
+  import currencies from "../../currencies"
+  import languages from "../../languages"
 
 	import FileUpload from 'vue-upload-component'
 
@@ -305,6 +297,9 @@ import {inject, ref} from 'vue'
 				setupData,
         attemptAdvance,
         errorMessage,
+        countries,
+        currencies,
+        languages,
 			}
 		},
 	}

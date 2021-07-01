@@ -15,7 +15,7 @@
     <SuccessMessage v-if="successMessage">The database you have selected already has catalog data</SuccessMessage>
 
 		<div class="mb-9">
-			<ContentGroup id="retail" v-model="setupData.project.catalog.type" group="catalog" value="import">
+			<ContentGroup v-if="!successMessage" id="retail" v-model="setupData.project.catalog.type" group="catalog" value="import">
 
 				<template #title>
 					Import sample data
