@@ -147,16 +147,18 @@ import {inject, watch, ref, computed} from 'vue'
             return
           }
 
-          let found = false;
-          Object.entries(setupData.project.databases).forEach((value) => {
-            if (value[1] === setupData.project.database) {
-              found = true;
-            }
-          })
+          if (setupData.project.databaseType === 'new_database') {
+            let found = false;
+            Object.entries(setupData.project.databases).forEach((value) => {
+              if (value[1] === setupData.project.database) {
+                found = true;
+              }
+            })
 
-          if (found) {
-            errorMessage.value = 'Database with the provided name already exists!'
-            return
+            if (found) {
+              errorMessage.value = 'Database with the provided name already exists!'
+              return
+            }
           }
         }
 
