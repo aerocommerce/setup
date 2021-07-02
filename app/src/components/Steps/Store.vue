@@ -152,7 +152,7 @@
 </template>
 
 <script>
-import {inject, ref} from 'vue'
+import {computed, inject, ref} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
   import ErrorMessage from '../Elements/ErrorMessage.vue'
@@ -217,8 +217,42 @@ import {inject, ref} from 'vue'
           return;
         }
 
-        // API request for saving images (if present)
+        if (setupData.project.store.logo.store !== ''
+            || setupData.project.store.logo.email !== '') {
 
+          Object.entries(setupData.project.store.logo).forEach((image, key) => {
+            if (image[1] !== '') {
+              const formData = new FormData();
+              formData.append('image', image[1]);
+              formData.append('name', image[0] === 'store' ? 'store-logo' : 'email-logo')
+
+              fetch(`${setupData.host}/setup/actions/save-uploaded-images`, {
+                method: 'POST',
+                body: formData,
+              })
+              .then((result) => {
+                result.json()
+                    .then(json => {
+                      if (! result.ok) throw new Error(json.message)
+                      return json
+                    })
+                    .then((json) => {
+                      if (json.success) {
+                        return advanceStep()
+                      } else {
+                        errorMessage.value = 'Could not upload images!'
+                      }
+                    })
+                    .catch((e) => {
+                      errorMessage.value = e.message
+                    })
+              })
+              .catch((_) => {
+                errorMessage.value = 'Could not upload images!'
+              })
+            }
+          })
+        }
 
         return advanceStep()
       }

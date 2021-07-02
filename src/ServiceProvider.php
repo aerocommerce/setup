@@ -4,6 +4,7 @@ namespace Aero\Setup;
 
 use Aero\Setup\Controllers\Actions\CheckAdminExists;
 use Aero\Setup\Controllers\Actions\CheckCatalogContents;
+use Aero\Setup\Controllers\Actions\SaveUploadedImages;
 use Aero\Setup\Controllers\Actions\TestDatabaseConnection;
 use Aero\Setup\Controllers\Actions\TestElasticsearchConnection;
 use Aero\Setup\Controllers\AssetController;
@@ -11,11 +12,8 @@ use Aero\Setup\Controllers\RedirectToSetup;
 use Aero\Setup\Controllers\ServeAsset;
 use Aero\Setup\Controllers\ServeOptionsHeaders;
 use Aero\Setup\Controllers\ServeSetup;
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Illuminate\Support\Str;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -31,6 +29,7 @@ class ServiceProvider extends BaseServiceProvider
                 $route->post('/setup/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
                 $route->post('/setup/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);
                 $route->post('/setup/actions/check-admin-exists', '\\'.CheckAdminExists::class);
+                $route->post('/setup/actions/save-uploaded-images', '\\'.SaveUploadedImages::class);
             });
 
             Route::get('/setup', '\\'.ServeSetup::class)->name('aero.setup');

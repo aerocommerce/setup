@@ -149,16 +149,16 @@
 
 					<div class="group cursor-pointer" @click="jumpToStep(5)">
 						<dt class="text-alphaLight-900 text-sm flex items-center relative">
-							<span>Logo uploaded (optional)</span>
+							<span>Images uploaded (optional)</span>
 							<span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
             <template v-if="setupData.project.store.logo.store">
-              <dd class="break-all">Store: {{ setupData.project.store.logo.store }}</dd>
+              <dd class="break-all">Store logo ✅</dd>
 
               <template v-if="setupData.project.store.logo.email">
-                <dd class="break-all">Email: {{ setupData.project.store.logo.email }}</dd>
+                <dd class="break-all">Email logo ✅</dd>
               </template>
             </template>
             <template v-else>

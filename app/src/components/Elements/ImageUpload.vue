@@ -14,7 +14,7 @@
   </div>
 
   <div v-else>
-    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer" @click.prevent="removeFile">
+    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3 hover:cursor-pointer delete-image" @click.prevent="removeFile">
 
       <template v-if="preview !== null">
         <img :src="preview" alt="" class="items-center justify-center" />
@@ -42,6 +42,10 @@
 .dropZone {
   background: transparent;
   opacity: 1;
+}
+
+.delete-image:hover {
+  color: red;
 }
 </style>
 
@@ -86,7 +90,7 @@ export default {
     function createFile(file) {
       if (document.getElementById('file').name === 'store-logo') {
         if (!file.type.match('image.svg')) {
-          errorMessage.value = 'The store logo requires an .SVG extension!'
+          errorMessage.value = 'The store logo is required to be of .SVG format!'
           dragging.value = false
           return;
         }
@@ -128,14 +132,22 @@ export default {
 
     function removeFile() {
       files.value = ''
+      errorMessage.value = null
+
+      if (document.getElementById('file').name === 'store-logo') {
+        setupData.project.store.logo.store = ""
+      } else if (document.getElementById('file').name === 'email-logo') {
+        if (!file.type.match('image.*')) {
+          setupData.project.store.logo.email = ""
+        }
+      }
     }
 
     function drop(event) {
       if (document.getElementById('file').name === 'store-logo') {
         if (!event.dataTransfer.files[0].type.match('image.svg')) {
-          errorMessage.value = 'The store logo requires an .SVG image format!'
+          errorMessage.value = 'The store logo is advised to be of .SVG format!'
           dragging.value = false
-          return;
         }
       } else if (document.getElementById('file').name === 'email-logo') {
         if (!event.dataTransfer.files[0].type.match('image.*')) {
