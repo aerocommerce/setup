@@ -36,24 +36,12 @@ class CheckCatalogContents
             $result = $manager->connection()->select('select * from products');
 
             if (count($result) > 0) {
-                return response([
-                    'catalog' => true,
-                ]);
+                return response([true]);
             } else {
-                return response([
-                    'catalog' => false,
-                ]);
+                return response([false]);
             }
         } catch (\RuntimeException $e) {
-            return response([
-                'catalog' => false,
-            ]);
-        } finally {
-            config([$key => $defaults]);
+            return response([false]);
         }
-
-        return response([
-            'message' => 'Could not connect to the database server using the provided details.'
-        ], 422);
     }
 }

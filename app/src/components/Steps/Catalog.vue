@@ -165,9 +165,9 @@
               return json
             })
             .then((json) => {
-              successMessage.value = json.catalog
+              successMessage.value = json
 
-              if (json.catalog) {
+              if (json) {
                 setupData.project.catalog.type = 'skip_import'
               }
             })

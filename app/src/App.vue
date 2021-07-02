@@ -136,6 +136,7 @@ import Logo from './components/Elements/Logo.vue'
 import LanguageSelector from './components/Elements/LanguageSelector.vue'
 import Modal from './components/Elements/Modal.vue'
 import InstallProgress from './components/InstallProgress.vue'
+import ImageUpload from "./components/Elements/ImageUpload.vue";
 import Steps from './steps'
 import baseProject from './project'
 
@@ -179,6 +180,7 @@ export default {
 		Logo,
 		LanguageSelector,
 		Modal,
+    ImageUpload,
 		LightningBoltIcon
 	},
 	setup() {

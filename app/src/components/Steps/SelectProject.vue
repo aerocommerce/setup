@@ -37,9 +37,9 @@
             Select existing project
           </template>
 
-          <label for="exisiting-project" class="mb-1">Select project</label>
-          <select id="exisiting-project" v-model="setupData.project.id">
-            <option :value="null">Create a new project</option>
+          <label for="existing-project" class="mb-1">Select project</label>
+          <select id="existing-project" v-model="setupData.project.id">
+            <option :value="null" disabled>Select an existing project</option>
             <option v-for="project in existingProjects" :value="project.id">{{ project.name }}</option>
           </select>
 

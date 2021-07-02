@@ -45,7 +45,7 @@
 
           <div class="mb-6">
             <select id="exisiting-db" v-model="setupData.project.database">
-              <option value="">Select a database</option>
+              <option value="" disabled>Select an existing database</option>
               <option v-for="database in setupData.project.databases" :value="database">{{ database }}</option>
             </select>
           </div>

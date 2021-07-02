@@ -190,7 +190,12 @@
                   })
                   .then((json) => {
                     setupData.project.databaseTestPassed = true
-                    setupData.project.databases = json.databases
+
+                    setupData.project.databases = json.databases.filter((database) => {
+                      if (database !== 'sys') {
+                        return database
+                      }
+                    })
 
                     testingDb.value = false
 
