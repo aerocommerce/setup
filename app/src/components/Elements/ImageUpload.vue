@@ -5,7 +5,7 @@
 
       <div class="flex items-center">
         <UploadIcon class="w-5 h-5 mr-2" />
-        Drag and drop or click here to select a file
+        Drag and drop or click here to select an image...
       </div>
 
       <input id="file" type="file" :name="inputName ? inputName : 'image'" @change="onChange" class="hidden">
@@ -14,13 +14,13 @@
   </div>
 
   <div v-else>
-    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3 hover:cursor-pointer delete-image" @click.prevent="removeFile">
+    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3">
 
       <template v-if="preview !== null">
         <img :src="preview" alt="" class="items-center justify-center" />
       </template>
 
-      <div class="flex items-center justify-center mt-3">
+      <div class="flex items-center justify-center mt-3 hover:cursor-pointer pt-4 pb-4 delete-image" @click.prevent="removeFile">
         <XIcon class="w-5 h-5 mr-2" />
         Delete {{ files.name }}
       </div>
