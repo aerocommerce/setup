@@ -14,14 +14,22 @@
   </div>
 
   <div v-else>
-    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer" @click.prevent="removeFile">
+    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer" @click.prevent="removeFile">
 
-      <div class="flex items-center">
+      <template v-if="preview !== null">
+        <img :src="preview" alt="" class="items-center justify-center" />
+      </template>
+
+      <div class="flex items-center justify-center mt-3">
         <XIcon class="w-5 h-5 mr-2" />
         Delete {{ files.name }}
       </div>
 
     </label>
+  </div>
+
+  <div v-if="errorMessage">
+    <span class="text-red">{{ errorMessage }}</span>
   </div>
 </template>
 
@@ -61,6 +69,7 @@ export default {
     const setupData = inject('setupData')
     const errorMessage = ref(null)
     const files = ref(null)
+    const preview = ref(null)
     const dragging = ref(false)
 
     function onChange(e) {
@@ -75,10 +84,18 @@ export default {
     }
 
     function createFile(file) {
-      if (!file.type.match('image.*')) {
-        errorMessage.value = 'File is not an image!'
-        dragging.value = false
-        return;
+      if (document.getElementById('file').name === 'store-logo') {
+        if (!file.type.match('image.svg')) {
+          errorMessage.value = 'The store logo requires an .SVG extension!'
+          dragging.value = false
+          return;
+        }
+      } else if (document.getElementById('file').name === 'email-logo') {
+        if (!file.type.match('image.*')) {
+          errorMessage.value = 'The uploaded email logo is not an image!'
+          dragging.value = false
+          return;
+        }
       }
 
       if (file.size > 5000000) {
@@ -89,6 +106,15 @@ export default {
 
       files.value = file
       dragging.value = false
+
+      let reader = new FileReader()
+      let baseString = null
+      reader.onloadend = function () {
+        baseString = reader.result;
+        preview.value = baseString
+      };
+
+      reader.readAsDataURL(file);
 
       if (document.getElementById('file').name === 'store-logo') {
         setupData.project.store.logo.store = file
@@ -105,9 +131,32 @@ export default {
     }
 
     function drop(event) {
+      if (document.getElementById('file').name === 'store-logo') {
+        if (!event.dataTransfer.files[0].type.match('image.svg')) {
+          errorMessage.value = 'The store logo requires an .SVG image format!'
+          dragging.value = false
+          return;
+        }
+      } else if (document.getElementById('file').name === 'email-logo') {
+        if (!event.dataTransfer.files[0].type.match('image.*')) {
+          errorMessage.value = 'The uploaded email logo is not an image!'
+          dragging.value = false
+          return;
+        }
+      }
+
       files.value = event.dataTransfer.files[0];
 
       dragging.value = false
+
+      let reader = new FileReader()
+      let baseString = null
+      reader.onloadend = function () {
+        baseString = reader.result;
+        preview.value = baseString
+      };
+
+      reader.readAsDataURL(event.dataTransfer.files[0]);
 
       if (document.getElementById('file').name === 'store-logo') {
         setupData.project.store.logo.store = event.dataTransfer.files[0];
@@ -123,6 +172,7 @@ export default {
       errorMessage,
       files,
       dragging,
+      preview,
       drop,
       onChange,
       createFile,
