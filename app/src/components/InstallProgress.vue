@@ -37,8 +37,8 @@
             <Logo />
           </span>
           <h3 class="text-2xl mb-24">We're all set</h3>
-          <a href="#" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center">View store</a>
-          <a href="#" class="button button-transparent uppercase text-white underline">Login to admin</a>
+          <a href="/" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center">View store</a>
+          <a href="/admin" class="button button-transparent uppercase text-white underline">Login to admin</a>
       </div>
     </transition>
 
@@ -50,6 +50,7 @@
 import {inject, onMounted} from 'vue'
 import Steps from '../steps'
 import Logo from './Elements/Logo.vue'
+
 const steps = Steps
 
 export default {
@@ -75,6 +76,77 @@ export default {
         
     })
 
+    const generateJobList = (setup) => {
+      let jobs = [];
+
+      if (setup.project.type === 'new_project') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CreateProject',
+          message: 'Creating Agora project',
+          options: {},
+        })
+      }
+
+      jobs.push({
+        class: 'Aero\\Setup\\Commands\\Actions\\AddComposerDependencies',
+        message: 'Adding composer dependencies',
+        options: {},
+      })
+
+      if (setup.project.databaseType === 'new_database') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CreateDatabase',
+          message: 'Creating the database',
+          options: {},
+        })
+      }
+
+      jobs.push({
+            class: 'Aero\\Setup\\Commands\\Actions\\WriteDatabaseCredentials',
+            message: 'Writing database credentials',
+            options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\WriteElasticsearchCredentials',
+            message: 'Writing Elasticsearch credentials',
+            options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\WriteStoreDetails',
+            message: 'Writing store details',
+            options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\CreateStoreConfig',
+            message: 'Creating a store config',
+            options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
+            message: 'Installing the theme',
+            options: {},
+          }
+      )
+
+      if (setup.project.catalog.type === 'import') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\SeedCatalogData',
+          message: 'Seeding catalog data',
+          options: {},
+        })
+      }
+
+      if (setup.project.admin.create) {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CreateAdminAccount',
+          message: 'Creating the admin account',
+          options: {},
+        })
+      }
+
+      return jobs;
+    }
+
     const updateProgress = () => {
 
       setupData.progress = setupData.progress + 1
@@ -94,6 +166,37 @@ export default {
 
       }
     }
+
+    // Append a list of jobs based on choices in UI to setupData
+    setupData.jobs = generateJobList(setupData);
+
+    fetch(`${setupData.host}/setup/actions/finalize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(setupData)
+    })
+    .then((result) => {
+      result.json()
+          .then(json => {
+            if (! result.ok) throw new Error(json.message)
+            return json
+          })
+          .then((json) => {
+            if (json.success) {
+
+            } else {
+              // ERROR
+            }
+          })
+          .catch((_) => {
+            // ERROR
+          })
+    })
+    .catch((_) => {
+      // ERROR
+    })
 
     // this isn't good, but it worked for the purposes of testing the animations and design
     const updateText = (progress) => {

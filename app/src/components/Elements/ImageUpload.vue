@@ -1,6 +1,6 @@
 <template>
   <div v-if="!files">
-    <label for="file" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer"
+    <label :for="inputName" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer"
            :class="[dragging === true ? 'dropZone-over' : 'dropZone']" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="drop">
 
       <div class="flex items-center">
@@ -8,7 +8,7 @@
         Drag and drop or click here to select an image...
       </div>
 
-      <input id="file" type="file" :name="inputName ? inputName : 'image'" @change="onChange" class="hidden">
+      <input :id="inputName" type="file" :name="inputName ? inputName : 'image'" @change="onChange" class="hidden">
 
     </label>
   </div>
@@ -17,7 +17,7 @@
     <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3">
 
       <template v-if="preview !== null">
-        <img :src="preview" alt="" class="items-center justify-center" />
+        <img :src="preview" alt="" class="mx-auto" />
       </template>
 
       <div class="flex items-center justify-center mt-3 hover:cursor-pointer pt-4 pb-4 delete-image" @click.prevent="removeFile">
@@ -69,7 +69,7 @@ export default {
     inputName: '',
   },
 
-  setup() {
+  setup(props) {
     const setupData = inject('setupData')
     const errorMessage = ref(null)
     const files = ref(null)
@@ -78,6 +78,8 @@ export default {
 
     function onChange(e) {
       let file = e.target.files
+
+      errorMessage.value = null
 
       if (!file.length) {
         dragging.value = false
@@ -88,24 +90,24 @@ export default {
     }
 
     function createFile(file) {
-      if (document.getElementById('file').name === 'store-logo') {
+      if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!file.type.match('image.svg')) {
-          errorMessage.value = 'The store logo is required to be of .SVG format!'
+          errorMessage.value = 'The store logo is required to be of .svg format!'
           dragging.value = false
-          return;
+          return
         }
-      } else if (document.getElementById('file').name === 'email-logo') {
+      } else if (document.getElementById(props.inputName).name === 'email-logo') {
         if (!file.type.match('image.*')) {
-          errorMessage.value = 'The uploaded email logo is not an image!'
+          errorMessage.value = 'The uploaded email logo file is not an image!'
           dragging.value = false
-          return;
+          return
         }
       }
 
-      if (file.size > 5000000) {
-        errorMessage.value = 'File is bigger than 5MB!'
+      if (file.size > 100000000) {
+        errorMessage.value = 'File is bigger than 100MB!'
         dragging.value = false
-        return;
+        return
       }
 
       files.value = file
@@ -114,18 +116,18 @@ export default {
       let reader = new FileReader()
       let baseString = null
       reader.onloadend = function () {
-        baseString = reader.result;
+        baseString = reader.result
         preview.value = baseString
       };
 
       reader.readAsDataURL(file);
 
-      if (document.getElementById('file').name === 'store-logo') {
+      if (document.getElementById(props.inputName).name === 'store-logo') {
         setupData.project.store.logo.store = file
         return
       }
 
-      if (document.getElementById('file').name === 'email-logo') {
+      if (document.getElementById(props.inputName).name === 'email-logo') {
         setupData.project.store.logo.email = file
       }
     }
@@ -134,9 +136,9 @@ export default {
       files.value = ''
       errorMessage.value = null
 
-      if (document.getElementById('file').name === 'store-logo') {
+      if (document.getElementById(props.inputName).name === 'store-logo') {
         setupData.project.store.logo.store = ""
-      } else if (document.getElementById('file').name === 'email-logo') {
+      } else if (document.getElementById(props.inputName).name === 'email-logo') {
         if (!file.type.match('image.*')) {
           setupData.project.store.logo.email = ""
         }
@@ -144,39 +146,42 @@ export default {
     }
 
     function drop(event) {
-      if (document.getElementById('file').name === 'store-logo') {
+      errorMessage.value = null
+
+      if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!event.dataTransfer.files[0].type.match('image.svg')) {
-          errorMessage.value = 'The store logo is advised to be of .SVG format!'
+          errorMessage.value = 'The store logo is required to be of .svg format!'
           dragging.value = false
+          return
         }
-      } else if (document.getElementById('file').name === 'email-logo') {
+      } else if (document.getElementById(props.inputName).name === 'email-logo') {
         if (!event.dataTransfer.files[0].type.match('image.*')) {
-          errorMessage.value = 'The uploaded email logo is not an image!'
+          errorMessage.value = 'The email logo must be an image!'
           dragging.value = false
-          return;
+          return
         }
       }
 
-      files.value = event.dataTransfer.files[0];
+      files.value = event.dataTransfer.files[0]
 
       dragging.value = false
 
       let reader = new FileReader()
       let baseString = null
       reader.onloadend = function () {
-        baseString = reader.result;
+        baseString = reader.result
         preview.value = baseString
       };
 
-      reader.readAsDataURL(event.dataTransfer.files[0]);
+      reader.readAsDataURL(event.dataTransfer.files[0])
 
-      if (document.getElementById('file').name === 'store-logo') {
-        setupData.project.store.logo.store = event.dataTransfer.files[0];
+      if (document.getElementById(props.inputName).name === 'store-logo') {
+        setupData.project.store.logo.store = event.dataTransfer.files[0]
         return
       }
 
-      if (document.getElementById('file').name === 'email-logo') {
-        setupData.project.store.logo.email = event.dataTransfer.files[0];
+      if (document.getElementById(props.inputName).name === 'email-logo') {
+        setupData.project.store.logo.email = event.dataTransfer.files[0]
       }
     }
 

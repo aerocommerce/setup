@@ -394,11 +394,11 @@
 
 		setup() {
 			const setupData = inject('setupData')
-      		const jumpToStep = inject('jumpToStep')
+      const jumpToStep = inject('jumpToStep')
 			
 			return {
 				setupData,
-        		jumpToStep,
+        jumpToStep,
         countries,
         currencies,
         languages,

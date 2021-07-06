@@ -216,12 +216,12 @@ export default {
     const storeDomain = document.location.hostname
 
 		return {
-      		jumpToStep,
+      jumpToStep,
 			setupData,
 			steps,
-      		storeDomain,
-      		stepsComplete,
-      		setupComplete,
+      storeDomain,
+      stepsComplete,
+      setupComplete,
 			currentStep,
 			currentStepEntry,
 			serviceWorker,
