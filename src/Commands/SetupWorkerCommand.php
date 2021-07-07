@@ -15,10 +15,6 @@ class SetupWorkerCommand extends Command
     protected $board;
     protected $running = false;
 
-    public static function addJob($job)
-    {
-    }
-
     public function handle()
     {
         $this->id = Str::uuid()->toString();
@@ -96,7 +92,7 @@ class SetupWorkerCommand extends Command
 
             if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
                 if (is_array($data->jobs)) {
-                    foreach ($data->jobs as $job) {
+                    foreach ($data->jobs as $index => $job) {
                         $progress += 8;
 
                         Storage::put('setup.json', json_encode((object) [
@@ -106,18 +102,36 @@ class SetupWorkerCommand extends Command
                         ], JSON_PRETTY_PRINT));
 
                         try {
-                            $this->processAction($job->class);
+                            $this->processAction($job->class, $job->options);
                         } catch (\Exception $e) {
-                            // Write error to setup.json
-                            dd('ERROR WITH JOB: ' . $job->class);
+                            $setup = json_decode(file_get_contents(storage_path("app/setup.json")));
+                            $setup->errors[] = [
+                                $e,
+                            ];
+
+                            continue;
                         }
+
+                        $this->removeJob();
+
+                        $this->wait();
                     }
                 }
             }
         }
     }
 
-    protected function processAction(string $job, array $options = [])
+    protected function removeJob(): void
+    {
+        if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
+            if (is_array($data->jobs)) {
+                array_shift($data->jobs);
+                Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
+            }
+        }
+    }
+
+    protected function processAction(string $job, $options): void
     {
         app($job)->handle($options);
     }

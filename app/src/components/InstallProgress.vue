@@ -79,11 +79,23 @@ export default {
     const generateJobList = (setup) => {
       let jobs = [];
 
+      if (!setupData.agora.user) {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\Authenticate',
+          message: 'Connecting to Agora',
+          options: {},
+        });
+      }
+
       if (setup.project.type === 'new_project') {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateProject',
           message: 'Creating Agora project',
-          options: {},
+          options: {
+            name: setup.project.name,
+            domain: setup.host,
+            auth: setup.agora.token,
+          },
         })
       }
 
