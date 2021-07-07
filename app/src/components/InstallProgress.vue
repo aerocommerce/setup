@@ -109,7 +109,13 @@ export default {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateDatabase',
           message: 'Creating the database',
-          options: {},
+          options: {
+            host: setup.project.databaseHost,
+            port: setup.project.databasePort,
+            username: setup.project.databaseUsername,
+            password: setup.project.databasePassword,
+            database: setup.project.database,
+          },
         })
       }
 
