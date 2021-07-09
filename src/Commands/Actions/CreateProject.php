@@ -5,9 +5,6 @@ namespace Aero\Setup\Commands\Actions;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-
 
 class CreateProject
 {
@@ -16,9 +13,9 @@ class CreateProject
         $client = new Client();
 
         try {
-            $client->post('https://agora.test/api/projects/create-project', [
+            $response = $client->post('https://agora.test/api/projects/create-project', [
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer '.$options->auth,
+                    'Authorization' => 'Bearer '.$options->token,
                 ],
                 RequestOptions::VERIFY => false,
                 RequestOptions::FORM_PARAMS => [
@@ -26,10 +23,23 @@ class CreateProject
                     'domain' => $options->domain,
                 ]
             ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            if (! ($token = $data['token'] ?? null)) {
+                return false;
+            }
+
+            [$username, $password] = explode(':', base64_decode($token));
+
+            return app(CreateAuthFile::class)->handle((object) [
+                'user' => $username,
+                'pass' => $password,
+            ]);
         } catch (GuzzleException $e) {
-            return false;
+            //
         }
 
-        return true;
+        return false;
     }
 }

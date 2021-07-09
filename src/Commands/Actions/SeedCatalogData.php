@@ -2,12 +2,13 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Artisan;
 
 class SeedCatalogData
 {
-    public function handle(array $options)
+    public function handle($options)
     {
-
+        Artisan::call('');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CopyLogoImages
 {
-    public function handle(array $options)
+    public function handle($options)
     {
 
     }

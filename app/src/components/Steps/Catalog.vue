@@ -21,7 +21,7 @@
 					Import sample data
 				</template>
 
-				<div class="mb-6">
+				<div class="mb-6" v-if="setupData.project.databaseType !== 'new_database'">
 					<WarningMessage>Importing sample data will override any catalog data that already exists</WarningMessage>
 				</div>
 
@@ -120,7 +120,7 @@
 
       fetch('https://agora.test/api/catalog', {
         headers: {
-          'Authorization': 'Basic ' + setupData.project.token,
+          'Authorization': 'Bearer ' + setupData.agora.token,
           'Content-Type': 'application/json',
         },
       })
@@ -146,6 +146,7 @@
         Object.entries(existingCatalog.value).forEach((catalog) => {
           if (catalog[1].name.replace(' ', '-').toLowerCase() === value) {
             setupData.project.catalog.name = value
+            setupData.project.catalog.url = catalog[1].url
           }
         })
       })
@@ -165,9 +166,9 @@
               return json
             })
             .then((json) => {
-              successMessage.value = json
+              successMessage.value = json.success
 
-              if (json) {
+              if (json.success) {
                 setupData.project.catalog.type = 'skip_import'
               }
             })

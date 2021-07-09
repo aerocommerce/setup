@@ -33,15 +33,15 @@ class CheckCatalogContents
             config([$key => array_merge($defaults, $config)]);
 
             $manager = new DatabaseManager(app(), app('db.factory'));
-            $result = $manager->connection()->select('select * from products');
+            $result = $manager->connection()->select('select COUNT(*) from products');
 
-            if (count($result) > 0) {
-                return response([true]);
+            if ($result > 0) {
+                return response(['success' => true]);
             } else {
-                return response([false]);
+                return response(['success' => false]);
             }
-        } catch (\RuntimeException $e) {
-            return response([false]);
+        } catch (\RuntimeException $_) {
+            return response(['success' => false]);
         }
     }
 }

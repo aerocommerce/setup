@@ -3,7 +3,6 @@
 namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class Finalize
@@ -12,8 +11,6 @@ class Finalize
     {
         try {
             $data = $request->validate([
-                'agora' => 'required|array',
-                'project' => 'required|array',
                 'jobs' => 'required|array',
             ]);
         } catch (\Throwable $_) {

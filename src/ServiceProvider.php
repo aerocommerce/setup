@@ -6,6 +6,7 @@ use Aero\Setup\Commands\SetupWorkerCommand;
 use Aero\Setup\Console\Commands\InstallCommand;
 use Aero\Setup\Controllers\Actions\CheckAdminExists;
 use Aero\Setup\Controllers\Actions\CheckCatalogContents;
+use Aero\Setup\Controllers\Actions\CreateAgoraProject;
 use Aero\Setup\Controllers\Actions\CreateProject;
 use Aero\Setup\Controllers\Actions\Finalize;
 use Aero\Setup\Controllers\Actions\SaveUploadedImages;
@@ -29,6 +30,7 @@ class ServiceProvider extends BaseServiceProvider
             Route::middleware(AttachCorsHeaders::class)->group(function ($route) {
                 $route->options('/setup/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
 
+                $route->post('/setup/actions/create-project', '\\'.CreateAgoraProject::class);
                 $route->post('/setup/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
                 $route->post('/setup/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
                 $route->post('/setup/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);

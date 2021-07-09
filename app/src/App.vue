@@ -204,6 +204,20 @@ export default {
 		const installStore = () => {
 			stepsComplete.value = true
 			installModal.value = false
+
+      // create project if it needs to be created
+
+      // ... if created, merge values into setupData
+
+      // generate job array
+
+      // post job array to /finalize
+
+      // poll for progress %
+
+      // move progress bar and update message based on the result from the poll
+
+      // when poll is 100 (or there is a completed:true)
 		}
 
 		provide('jumpToStep', jumpToStep)

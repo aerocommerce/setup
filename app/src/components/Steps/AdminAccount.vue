@@ -40,15 +40,15 @@
 			</ContentGroup>
 		</div>
 
-		<div>
-			<ContentGroup id="skip-account" v-model="setupData.project.admin.create" group="admin-account" :value="false">
+    <div>
+      <ContentGroup id="skip-account" v-if="setupData.project.databaseType !== 'new_database' && successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="false">
 
-				<template #title>
-					Skip this step and continue
-				</template>
-				
-			</ContentGroup>
-		</div>
+        <template #title>
+          Skip this step and continue
+        </template>
+
+      </ContentGroup>
+    </div>
 
 		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />
@@ -109,10 +109,10 @@
               return json
             })
             .then((json) => {
-              successMessage.value = json
+              successMessage.value = json.success
 
-              if (json !== false) {
-                setupData.project.admin.create = false
+              if (json.success) {
+                setupData.project.admin.create = true
               }
             })
             .catch((e) => {

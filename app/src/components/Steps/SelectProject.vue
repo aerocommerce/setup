@@ -80,17 +80,6 @@
       const errorMessage = ref(null)
       const existingProjects = ref([])
 
-      const connectionInfo = computed(() => {
-        return {
-          type: setupData.project.databaseConnectionType,
-          database: setupData.project.database,
-          host: setupData.project.databaseHost,
-          port: setupData.project.databasePort,
-          username: setupData.project.databaseUsername,
-          password: setupData.project.databasePassword,
-        }
-      })
-
       errorMessage.value = null
 
       fetch('https://agora.test/api/projects', {
@@ -99,23 +88,23 @@
           'Content-Type': 'application/json',
         },
       })
-          .then((result) => {
-            let json = result.json()
-                .then(json => {
-                  if (! result.ok) throw new Error(json.message)
+      .then((result) => {
+        let json = result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
 
-                  return json
-                })
-                .then((json) => {
-                  existingProjects.value = json.projects
-                })
-                .catch((e) => {
-                  errorMessage.value = e.message
-                })
-          })
-          .catch((e) => {
-            errorMessage.value = e.message
-          })
+              return json
+            })
+            .then((json) => {
+              existingProjects.value = json.projects
+            })
+            .catch((e) => {
+              errorMessage.value = e.message
+            })
+      })
+      .catch((e) => {
+        errorMessage.value = e.message
+      })
 
       const projectName = ref(null)
       const selectedProject = computed(() => setupData.project.id)
@@ -185,7 +174,7 @@
 
 			  return advanceStep()
       }
-			
+
 			return {
         attemptAdvance,
         errorMessage,

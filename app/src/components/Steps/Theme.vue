@@ -48,17 +48,29 @@ import Step from '../Step.vue'
       const advanceStep = inject('advanceStep')
       const errorMessage = ref(null)
       const existingThemes = ref([])
+      let themeFetch
 
       const selectedTheme = computed(() => setupData.project.theme.id)
 
       errorMessage.value = null
 
-      fetch('https://agora.test/api/themes', {
-        headers: {
-          'Authorization': 'Basic ' + setupData.project.token,
-          'Content-Type': 'application/json',
-        },
-      })
+      if (setupData.project.id) {
+        themeFetch = fetch('https://agora.test/api/projects/themes', {
+          headers: {
+            'Authorization': 'Basic ' + setupData.project.token,
+            'Content-Type': 'application/json',
+          },
+        })
+      } else {
+        themeFetch = fetch('https://agora.test/api/themes', {
+          headers: {
+            'Authorization': 'Bearer ' + setupData.agora.token,
+            'Content-Type': 'application/json',
+          },
+        })
+      }
+
+      themeFetch
       .then((result) => {
         result.json()
             .then(json => {

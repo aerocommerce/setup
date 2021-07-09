@@ -94,7 +94,18 @@ export default {
           options: {
             name: setup.project.name,
             domain: setup.host,
-            auth: setup.agora.token,
+            token: setup.agora.token,
+          },
+        })
+      } else {
+        let [projectUsername, projectPassword] = btoa(setup.project.token).split(':')
+
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CreateAuthFile',
+          message: 'Creating auth files',
+          options: {
+            user: projectUsername,
+            pass: projectPassword,
           },
         })
       }
@@ -119,25 +130,39 @@ export default {
         })
       }
 
-      jobs.push({
-            class: 'Aero\\Setup\\Commands\\Actions\\WriteDatabaseCredentials',
-            message: 'Writing database credentials',
-            options: {},
-          },
-          {
-            class: 'Aero\\Setup\\Commands\\Actions\\WriteElasticsearchCredentials',
-            message: 'Writing Elasticsearch credentials',
-            options: {},
-          },
+      jobs.push(
           {
             class: 'Aero\\Setup\\Commands\\Actions\\WriteStoreDetails',
             message: 'Writing store details',
-            options: {},
+            options: {
+              name: setup.project.name,
+              host: setup.host,
+            },
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\WriteDatabaseCredentials',
+            message: 'Writing database credentials',
+            options: {
+              host: setup.project.databaseHost,
+              port: setup.project.databasePort,
+              username: setup.project.databaseUsername,
+              password: setup.project.databasePassword,
+              database: setup.project.database,
+            },
           },
           {
             class: 'Aero\\Setup\\Commands\\Actions\\CreateStoreConfig',
             message: 'Creating a store config',
             options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\WriteElasticsearchCredentials',
+            message: 'Writing Elasticsearch credentials',
+            options: {
+              identifier: setup.project.storeIdentifier,
+              host: setup.project.elasticsearchHost,
+              port: setup.project.elasticsearchPort,
+            },
           },
           {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
@@ -146,11 +171,21 @@ export default {
           }
       )
 
+      jobs.push({
+        class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
+        message: 'Seeding catalog data',
+        options: {
+          url: setupData.project.catalog.url
+        },
+      })
+
       if (setup.project.catalog.type === 'import') {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\SeedCatalogData',
           message: 'Seeding catalog data',
-          options: {},
+          options: {
+            url: setupData.project.catalog.url
+          },
         })
       }
 
@@ -158,6 +193,14 @@ export default {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateAdminAccount',
           message: 'Creating the admin account',
+          options: {},
+        })
+      }
+
+      if (setup.project.store.logo.store !== '' || setup.project.store.logo.store !== '') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CopyLogoImages',
+          message: 'Copying resources',
           options: {},
         })
       }
@@ -186,14 +229,16 @@ export default {
     }
 
     // Append a list of jobs based on choices in UI to setupData
-    setupData.jobs = generateJobList(setupData);
+    let jobs = generateJobList(setupData);
+
+    console.log(jobs)
 
     fetch(`${setupData.host}/setup/actions/finalize`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(setupData)
+      body: JSON.stringify({jobs})
     })
     .then((result) => {
       result.json()
