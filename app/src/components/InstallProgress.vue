@@ -98,7 +98,7 @@ export default {
           },
         })
       } else {
-        let [projectUsername, projectPassword] = btoa(setup.project.token).split(':')
+        let [projectUsername, projectPassword] = window.atob(setup.project.token).split(':')
 
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateAuthFile',
@@ -168,16 +168,13 @@ export default {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
             message: 'Installing the theme',
             options: {},
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
+            message: 'Installing dependencies',
+            options: {},
           }
       )
-
-      jobs.push({
-        class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
-        message: 'Seeding catalog data',
-        options: {
-          url: setupData.project.catalog.url
-        },
-      })
 
       if (setup.project.catalog.type === 'import') {
         jobs.push({
@@ -193,7 +190,11 @@ export default {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateAdminAccount',
           message: 'Creating the admin account',
-          options: {},
+          options: {
+            name: setupData.project.admin.name,
+            email: setupData.project.admin.email,
+            password: setupData.project.admin.name,
+          },
         })
       }
 

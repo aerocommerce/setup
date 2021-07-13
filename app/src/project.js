@@ -3,10 +3,6 @@ export default {
     name: '',
     id: null,
     token: '',
-    c: {
-      user: '',
-      pass: '',
-    },
     databaseConnectionType: 'local',
     databaseHost: '127.0.0.1',
     databasePort: '3306',

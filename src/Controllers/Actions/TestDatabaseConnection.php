@@ -25,7 +25,7 @@ class TestDatabaseConnection
             'port' => $data['port'],
             'username' => $data['username'],
             'password' => $data['password'],
-            'database' => 'information_schema',
+            'database' => 'sys',
         ];
 
         try {

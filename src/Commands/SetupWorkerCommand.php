@@ -108,6 +108,7 @@ class SetupWorkerCommand extends Command
                             $setup->errors[] = [
                                 $e,
                             ];
+                            file_put_contents(storage_path("app/setup.json"), json_encode($setup));
 
                             continue;
                         }
