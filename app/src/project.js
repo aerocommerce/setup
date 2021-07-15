@@ -64,4 +64,5 @@ export default {
         email: '',
         password: '',
     },
+    errors: [],
 }

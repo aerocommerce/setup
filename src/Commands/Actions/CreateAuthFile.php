@@ -2,6 +2,7 @@
 
 namespace Aero\Setup\Commands\Actions;
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
@@ -10,19 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class CreateAuthFile
 {
+    use StoresErrors;
+
     public function handle($options): bool
     {
         try {
             File::put(base_path('auth.json'), json_encode([
                 'http-basic' => [
                     'agora.aerocommerce.com' => [
-                        'username' => 'bhHX5pJdAXTuOjuguAj16iqbJWHw14WmFWpylu8M',
-                        'password' => 'tInvCNpjk0B4rGVCd3962G5s29lEGNJT87DlYVSnqxkVsqnXD1271DCt7QK2',
+                        'username' => $options->user,
+                        'password' => $options->pass,
                     ],
                 ],
             ], JSON_PRETTY_PRINT));
-        } catch(\Exception $_) {
-            return false;
+        } catch(\Exception $e) {
+            $this->error($e);
         }
 
         return true;

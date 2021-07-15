@@ -2,12 +2,15 @@
 
 namespace Aero\Setup\Commands\Actions;
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
 class CreateProject
 {
+    use StoresErrors;
+
     public function handle($options): bool
     {
         $client = new Client();
@@ -37,7 +40,7 @@ class CreateProject
                 'pass' => $password,
             ]);
         } catch (GuzzleException $e) {
-            //
+            $this->error($e);
         }
 
         return false;

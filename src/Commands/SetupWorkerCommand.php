@@ -45,7 +45,7 @@ class SetupWorkerCommand extends Command
 
     protected static function getWorkerboardPath(): string
     {
-        return storage_path('worker.json');
+        return storage_path('app/worker.json');
     }
 
     protected function getWorkerboard($canCreate = false): array

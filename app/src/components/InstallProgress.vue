@@ -11,6 +11,12 @@
       <progress class="mb-6" :value="setupData.progress" max="100"></progress>
 
       <p class="mb-12 text-sm text-alphaLight-800" v-html="setupData.progressText"></p>
+
+      <template v-if="setupData.project.errors.length">
+        <ul class="list-none text-center">
+          <li style="color: red" v-for="error in setupData.project.errors">{{ error }}</li>
+        </ul>
+      </template>
     </div>
 
     <ol class="absolute top-0 left-1/2 flex flex-wrap gap-3 items-center text-alpha transform -translate-x-1/2 duration-300 delay-300" :class="setupData.installComplete ? 'opacity-100 translate-y-6' : 'opacity-0'">
@@ -134,11 +140,6 @@ export default {
             },
           },
           {
-            class: 'Aero\\Setup\\Commands\\Actions\\CreateStoreConfig',
-            message: 'Creating a store config',
-            options: {},
-          },
-          {
             class: 'Aero\\Setup\\Commands\\Actions\\WriteElasticsearchCredentials',
             message: 'Writing Elasticsearch credentials',
             options: {
@@ -162,8 +163,8 @@ export default {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
             message: 'Installing the theme',
             options: {
-              themeKey: setupData.project.theme.name,
-              themeName: setupData.project.theme.name.split('/')[1]
+              themeKey: setup.project.theme.name,
+              themeName: setup.project.theme.name.split('/')[1]
             },
           },
       )
@@ -173,7 +174,7 @@ export default {
           class: 'Aero\\Setup\\Commands\\Actions\\SeedCatalogData',
           message: 'Seeding catalog data',
           options: {
-            url: setupData.project.catalog.url
+            url: setup.project.catalog.url
           },
         })
       }
@@ -183,10 +184,10 @@ export default {
           class: 'Aero\\Setup\\Commands\\Actions\\CreateAdminAccount',
           message: 'Creating the admin account',
           options: {
-            name: setupData.project.admin.name,
-            email: setupData.project.admin.email,
-            password: setupData.project.admin.password,
-            database: setupData.project.database,
+            name: setup.project.admin.name,
+            email: setup.project.admin.email,
+            password: setup.project.admin.password,
+            database: setup.project.database,
           },
         })
       }
@@ -225,7 +226,7 @@ export default {
           })
           .then((json) => {
             if (json.success) {
-
+              setupData.project.errors = json.errors
             } else {
               // ERROR
             }
@@ -282,6 +283,10 @@ export default {
 
                 setTimeout(() => {
                   setupData.installComplete = true
+
+                  window.onbeforeunload = function () {
+                    window.location.href = `${setupData.host}`
+                  }
                 }, 1200)
 
               }

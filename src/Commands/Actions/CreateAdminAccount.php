@@ -3,12 +3,13 @@
 namespace Aero\Setup\Commands\Actions;
 
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Illuminate\Database\DatabaseManager;
 
 class CreateAdminAccount
 {
-    use UsesCommandLine;
+    use UsesCommandLine, StoresErrors;
 
     public function handle($options)
     {
@@ -17,7 +18,7 @@ class CreateAdminAccount
             $manager->connection()->select("DELETE FROM {$options->database}.admins");
             $manager->connection()->select("ALTER TABLE {$options->database}.admins AUTO_INCREMENT = 1");
         } catch (\Exception $e) {
-            dump($e);
+            $this->error($e);
         }
 
         try {
@@ -30,7 +31,7 @@ class CreateAdminAccount
                 $options->name,
             ]);
         } catch (\Exception $e) {
-            dump($e);
+            $this->error($e);
         }
 
         return true;

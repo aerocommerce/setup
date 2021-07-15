@@ -110,6 +110,10 @@
                   .then((json) => {
                     setupData.agora = json
 
+                    window.onbeforeunload = function () {
+                      return 'Do you really want to refresh this tab and lose your progress?';
+                    }
+
                     advanceStep()
                   })
                   .catch((e) => {

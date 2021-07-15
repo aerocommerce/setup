@@ -49,10 +49,8 @@ import Step from '../Step.vue'
       const errorMessage = ref(null)
       const selectedTheme = computed(() => setupData.project.theme.id)
       const existingThemes = ref([])
-      const themes = inject('themes');
 
       let themeFetch
-
 
       errorMessage.value = null
 
@@ -129,8 +127,11 @@ import Step from '../Step.vue'
 
         if (selectedTheme === null) {
           errorMessage.value = 'You must choose a theme before proceeding.'
+          return
+        }
 
-          return;
+        if (setupData.project.themes === 0) {
+          return
         }
 
         return advanceStep()

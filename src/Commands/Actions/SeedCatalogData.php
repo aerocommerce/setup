@@ -3,11 +3,12 @@
 namespace Aero\Setup\Commands\Actions;
 
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 
 class SeedCatalogData
 {
-    use UsesCommandLine;
+    use UsesCommandLine, StoresErrors;
 
     public function handle($options)
     {
@@ -19,7 +20,7 @@ class SeedCatalogData
                 $options->url,
             ]);
         } catch (\Exception $e) {
-            dd($e);
+            $this->error($e);
         }
     }
 }

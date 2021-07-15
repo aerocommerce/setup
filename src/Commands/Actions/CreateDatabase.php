@@ -2,11 +2,14 @@
 
 namespace Aero\Setup\Commands\Actions;
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
 
 class CreateDatabase
 {
+    use StoresErrors;
+
     public function handle($options)
     {
         try {
@@ -26,8 +29,8 @@ class CreateDatabase
 
             $manager = new DatabaseManager(app(), app('db.factory'));
             $manager->connection()->select("CREATE DATABASE {$options->database}");
-        } catch (\RuntimeException $_) {
-            return false;
+        } catch (\RuntimeException $e) {
+            $this->error($e);
         }
 
         return true;

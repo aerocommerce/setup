@@ -32,7 +32,6 @@ class ServiceProvider extends BaseServiceProvider
             Route::middleware(AttachCorsHeaders::class)->group(function ($route) {
                 $route->options('/setup/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
 
-                $route->post('/setup/actions/create-project', '\\'.CreateAgoraProject::class);
                 $route->post('/setup/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
                 $route->post('/setup/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
                 $route->post('/setup/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);

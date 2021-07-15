@@ -2,13 +2,14 @@
 
 namespace Aero\Setup\Commands\Actions;
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Aero\Setup\Commands\Traits\UsesComposer;
 use Symfony\Component\Process\Process;
 
 class InstallDependencies
 {
-    use UsesComposer, UsesCommandLine;
+    use UsesComposer, UsesCommandLine, StoresErrors;
 
     public function handle($options)
     {
@@ -20,17 +21,7 @@ class InstallDependencies
 
             $this->runCommand([$composer, 'dump-autoload']);
         } catch (\Exception $e) {
-            dd($e);
-        }
-
-        try {
-            $this->runCommand([
-                PHP_BINARY,
-                base_path('artisan'),
-                'queue:table'
-            ]);
-        } catch (\Exception $e) {
-            dd($e);
+            $this->error($e);
         }
 
         try {
@@ -43,7 +34,7 @@ class InstallDependencies
                 '--seed',
             ]);
         } catch (\Exception $e) {
-            dd($e);
+            $this->error($e);
         }
 
         return true;

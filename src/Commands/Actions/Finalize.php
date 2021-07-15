@@ -3,12 +3,13 @@
 namespace Aero\Setup\Commands\Actions;
 
 
+use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Aero\Setup\Commands\Traits\UsesComposer;
 
 class Finalize
 {
-    use UsesComposer, UsesCommandLine;
+    use UsesComposer, UsesCommandLine, StoresErrors;
 
     public function handle($options)
     {
@@ -21,7 +22,7 @@ class Finalize
             unlink(storage_path('app/setup.json'));
             unlink(storage_path('worker.json'));
         } catch (\Exception $e) {
-            dd($e);
+            $this->error($e);
         }
 
         return true;

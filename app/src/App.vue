@@ -164,10 +164,6 @@ if (baseData.host.indexOf(':3000') !== -1) {
   baseData.host = baseData.host.replace(':3000', '');
 }
 
-window.onbeforeunload = function () {
-  return 'Do you really want to refresh this tab and lose your progress?';
-}
-
 const setupData = reactive({
   ...JSON.parse(JSON.stringify(baseData)),
   reset() {

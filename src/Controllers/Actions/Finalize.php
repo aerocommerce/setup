@@ -19,8 +19,11 @@ class Finalize
 
         Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
+        $json = json_decode(Storage::get('setup.json'));
 
-
-        return ['success' => true];
+        return [
+            'success' => true,
+            'errors' => $json->errors,
+        ];
     }
 }
