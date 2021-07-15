@@ -17,7 +17,7 @@ class Finalize
             return ['success' => false];
         }
 
-        Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
+        Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
 
 
