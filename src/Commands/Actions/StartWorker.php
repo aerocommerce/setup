@@ -4,8 +4,9 @@ namespace Aero\Setup\Commands\Actions;
 
 
 use Aero\Setup\Commands\Traits\UsesCommandLine;
+use Illuminate\Database\DatabaseManager;
 
-class SeedCatalogData
+class StartWorker
 {
     use UsesCommandLine;
 
@@ -15,8 +16,7 @@ class SeedCatalogData
             $this->runCommand([
                 PHP_BINARY,
                 base_path('artisan'),
-                'aero:import:products:csv',
-                $options->url,
+                'aero:setup:worker'
             ]);
         } catch (\Exception $e) {
             dd($e);

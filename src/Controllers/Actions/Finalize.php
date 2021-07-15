@@ -19,6 +19,8 @@ class Finalize
 
         Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
 
+
+
         return ['success' => true];
     }
 }

@@ -11,15 +11,6 @@
       <progress class="mb-6" :value="setupData.progress" max="100"></progress>
 
       <p class="mb-12 text-sm text-alphaLight-800" v-html="setupData.progressText"></p>
-
-      <ol class="flex flex-wrap gap-3 items-center text-alpha px-12 xl:px-0">
-        <li v-for="(step, stepIndex) in steps">
-          {{setupData.progressStep.split}}
-          <span>
-            <component :is="step.icon" class="h-6 w-6 transition duration-150" aria-hidden="true" :class="[ (setupData.progressStep > stepIndex || stepsComplete) ? 'text-green' : setupData.progressStep === stepIndex ? 'text-alpha-100' : 'text-alpha' ]" />
-          </span>
-        </li>
-      </ol>
     </div>
 
     <ol class="absolute top-0 left-1/2 flex flex-wrap gap-3 items-center text-alpha transform -translate-x-1/2 duration-300 delay-300" :class="setupData.installComplete ? 'opacity-100 translate-y-6' : 'opacity-0'">
@@ -37,8 +28,8 @@
             <Logo />
           </span>
           <h3 class="text-2xl mb-24">We're all set</h3>
-          <a href="/" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center">View store</a>
-          <a href="/admin" class="button button-transparent uppercase text-white underline">Login to admin</a>
+          <button type="button" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center" @click="redirectToHome">View store</button>
+          <button type="button" class="button button-transparent uppercase text-white underline" @click="redirectToAdmin">Login to admin</button>
       </div>
     </transition>
 
@@ -79,13 +70,11 @@ export default {
     const generateJobList = (setup) => {
       let jobs = [];
 
-      if (!setupData.agora.user) {
-        jobs.push({
-          class: 'Aero\\Setup\\Commands\\Actions\\Authenticate',
-          message: 'Connecting to Agora',
-          options: {},
-        });
-      }
+      jobs.push({
+        class: 'Aero\\Setup\\Commands\\Actions\\StartWorker',
+        message: 'Beginning installation',
+        options: {},
+      })
 
       if (setup.project.type === 'new_project') {
         jobs.push({
@@ -165,15 +154,23 @@ export default {
             },
           },
           {
-            class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
-            message: 'Installing the theme',
-            options: {},
-          },
-          {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
             message: 'Installing dependencies',
-            options: {},
-          }
+            options: {
+              host: setup.project.databaseHost,
+              port: setup.project.databasePort,
+              username: setup.project.databaseUsername,
+              password: setup.project.databasePassword,
+              database: setup.project.database,
+            },
+          },
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
+            message: 'Installing the theme',
+            options: {
+              themeName: setupData.project.theme.name,
+            },
+          },
       )
 
       if (setup.project.catalog.type === 'import') {
@@ -193,7 +190,8 @@ export default {
           options: {
             name: setupData.project.admin.name,
             email: setupData.project.admin.email,
-            password: setupData.project.admin.name,
+            password: setupData.project.admin.password,
+            database: setupData.project.database,
           },
         })
       }
@@ -206,33 +204,16 @@ export default {
         })
       }
 
+      jobs.push({
+        class: 'Aero\\Setup\\Commands\\Actions\\Finalize',
+        message: 'Finalizing',
+        options: {},
+      })
+
       return jobs;
     }
 
-    const updateProgress = () => {
-
-      setupData.progress = setupData.progress + 1
-
-      if(setupData.progress < 100) {
-
-          setTimeout(() => {
-            updateProgress()
-            updateText(setupData.progress)
-          }, 100)
-
-      } else if (setupData.progress === 100) {
-        
-        setTimeout(() => {
-          setupData.installComplete = true
-        }, 1200)
-
-      }
-    }
-
-    // Append a list of jobs based on choices in UI to setupData
     let jobs = generateJobList(setupData);
-
-    console.log(jobs)
 
     fetch(`${setupData.host}/setup/actions/finalize`, {
       method: 'POST',
@@ -262,73 +243,70 @@ export default {
       // ERROR
     })
 
-    // this isn't good, but it worked for the purposes of testing the animations and design
-    const updateText = (progress) => {
+    function redirectToHome() {
+      window.open(`${setupData.host}`, '_blank')
+    }
 
-      if (progress < 10) {
-        if(progress = 10) {
-            setupData.progressStep = 0;
-        }
-        setupData.progressText = 'Connecting to Agora'
-      } else if (progress < 20) {
-        if(progress = 20) {
-            setupData.progressStep = 1;
-        }
-        setupData.progressText = 'Creating the project'
-      } else if (progress < 30) {
-        if(progress = 30) {
-            setupData.progressStep = 2;
-        }
-        setupData.progressText = 'Connecting to database server'
-      } else if (progress < 40) {
-        if(progress = 40) {
-            setupData.progressStep = 3;
-        }
-        setupData.progressText = 'Creating the database'
-      } else if (progress < 50) {
-        if(progress = 50) {
-            setupData.progressStep = 4;
-        }
-        setupData.progressText = 'Connecting to Elasticsearch server'
-      } else if (progress < 60) {
-        if(progress = 60) {
-            setupData.progressStep = 5;
-        }
-        setupData.progressText = 'Creating ' + setupData.project.name
-      } else if (progress < 70) {
-        if(progress = 70) {
-            setupData.progressStep = 6;
-        }
-        setupData.progressText = 'Applying the ' + setupData.project.theme.name + ' theme'
-      } else if (progress < 80) {
-        if(progress = 80) {
-            setupData.progressStep = 7;
-        }
-        setupData.progressText = 'Updating the catalog'
-      } else if (progress < 90) {
-        if(progress = 90) {
-            setupData.progressStep = 8;
-        }
-        setupData.progressText = 'Creating an admin account'
-      } else if (progress < 100) {
-        if(progress = 100) {
-            setupData.progressStep = 9;
-        }
-        setupData.progressText = 'Checking things over...'
-      } else if (progress = 100) {
-        if(progress = 100) {
-            setupData.progressStep = 10;
-        }
-        setupData.progressText = 'Setup complete!'
-      }
+    function redirectToAdmin() {
+      window.open(`${setupData.host}/admin`, '_blank')
+    }
 
+    const updateProgress = () => {
+      fetch(`${setupData.host}/setup/actions/ping-progress`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((result) => {
+        result.json()
+            .then(json => {
+              if (! result.ok) throw new Error(json.message)
+
+              return json
+            })
+            .then((json) => {
+              if (json.message === 'Finalizing') {
+                setupData.progress = 100
+              }
+
+              if(setupData.progress < 100) {
+
+                setTimeout(() => {
+                  setupData.progress = json.progress
+                  setupData.progressText = json.message
+
+                  if (setupData.progress % 10 === 0) {
+                    setupData.progressStep++
+                  }
+
+                  updateProgress()
+                }, 100)
+
+              } else if (setupData.progress === 100) {
+
+                setTimeout(() => {
+                  setupData.installComplete = true
+                }, 1200)
+
+              }
+            })
+            .catch((_) => {
+              // ERROR
+            })
+      })
+      .catch((_) => {
+        // ERROR
+      })
     }
 
     return {
 				setupData,
         storeDomain,
         steps,
-        Logo
+        Logo,
+        redirectToHome,
+        redirectToAdmin
 			}
   }
 }

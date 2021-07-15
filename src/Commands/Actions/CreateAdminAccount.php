@@ -2,24 +2,35 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-use Aero\Admin\Models\Admin;
+
+use Aero\Setup\Commands\Traits\UsesCommandLine;
+use Illuminate\Database\DatabaseManager;
 
 class CreateAdminAccount
 {
+    use UsesCommandLine;
+
     public function handle($options)
     {
         try {
-            $admin = Admin::create([
-                'name' => $options->name,
-                'email' => $options->email,
-                'password' => $options->password,
+            $manager = new DatabaseManager(app(), app('db.factory'));
+            $manager->connection()->select("DELETE FROM {$options->database}.admins");
+            $manager->connection()->select("ALTER TABLE {$options->database}.admins AUTO_INCREMENT = 1");
+        } catch (\Exception $e) {
+            dump($e);
+        }
+
+        try {
+            $this->runCommand([
+                PHP_BINARY,
+                base_path('artisan'),
+                'aero:setup:admin',
+                $options->email,
+                $options->password,
+                $options->name,
             ]);
-
-            $admin->permissions = ['*'];
-
-            $admin->save();
-        } catch (\Exception $_) {
-            return false;
+        } catch (\Exception $e) {
+            dump($e);
         }
 
         return true;

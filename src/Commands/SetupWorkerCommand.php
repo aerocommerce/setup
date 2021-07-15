@@ -106,7 +106,7 @@ class SetupWorkerCommand extends Command
                         } catch (\Exception $e) {
                             $setup = json_decode(file_get_contents(storage_path("app/setup.json")));
                             $setup->errors[] = [
-                                $e,
+                                'Error with job ' . substr($job->class, strpos($job->class, "\\") + 1),
                             ];
                             file_put_contents(storage_path("app/setup.json"), json_encode($setup));
 
@@ -124,10 +124,16 @@ class SetupWorkerCommand extends Command
 
     protected function removeJob(): void
     {
-        if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
-            if (is_array($data->jobs)) {
-                array_shift($data->jobs);
-                Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
+        if (file_exists(storage_path("app/data.json"))) {
+            if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
+                if (is_array($data->jobs)) {
+                    array_shift($data->jobs);
+                    Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
+                }
+            }
+        } else {
+            if (file_exists($file = $this->getWorkerboardPath())) {
+                unlink($file);
             }
         }
     }

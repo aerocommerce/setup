@@ -24,11 +24,7 @@ class AddComposerDependencies
         ],
     ];
 
-    protected $scripts = [
-        'post-autoload-dump' => [
-            '@php artisan aero:link --ansi',
-        ],
-    ];
+    protected $scripts = [];
 
     protected $options;
 

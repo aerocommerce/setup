@@ -2,37 +2,46 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-use Aero\Setup\Composer;
-use Illuminate\Support\Facades\Artisan;
+use Aero\Setup\Commands\Traits\UsesCommandLine;
+use Aero\Setup\Commands\Traits\UsesComposer;
 use Symfony\Component\Process\Process;
 
 class InstallDependencies
 {
-    public function handle($options): bool
+    use UsesComposer, UsesCommandLine;
+
+    public function handle($options)
     {
         try {
             $composer = $this->findComposer();
 
-            $commands = [
-                $composer.' update --no-scripts --prefer-dist',
-                $composer.' run-script post-root-package-install --quiet',
-                $composer.' run-script post-create-project-cmd --quiet',
-                $composer.' run-script post-autoload-dump --quiet',
-            ];
+            $this->runCommand([$composer, 'update', '--no-scripts', '--prefer-dist']);
+            $this->runCommand([$composer, 'run-script', 'post-create-project-cmd']);
 
-            $process = Process::fromShellCommandline(implode(' && ', $commands));
-
-            if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
-                $process->setTty(true);
-            }
-
-            $process->run();
+            $this->runCommand([$composer, 'dump-autoload']);
         } catch (\Exception $e) {
             dd($e);
         }
 
         try {
-            Artisan::call('migrate');
+            $this->runCommand([
+                PHP_BINARY,
+                base_path('artisan'),
+                'queue:table'
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
+
+        try {
+            $this->updateDatabaseDetails($options);
+
+            $this->runCommand([
+                PHP_BINARY,
+                base_path('artisan'),
+                'aero:install',
+                '--seed',
+            ]);
         } catch (\Exception $e) {
             dd($e);
         }
@@ -40,14 +49,20 @@ class InstallDependencies
         return true;
     }
 
-    protected function findComposer(): string
+    protected function updateDatabaseDetails($options): void
     {
-        $composerPath = getcwd().'/composer.phar';
+        $key = 'database.connections.'.config('database.default');
 
-        if (file_exists($composerPath)) {
-            return '"'.PHP_BINARY.'" '.$composerPath;
-        }
+        $defaults = config($key, []);
 
-        return 'composer';
+        $config = [
+            'host' => $options->host,
+            'port' => $options->port,
+            'username' => $options->username,
+            'password' => $options->password,
+            'database' => $options->database,
+        ];
+
+        config([$key => array_merge($defaults, $config)]);
     }
 }

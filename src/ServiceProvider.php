@@ -2,6 +2,7 @@
 
 namespace Aero\Setup;
 
+use Aero\Setup\Commands\CreateAdminCommand;
 use Aero\Setup\Commands\SetupWorkerCommand;
 use Aero\Setup\Console\Commands\InstallCommand;
 use Aero\Setup\Controllers\Actions\CheckAdminExists;
@@ -9,6 +10,7 @@ use Aero\Setup\Controllers\Actions\CheckCatalogContents;
 use Aero\Setup\Controllers\Actions\CreateAgoraProject;
 use Aero\Setup\Controllers\Actions\CreateProject;
 use Aero\Setup\Controllers\Actions\Finalize;
+use Aero\Setup\Controllers\Actions\PingProgress;
 use Aero\Setup\Controllers\Actions\SaveUploadedImages;
 use Aero\Setup\Controllers\Actions\TestDatabaseConnection;
 use Aero\Setup\Controllers\Actions\TestElasticsearchConnection;
@@ -37,6 +39,8 @@ class ServiceProvider extends BaseServiceProvider
                 $route->post('/setup/actions/check-admin-exists', '\\'.CheckAdminExists::class);
                 $route->post('/setup/actions/save-uploaded-images', '\\'.SaveUploadedImages::class);
                 $route->post('/setup/actions/finalize', '\\'.Finalize::class);
+
+                $route->get('/setup/actions/ping-progress', '\\'.PingProgress::class);
             });
 
             Route::get('/setup', '\\'.ServeSetup::class)->name('aero.setup');
@@ -44,10 +48,9 @@ class ServiceProvider extends BaseServiceProvider
             Route::fallback('\\'.RedirectToSetup::class);
         }
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                SetupWorkerCommand::class,
-            ]);
-        }
+        $this->commands([
+            SetupWorkerCommand::class,
+            CreateAdminCommand::class,
+        ]);
     }
 }

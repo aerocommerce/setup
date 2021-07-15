@@ -25,7 +25,7 @@ class TestDatabaseConnection
             'port' => $data['port'],
             'username' => $data['username'],
             'password' => $data['password'],
-            'database' => 'sys',
+            'database' => 'information_schema',
         ];
 
         try {
@@ -35,14 +35,14 @@ class TestDatabaseConnection
             $result = $manager->connection()->select('show databases');
 
             $databases = collect($result)->pluck('Database')->reject(function ($database) {
-                return in_array($database, ['mysql', 'information_schema', 'performance_schema']);
+                return in_array($database, ['mysql', 'information_schema', 'performance_schema', 'sys']);
             })->values();
 
             return response([
                 'databases' => $databases,
             ]);
         } catch (\RuntimeException $e) {
-            //
+            return false;
         } finally {
             config([$key => $defaults]);
         }

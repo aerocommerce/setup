@@ -16,8 +16,8 @@ class CreateAuthFile
             File::put(base_path('auth.json'), json_encode([
                 'http-basic' => [
                     'agora.aerocommerce.com' => [
-                        'username' => 'bhHX5pJdAXTuOjuguAj16iqbJWHw14WmFWpylu8M',
-                        'password' => 'tInvCNpjk0B4rGVCd3962G5s29lEGNJT87DlYVSnqxkVsqnXD1271DCt7QK2',
+                        'username' => $options->user,
+                        'password' => $options->pass,
                     ],
                 ],
             ], JSON_PRETTY_PRINT));
