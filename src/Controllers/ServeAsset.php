@@ -24,6 +24,9 @@ class ServeAsset
             case 'png':
                 $mime = 'image/png';
                 break;
+            case 'svg':
+                $mime = 'image/svg+xml';
+                break;
             default:
                 abort(404);
         }

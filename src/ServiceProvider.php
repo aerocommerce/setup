@@ -27,7 +27,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         if (file_exists(storage_path('app/setup.json'))) {
-            Route::get('/assets/{file}', '\\'.ServeAsset::class);
+            Route::get('/assets/{file}', '\\'.ServeAsset::class)->where('file', '.*');
 
             Route::middleware(AttachCorsHeaders::class)->group(function ($route) {
                 $route->options('/setup/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
