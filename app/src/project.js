@@ -50,6 +50,7 @@ export default {
         thumbnail: '',
         frameworks: '',
     },
+    themes: 0,
     catalog: {
         type: 'import',
         name: '',

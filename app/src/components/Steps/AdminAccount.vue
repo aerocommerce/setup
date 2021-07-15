@@ -148,6 +148,18 @@
 
             return;
           }
+
+          if (! email.includes('@') || ! email.includes('.')) {
+            errorMessage.value = 'Email must be in a valid email format.'
+
+            return;
+          }
+
+          if (password.length < 8) {
+            errorMessage.value = 'Password must be at least 8 characters long.'
+
+            return;
+          }
         }
 
         return advanceStep()

@@ -23,7 +23,7 @@
       <path id="Path_1084" data-name="Path 1084" d="M0,0H1008V312H0Z" transform="translate(1008 312) rotate(180)" fill="url(#linear-gradient-2)"/>
     </svg>
 
-    <div class="relative mt-36 px-12 flex flex-col h-full overflow-auto z-20">
+    <div class="relative mt-36 px-12 flex flex-col h-full overflow-auto z-20" :class="{ 'hidden' : setupData.project.themes === 0 }">
       <div class="mb-96">
 
         <h2 class="text-5xl font-medium text-white mb-1" v-text="setupData.project.theme.name"></h2>

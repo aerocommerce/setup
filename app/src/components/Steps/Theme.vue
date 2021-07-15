@@ -47,10 +47,12 @@ import Step from '../Step.vue'
       const setupData = inject('setupData')
       const advanceStep = inject('advanceStep')
       const errorMessage = ref(null)
+      const selectedTheme = computed(() => setupData.project.theme.id)
       const existingThemes = ref([])
+      const themes = inject('themes');
+
       let themeFetch
 
-      const selectedTheme = computed(() => setupData.project.theme.id)
 
       errorMessage.value = null
 
@@ -81,9 +83,17 @@ import Step from '../Step.vue'
             .then((json) => {
               existingThemes.value = json.themes
 
+              setupData.project.themes = json.themes.length
+
+              if (json.themes.length === 0) {
+                errorMessage.value = 'No themes are associated with your account!'
+
+                return
+              }
+
               if (setupData.project.theme.id === '') {
                 Object.entries(existingThemes.value).forEach((theme, count) => {
-                  if (count > 0) return;
+                  if (count > 0) return
 
                   setupData.project.theme.id = theme[1].id
                   setupData.project.theme.name = theme[0]

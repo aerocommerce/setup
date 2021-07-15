@@ -38,17 +38,9 @@
 
           <div class="grid grid-cols-4 gap-6">
 
-            <div class="relative pb-full bg-alpha-300">
-              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </div>
-            <div class="relative pb-full bg-alpha-300">
-              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </div>
-            <div class="relative pb-full bg-alpha-300">
-              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </div>
-            <div class="relative pb-full bg-alpha-300">
-              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            <div v-for="preview in setupData.project.catalog.images" class="relative bg-alpha-300">
+              <img :src="preview" alt="">
+<!--              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />-->
             </div>
 
           </div>
@@ -147,6 +139,11 @@
           if (catalog[1].name.replace(' ', '-').toLowerCase() === value) {
             setupData.project.catalog.name = value
             setupData.project.catalog.url = catalog[1].url
+
+            if (catalog[1].thumbnails.length) {
+              setupData.project.catalog.preview = true
+              setupData.project.catalog.images = catalog[1].thumbnails
+            }
           }
         })
       })

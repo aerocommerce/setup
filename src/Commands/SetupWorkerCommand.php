@@ -39,7 +39,7 @@ class SetupWorkerCommand extends Command
     {
         return [
             'id' => $this->id,
-            'lastPinged' => now()->unix(),
+            'lastPinged' => now()->timestamp,
         ];
     }
 

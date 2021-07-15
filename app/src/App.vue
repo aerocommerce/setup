@@ -42,7 +42,7 @@
 
 							<div class="flex items-center gap-3">
 								<span class="flex-shrink-0 w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
-								<span class="text-sm text-alpha-100 xl:hidden">{{ serviceWorker.statusText }}</span>
+								<span class="text-sm text-alpha-100">{{ serviceWorker.statusText }}</span>
 							</div>
 
 
@@ -162,6 +162,10 @@ let baseData = {
 
 if (baseData.host.indexOf(':3000') !== -1) {
   baseData.host = baseData.host.replace(':3000', '');
+}
+
+window.onbeforeunload = function () {
+  return 'Do you really want to refresh this tab and lose your progress?';
 }
 
 const setupData = reactive({

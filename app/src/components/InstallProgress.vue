@@ -162,7 +162,8 @@ export default {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
             message: 'Installing the theme',
             options: {
-              themeName: setupData.project.theme.name,
+              themeKey: setupData.project.theme.name,
+              themeName: setupData.project.theme.name.split('/')[1]
             },
           },
       )
@@ -238,11 +239,11 @@ export default {
     })
 
     function redirectToHome() {
-      window.open(`${setupData.host}`, '_blank')
+      window.location.href = `${setupData.host}`;
     }
 
     function redirectToAdmin() {
-      window.open(`${setupData.host}/admin`, '_blank')
+      window.location.href = `${setupData.host}/admin`;
     }
 
     const updateProgress = () => {

@@ -15,7 +15,8 @@ class InstallTheme
                 PHP_BINARY,
                 base_path('artisan'),
                 'theme:install',
-                $options->themeName,
+                $options->themeKey,
+                "--name={$options->themeName}",
                 '--no-interaction',
             ]);
         } catch (\Exception $e) {

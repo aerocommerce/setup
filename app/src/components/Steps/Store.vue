@@ -148,6 +148,8 @@
 			<NextButton :action="attemptAdvance" />
 		</template>
 
+    <button class="hidden" aria-hidden="true" />
+
 	</Step>
 </template>
 

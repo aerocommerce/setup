@@ -111,6 +111,8 @@
         </ContentGroup>
 
       </div>
+
+      <button class="hidden" aria-hidden="true" />
     </form>
 
 		<template #footer="{ retreatStep }">
