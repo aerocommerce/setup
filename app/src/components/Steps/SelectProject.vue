@@ -82,7 +82,7 @@
 
       errorMessage.value = null
 
-      fetch('https://agora.test/api/projects', {
+      fetch('https://agora.aerocommerce.com/api/projects', {
         headers: {
           'Authorization': `Bearer ${setupData.agora.token}`,
           'Content-Type': 'application/json',

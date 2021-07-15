@@ -118,7 +118,7 @@
 
       const selectedCatalog = computed(() => setupData.project.catalog.name)
 
-      fetch('https://agora.test/api/catalog', {
+      fetch('https://agora.aerocommerce.com/api/catalog', {
         headers: {
           'Authorization': 'Bearer ' + setupData.agora.token,
           'Content-Type': 'application/json',

@@ -70,12 +70,6 @@ export default {
     const generateJobList = (setup) => {
       let jobs = [];
 
-      jobs.push({
-        class: 'Aero\\Setup\\Commands\\Actions\\StartWorker',
-        message: 'Beginning installation',
-        options: {},
-      })
-
       if (setup.project.type === 'new_project') {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateProject',

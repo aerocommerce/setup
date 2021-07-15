@@ -55,14 +55,14 @@ import Step from '../Step.vue'
       errorMessage.value = null
 
       if (setupData.project.id) {
-        themeFetch = fetch('https://agora.test/api/projects/themes', {
+        themeFetch = fetch('https://agora.aerocommerce.com/api/projects/themes', {
           headers: {
             'Authorization': 'Basic ' + setupData.project.token,
             'Content-Type': 'application/json',
           },
         })
       } else {
-        themeFetch = fetch('https://agora.test/api/themes', {
+        themeFetch = fetch('https://agora.aerocommerce.com/api/themes', {
           headers: {
             'Authorization': 'Bearer ' + setupData.agora.token,
             'Content-Type': 'application/json',

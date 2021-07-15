@@ -93,7 +93,7 @@
           return
         }
 
-        fetch('https://agora.test/api/auth', {
+        fetch('https://agora.aerocommerce.com/api/auth', {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',

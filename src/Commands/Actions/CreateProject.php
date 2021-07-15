@@ -13,7 +13,7 @@ class CreateProject
         $client = new Client();
 
         try {
-            $response = $client->post('https://agora.test/api/projects/create-project', [
+            $response = $client->post('https://agora.aerocommerce.com/api/projects/create-project', [
                 RequestOptions::HEADERS => [
                     'Authorization' => 'Bearer '.$options->token,
                 ],

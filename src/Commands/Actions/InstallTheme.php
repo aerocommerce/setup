@@ -10,16 +10,16 @@ class InstallTheme
 
     public function handle($options)
     {
-//        try {
-//            $this->runCommand([
-//                PHP_BINARY,
-//                base_path('artisan'),
-//                'theme:install',
-//                $options->themeName,
-//                '--no-interaction',
-//            ]);
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
+        try {
+            $this->runCommand([
+                PHP_BINARY,
+                base_path('artisan'),
+                'theme:install',
+                $options->themeName,
+                '--no-interaction',
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }
