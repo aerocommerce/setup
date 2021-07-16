@@ -108,7 +108,8 @@ module.exports = {
 				'56': '15.1013rem',
 				'64': '17.258666688rem',
 				'desktop': '1920px',
-				'screen-1/3': '33.3333vw'
+				'screen-1/3': '33.3333vw',
+				'screen-1/2': '50vw'
 			},
 			minWidth: {
 				'1': '0.269666667rem',
