@@ -110,15 +110,18 @@
     }
 
     progress[value]::-moz-progress-bar {
-        @apply bg-green rounded-full transition-colors duration-150;
+        @apply bg-green rounded-full duration-1000;
+        transition: all 1s ease;
     }
 
     progress[value]::-webkit-progress-bar {
         @apply shadow-inner bg-alpha rounded-full;
+        animation: gradient 30s ease infinite;
     }
 
     progress[value]::-webkit-progress-value {
-        @apply bg-green rounded-full transition-colors duration-150;
+        @apply bg-green rounded-full duration-1000;
+        transition: all 1s ease;
     }
 
 	/* Style placeholders */
@@ -130,6 +133,12 @@
     input::-moz-placeholder {
 		/* Firefox 19+ */
 		@apply text-alpha-0 opacity-100;
+    }
+
+    @keyframes gradient {
+        0%{ background-position:0% 50% }
+        50%{ background-position:100% 50% }
+        100%{ background-position:0% 50% }
     }
 
 }
