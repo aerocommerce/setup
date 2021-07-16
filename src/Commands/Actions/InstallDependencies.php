@@ -16,20 +16,13 @@ class InstallDependencies
             $composer = $this->findComposer();
 
             $this->runCommand([$composer, 'update', '--no-scripts', '--prefer-dist', '--quiet']);
-            $this->runCommand([$composer, 'run-script', 'post-create-project-cmd', '--quiet']);
-
             $this->runCommand([$composer, 'dump-autoload', '--quiet']);
         } catch (\Exception $e) {
            $this->error($e);
         }
 
         try {
-            $command = [
-                PHP_BINARY,
-                base_path('artisan'),
-                'aero:install',
-                '--quiet',
-            ];
+            $command = [PHP_BINARY, base_path('artisan'), 'aero:install', '--quiet'];
 
             if ($options->seed) {
                 $command[] = '--seed';

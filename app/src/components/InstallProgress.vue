@@ -2,9 +2,9 @@
 
   <div class="w-full xl:max-w-screen-1/3 px-12">
 
-    <div class="absolute xl:max-w-screen-1/3 px-12 w-full top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center" :class="setupData.installComplete ? 'animate-up' : '-translate-y-1/2'">
+    <div class="absolute xl:max-w-screen-1/2 px-12 w-full top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center" :class="setupData.installComplete ? 'animate-up' : '-translate-y-1/2'">
 
-      <svg class="[ animated-svg ] mb-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488.7 286.84">
+      <svg class="[ animated-svg ] xl:max-w-screen-1/3 mb-12 px-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488.7 286.84">
 
         <defs>
 
@@ -51,7 +51,7 @@
           <g id="i2-scrolling">
             <path d="M299.27,139.41l-2.6,2.35V139.5a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V144.54l4-3.59a1,1,0,1,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
                 />
-                <path d="99.27,112.18l-2.6,2.35v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V117.31l4-3.59a1,1,0,0,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
+                <path d="M299.27,112.18l-2.6,2.35v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V117.31l4-3.59a1,1,0,0,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
                 />
                 <path d="M299.27,166.75l-2.6,2.34v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V171.88l4-3.6a1,1,0,1,0-1.38-1.53ZM294.6,171l-6.15,5.54-3.38-3.77a1,1,0,1,0-1.54,1.38l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16H281.55v-13H294.6Z"
                 />
@@ -261,14 +261,23 @@
 
       </svg>
 
-      <div class="mb-12 text-center">
-        <p class="text-xl md:text-3xl uppercase font-medium mb-2">{{ setupData.project.name }}</p>
-        <span class="text-sm md:text-base text-alphaLight-900">{{ storeDomain }}</span>
+      <div class="text-center">
+        <p class="text-xl md:text-3xl uppercase font-medium xl:max-w-screen-1/3 px-24">Creating your new store</p>
+        <!-- <span class="text-sm md:text-base text-alphaLight-900">{{ setupData.project.name }}</span> -->
       </div>
       
-      <progress class="mb-6" :value="setupData.progress" max="100"></progress>
+      <!-- <div class="px-12 my-9">
+        <progress :value="setupData.progress" max="100"></progress>
+      </div> -->
 
-      <p class="mb-12 text-sm text-alphaLight-800" v-html="setupData.progressText"></p>
+      <div class="w-full my-9 px-12">
+        <div class="relative w-full h-2 bg-alpha block rounded overflow-hidden">
+          &nbsp;
+          <div class="[ custom-progress ] absolute w-full h-2 left-0 top-0 origin-left transition-transform duration-1000" :style="{ transform: 'scaleX(' + setupData.progress / 100 + ')' }"></div>
+        </div>
+      </div>
+
+      <p class="//mb-12 text-sm text-alphaLight-800" v-html="setupData.progressText"></p>
 
       <template v-if="setupData.project.errors.length">
         <ul class="list-none text-center">
@@ -563,6 +572,19 @@ export default {
 </script>
 
 <style scoped>
+
+  .custom-progress {
+    background: rgb(124,196,63);
+    background: linear-gradient(60deg, rgba(124,196,63,1) 0%, rgba(124,196,63,1) 40%, rgb(185, 255, 123) 50%, rgba(124,196,63,1) 60%, rgba(124,196,63,1) 100%);
+    background-size: 300% 100%;
+    animation: progressAnimation 2.5s ease infinite;
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  }
+
+  @keyframes progressAnimation {
+    0%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
 
   .animated-svg {
     --color-alpha: #54E0E4;
