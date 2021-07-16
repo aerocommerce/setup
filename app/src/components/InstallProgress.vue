@@ -427,7 +427,7 @@ export default {
           class: 'Aero\\Setup\\Commands\\Actions\\CopyLogoImages',
           message: 'Copying resources',
           options: {
-            theme:setup.project.theme.name.split('/')[1],
+            theme: setup.project.theme.name.split('/')[1],
           },
         })
       }
