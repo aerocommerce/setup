@@ -4,7 +4,6 @@ namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Illuminate\Database\DatabaseManager;
-use Illuminate\Http\Request;
 
 class CreateDatabase
 {

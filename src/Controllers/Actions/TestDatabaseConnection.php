@@ -42,13 +42,13 @@ class TestDatabaseConnection
                 'databases' => $databases,
             ]);
         } catch (\RuntimeException $e) {
-            return false;
+            //
         } finally {
             config([$key => $defaults]);
         }
 
         return response([
-            'message' => 'Could not connect to the database server using the provided details.'
+            'message' => 'Could not connect to the database server using the provided details.',
         ], 422);
     }
 }

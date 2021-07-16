@@ -2,7 +2,6 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Illuminate\Database\DatabaseManager;

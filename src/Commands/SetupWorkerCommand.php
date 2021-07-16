@@ -4,7 +4,6 @@ namespace Aero\Setup\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SetupWorkerCommand extends Command
@@ -86,29 +85,33 @@ class SetupWorkerCommand extends Command
 
     protected function readJobChain()
     {
-        if (file_exists(storage_path("app/data.json"))) {
+        $file = storage_path('app/data.json');
+
+        if (file_exists($file)) {
             $progress = 0;
             $currentJob = null;
 
-            if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
+            $setupFile = storage_path('app/setup.json');
+
+            if ($data = json_decode(file_get_contents($file))) {
                 if (is_array($data->jobs)) {
                     foreach ($data->jobs as $index => $job) {
-                        $progress += 8;
+                        $progress += (100 / $data->total);
 
-                        Storage::put('setup.json', json_encode((object) [
+                        file_put_contents($setupFile, json_encode((object) [
                             'progress' => $progress,
                             'currentJob' => $job->class,
                             'currentJobMessage' => $job->message,
-                        ], JSON_PRETTY_PRINT));
+                        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
                         try {
                             $this->processAction($job->class, $job->options);
                         } catch (\Exception $e) {
-                            $setup = json_decode(file_get_contents(storage_path("app/setup.json")));
+                            $setup = json_decode(file_get_contents($setupFile));
                             $setup->errors[] = [
                                 'Error with job ' . substr($job->class, strpos($job->class, "\\") + 1),
                             ];
-                            file_put_contents(storage_path("app/setup.json"), json_encode($setup));
+                            file_put_contents($setupFile, json_encode($setup));
 
                             continue;
                         }
@@ -124,11 +127,11 @@ class SetupWorkerCommand extends Command
 
     protected function removeJob(): void
     {
-        if (file_exists(storage_path("app/data.json"))) {
-            if ($data = json_decode(file_get_contents(storage_path("app/data.json")))) {
+        if (file_exists($file = storage_path('app/data.json'))) {
+            if ($data = json_decode(file_get_contents($file))) {
                 if (is_array($data->jobs)) {
                     array_shift($data->jobs);
-                    Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT));
+                    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
                 }
             }
         } else {

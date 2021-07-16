@@ -2,14 +2,12 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-
 class AddComposerDependencies
 {
     protected $dependencies = [
         'aerocommerce/admin' => '^0',
         'aerocommerce/checkout' => '^0',
         'aerocommerce/core' => '^0',
-        'aerocommerce/components' => '^0',
         'aerocommerce/elastic-search' => '^0',
     ];
 

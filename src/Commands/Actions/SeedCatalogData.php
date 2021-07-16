@@ -2,7 +2,6 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 
@@ -18,6 +17,7 @@ class SeedCatalogData
                 base_path('artisan'),
                 'aero:import:products:csv',
                 $options->url,
+                '--quiet',
             ]);
         } catch (\Exception $e) {
             $this->error($e);

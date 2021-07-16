@@ -2,7 +2,6 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;

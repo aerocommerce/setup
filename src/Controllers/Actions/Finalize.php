@@ -17,6 +17,8 @@ class Finalize
             return ['success' => false];
         }
 
+        $data['total'] = count($data['jobs']);
+
         Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
         $json = json_decode(Storage::get('setup.json'));

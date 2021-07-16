@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import {inject, onMounted} from 'vue'
+import {inject} from 'vue'
 import Steps from '../steps'
 import Logo from './Elements/Logo.vue'
 
@@ -64,14 +64,6 @@ export default {
     setupData.progressStep = 0
     setupData.highestStep = 0
     setupData.installComplete = false
-
-    onMounted(() => {
-    
-      setTimeout(() => {
-        updateProgress()
-      }, 1200)
-        
-    })
 
     const generateJobList = (setup) => {
       let jobs = [];
@@ -157,11 +149,12 @@ export default {
               username: setup.project.databaseUsername,
               password: setup.project.databasePassword,
               database: setup.project.database,
+              seed: true,
             },
           },
           {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallTheme',
-            message: 'Installing the theme',
+            message: 'Installing the storefront theme',
             options: {
               themeKey: setup.project.theme.name,
               themeName: setup.project.theme.name.split('/')[1]
@@ -169,10 +162,18 @@ export default {
           },
       )
 
+      if (setup.project.store.logo.store !== '' || setup.project.store.logo.store !== '') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CopyLogoImages',
+          message: 'Copying resources',
+          options: {},
+        })
+      }
+
       if (setup.project.catalog.type === 'import') {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\SeedCatalogData',
-          message: 'Seeding catalog data',
+          message: 'Seeding the catalog data',
           options: {
             url: setup.project.catalog.url
           },
@@ -182,21 +183,13 @@ export default {
       if (setup.project.admin.create) {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CreateAdminAccount',
-          message: 'Creating the admin account',
+          message: 'Creating an admin account',
           options: {
             name: setup.project.admin.name,
             email: setup.project.admin.email,
             password: setup.project.admin.password,
             database: setup.project.database,
           },
-        })
-      }
-
-      if (setup.project.store.logo.store !== '' || setup.project.store.logo.store !== '') {
-        jobs.push({
-          class: 'Aero\\Setup\\Commands\\Actions\\CopyLogoImages',
-          message: 'Copying resources',
-          options: {},
         })
       }
 
@@ -227,6 +220,7 @@ export default {
           .then((json) => {
             if (json.success) {
               setupData.project.errors = json.errors
+              updateProgress()
             } else {
               // ERROR
             }
@@ -262,11 +256,7 @@ export default {
               return json
             })
             .then((json) => {
-              if (json.message === 'Finalizing') {
-                setupData.progress = 100
-              }
-
-              if(setupData.progress < 100) {
+              if (setupData.progress < 100) {
 
                 setTimeout(() => {
                   setupData.progress = json.progress
@@ -277,18 +267,10 @@ export default {
                   }
 
                   updateProgress()
-                }, 100)
+                }, 500)
 
-              } else if (setupData.progress === 100) {
-
-                setTimeout(() => {
-                  setupData.installComplete = true
-
-                  window.onbeforeunload = function () {
-                    window.location.href = `${setupData.host}`
-                  }
-                }, 1200)
-
+              } else {
+                setupData.installComplete = true
               }
             })
             .catch((_) => {
@@ -306,7 +288,7 @@ export default {
         steps,
         Logo,
         redirectToHome,
-        redirectToAdmin
+        redirectToAdmin,
 			}
   }
 }

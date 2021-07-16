@@ -13,42 +13,48 @@
 
     <SuccessMessage v-if="successMessage">The database you have selected already has an admin account</SuccessMessage>
 
-		<div class="mb-9">
-			<ContentGroup id="create-new" v-if="!successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="true">
+    <form @submit.prevent="attemptAdvance" method="post">
 
-				<template #title>
-					Create admin account
-				</template>
+      <div class="mb-9">
 
-				<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6">
-					<div>
-						<label for="admin-username" class="mb-1">Name</label>
-						<input type="text" id="admin-username" name="admin-username" v-model="setupData.project.admin.name" placeholder="Enter your name">
-					</div>
+        <ContentGroup id="create-new" v-if="!successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="true">
 
-					<div>
-						<label for="admin-email" class="mb-1">Email address</label>
-						<input type="email" id="admin-email" name="admin-email" v-model="setupData.project.admin.email" placeholder="Enter email address">
-					</div>
+          <template #title>
+            Create admin account
+          </template>
 
-					<div>
-						<label for="admin-password" class="mb-1">Password</label>
-						<input type="password" id="admin-password" name="admin-password" v-model="setupData.project.admin.password" placeholder="Enter password">
-					</div>
-				</div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6">
+            <div>
+              <label for="admin-username" class="mb-1">Name</label>
+              <input type="text" id="admin-username" name="admin-username" v-model="setupData.project.admin.name" placeholder="Enter your name">
+            </div>
 
-			</ContentGroup>
-		</div>
+            <div>
+              <label for="admin-email" class="mb-1">Email address</label>
+              <input type="email" id="admin-email" name="admin-email" v-model="setupData.project.admin.email" placeholder="Enter email address">
+            </div>
 
-    <div>
-      <ContentGroup id="skip-account" v-if="setupData.project.databaseType !== 'new_database' && successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="false">
+            <div>
+              <label for="admin-password" class="mb-1">Password</label>
+              <input type="password" id="admin-password" name="admin-password" v-model="setupData.project.admin.password" placeholder="Enter password">
+            </div>
+          </div>
 
-        <template #title>
-          Skip this step and continue
-        </template>
+        </ContentGroup>
+      </div>
 
-      </ContentGroup>
-    </div>
+      <div>
+        <ContentGroup id="skip-account" v-if="setupData.project.databaseType !== 'new_database' && successMessage" v-model="setupData.project.admin.create" group="admin-account" :value="false">
+
+          <template #title>
+            Skip this step and continue
+          </template>
+
+        </ContentGroup>
+      </div>
+
+    <button class="hidden" aria-hidden="true" />
+    </form>
 
 		<template #footer="{ retreatStep }">
 			<BackButton :action="retreatStep" />

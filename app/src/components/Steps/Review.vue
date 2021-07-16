@@ -293,11 +293,10 @@
 							</span>
 						</dt>
             <template v-if="setupData.project.catalog.type === 'import'">
-              <dd class="break-all">Importing catalog data:</dd>
               <dd class="text-gray-300">{{ setupData.project.catalog.name.replace('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) }}</dd>
             </template>
             <template v-else>
-              <dd class="break-all">Not importing catalog data</dd>
+              <dd class="break-all">No catalog data</dd>
             </template>
 					</div>
 
@@ -340,10 +339,17 @@
               <dt class="text-alphaLight-900 text-sm flex items-center relative">
                 <span>Password</span>
                 <span class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 text-bravo transition-opacity duration-150 ml-1">
-              <PencilIcon class="w-3 h-3" />
-            </span>
+                  <PencilIcon class="w-3 h-3" />
+                </span>
               </dt>
-              <dd class="break-all">{{ setupData.project.admin.password }}</dd>
+              <dd class="break-all">
+                <template v-if="showPassword">
+                  {{ setupData.project.admin.password.length }}
+                </template>
+                <template v-else>
+                  {{ '*'.repeat(setupData.project.admin.password.length) }}
+                </template>
+              </dd>
             </div>
           </template>
 
@@ -373,7 +379,7 @@
 </template>
 
 <script>
-	import { inject } from 'vue'
+	import { inject, ref } from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import CompleteButton from '../Elements/CompleteButton.vue'
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
@@ -395,10 +401,13 @@
 		setup() {
 			const setupData = inject('setupData')
       const jumpToStep = inject('jumpToStep')
+
+      const showPassword = ref(false)
 			
 			return {
 				setupData,
         jumpToStep,
+        showPassword,
         countries,
         currencies,
         languages,

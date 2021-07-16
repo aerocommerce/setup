@@ -13,14 +13,14 @@ class InstallTheme
     {
         if ($options->themeKey && $options->themeName) {
             try {
-                $this->runCommand([
-                    PHP_BINARY,
-                    base_path('artisan'),
-                    'theme:install',
-                    $options->themeKey,
-                    "--name={$options->themeName}",
-                    '--no-interaction',
-                ]);
+                //$this->runCommand([
+                //    PHP_BINARY,
+                //    base_path('artisan'),
+                //    'theme:install',
+                //    $options->themeKey,
+                //    "--name={$options->themeName}",
+                //    '--no-interaction',
+                //]);
             } catch (\Exception $e) {
                 $this->error($e);
             }
