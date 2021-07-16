@@ -184,7 +184,7 @@
             .replace(/[^a-z0-9 -]/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
-        setupData.project.storeIdentifier = `${name}-${Math.random().toString(36).substr(2, 4)}`
+        setupData.project.storeIdentifier = name
       }
 
       const testConnection = () => {

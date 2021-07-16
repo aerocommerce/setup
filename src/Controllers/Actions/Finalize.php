@@ -25,7 +25,7 @@ class Finalize
 
         return [
             'success' => true,
-            'errors' => $json->errors,
+            'errors' => $json->errors ?? [],
         ];
     }
 }

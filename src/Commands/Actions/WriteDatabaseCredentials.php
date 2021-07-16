@@ -2,27 +2,22 @@
 
 namespace Aero\Setup\Commands\Actions;
 
+use Aero\Setup\Commands\Traits\InteractsWithEnv;
 use Aero\Setup\Commands\Traits\StoresErrors;
-use Illuminate\Support\Facades\File;
 
 class WriteDatabaseCredentials
 {
-    use StoresErrors;
+    use InteractsWithEnv, StoresErrors;
 
     public function handle($options)
     {
         try {
-            $env = file_get_contents(base_path('.env'));
-
-            $env .= "DB_CONNECTION=mysql" . PHP_EOL .
-                "DB_HOST={$options->host}" . PHP_EOL .
-                "DB_PORT={$options->port}" . PHP_EOL .
-                "DB_DATABASE={$options->database}" . PHP_EOL .
-                "DB_USERNAME={$options->username}" . PHP_EOL .
-                "DB_PASSWORD={$options->password}" . PHP_EOL .
-                PHP_EOL;
-
-            file_put_contents(base_path('.env'), $env);
+            $this->setEnvValue('DB_CONNECTION', 'mysql');
+            $this->setEnvValue('DB_HOST', $options->host);
+            $this->setEnvValue('DB_PORT', $options->port);
+            $this->setEnvValue('DB_DATABASE', $options->database);
+            $this->setEnvValue('DB_USERNAME', $options->username);
+            $this->setEnvValue('DB_PASSWORD', $options->password);
         } catch (\Exception $e) {
             $this->error($e);
         }

@@ -5,7 +5,6 @@ namespace Aero\Setup\Commands\Actions;
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Aero\Setup\Commands\Traits\UsesComposer;
-use Symfony\Component\Process\Process;
 
 class InstallDependencies
 {
@@ -26,10 +25,12 @@ class InstallDependencies
 
         try {
             $this->updateDatabaseDetails($options);
+
             $command = [
                 PHP_BINARY,
                 base_path('artisan'),
                 'aero:install',
+                //'--quiet',
             ];
 
             if ($options->seed) {

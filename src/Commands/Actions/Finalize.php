@@ -16,7 +16,7 @@ class Finalize
         try {
             $composer = $this->findComposer();
 
-            $this->runCommand([$composer, 'remove', 'aerocommerce/setup']);
+            $this->runCommand([$composer, 'remove', 'aerocommerce/setup', '--quiet']);
 
             @unlink(storage_path('app/data.json'));
             @unlink(storage_path('app/setup.json'));

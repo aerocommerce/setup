@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import {ref, computed, provide, reactive, watch} from 'vue'
+import {ref, computed, provide, reactive, watch, onMounted} from 'vue'
 import { LightningBoltIcon } from '@heroicons/vue/outline'
 
 import Illustration from './components/Elements/Illustration.vue'
@@ -196,6 +196,12 @@ export default {
 		provide('retreatStep', () => {
 			currentStep.value--
 		})
+
+    onMounted(() => {
+      window.onbeforeunload = function () {
+        return 'Do you really want to refresh this tab and lose your progress?';
+      }
+    })
 
 		const jumpToStep = (step) => {
 			currentStep.value = step

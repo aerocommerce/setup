@@ -57,7 +57,7 @@ export default {
 	},
 
   setup() {
-    const setupData = inject('setupData');
+    const setupData = inject('setupData')
     const storeDomain = document.location.hostname
     setupData.progress = 0
     setupData.progressText = 'Getting warmed up'
@@ -66,7 +66,7 @@ export default {
     setupData.installComplete = false
 
     const generateJobList = (setup) => {
-      let jobs = [];
+      let jobs = []
 
       if (setup.project.type === 'new_project') {
         jobs.push({
@@ -91,27 +91,12 @@ export default {
         })
       }
 
-      jobs.push({
-        class: 'Aero\\Setup\\Commands\\Actions\\AddComposerDependencies',
-        message: 'Adding composer dependencies',
-        options: {},
-      })
-
-      if (setup.project.databaseType === 'new_database') {
-        jobs.push({
-          class: 'Aero\\Setup\\Commands\\Actions\\CreateDatabase',
-          message: 'Creating the database',
-          options: {
-            host: setup.project.databaseHost,
-            port: setup.project.databasePort,
-            username: setup.project.databaseUsername,
-            password: setup.project.databasePassword,
-            database: setup.project.database,
-          },
-        })
-      }
-
       jobs.push(
+          {
+            class: 'Aero\\Setup\\Commands\\Actions\\AddComposerDependencies',
+            message: 'Adding composer dependencies',
+            options: {},
+          },
           {
             class: 'Aero\\Setup\\Commands\\Actions\\WriteStoreDetails',
             message: 'Writing store details',
@@ -140,6 +125,23 @@ export default {
               port: setup.project.elasticsearchPort,
             },
           },
+      )
+
+      if (setup.project.databaseType === 'new_database') {
+        jobs.push({
+          class: 'Aero\\Setup\\Commands\\Actions\\CreateDatabase',
+          message: 'Creating the database',
+          options: {
+            host: setup.project.databaseHost,
+            port: setup.project.databasePort,
+            username: setup.project.databaseUsername,
+            password: setup.project.databasePassword,
+            database: setup.project.database,
+          },
+        })
+      }
+
+      jobs.push(
           {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
             message: 'Installing dependencies',
@@ -199,10 +201,10 @@ export default {
         options: {},
       })
 
-      return jobs;
+      return jobs
     }
 
-    let jobs = generateJobList(setupData);
+    let jobs = generateJobList(setupData)
 
     fetch(`${setupData.host}/setup/actions/finalize`, {
       method: 'POST',
@@ -234,11 +236,17 @@ export default {
     })
 
     function redirectToHome() {
-      window.location.href = `${setupData.host}`;
+      window.location.href = `${setupData.host}`
     }
 
     function redirectToAdmin() {
-      window.location.href = `${setupData.host}/admin`;
+      window.location.href = `${setupData.host}/admin`
+    }
+
+    function complete() {
+      window.onbeforeunload = null
+
+      setupData.installComplete = true
     }
 
     const updateProgress = () => {
@@ -270,7 +278,7 @@ export default {
                 }, 500)
 
               } else {
-                setupData.installComplete = true
+                complete()
               }
             })
             .catch((_) => {

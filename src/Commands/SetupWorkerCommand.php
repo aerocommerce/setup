@@ -49,8 +49,11 @@ class SetupWorkerCommand extends Command
 
     protected function getWorkerboard($canCreate = false): array
     {
-        if (!file_exists($file = static::getWorkerboardPath())) {
-            throw_unless($canCreate, new \Exception('Halted.'));
+        if (! file_exists($file = static::getWorkerboardPath())) {
+            if (! $canCreate) {
+                exit(1);
+            }
+
             return $this->craftWorkerboard();
         }
         return json_decode(file_get_contents($file), true);
@@ -89,13 +92,12 @@ class SetupWorkerCommand extends Command
 
         if (file_exists($file)) {
             $progress = 0;
-            $currentJob = null;
 
             $setupFile = storage_path('app/setup.json');
 
             if ($data = json_decode(file_get_contents($file))) {
                 if (is_array($data->jobs)) {
-                    foreach ($data->jobs as $index => $job) {
+                    foreach ($data->jobs as $job) {
                         $progress += (100 / $data->total);
 
                         file_put_contents($setupFile, json_encode((object) [

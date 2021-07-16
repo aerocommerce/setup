@@ -192,71 +192,70 @@ import {computed, inject, ref} from 'vue'
         if (setupData.project.store.name === '') {
           errorMessage.value = 'You must give your store a name before you proceed.'
 
-          return;
+          return
         }
 
         if (setupData.project.store.country === '') {
           errorMessage.value = 'You must set a country before you proceed.'
 
-          return;
+          return
         }
 
         if (setupData.project.store.currency === '') {
           errorMessage.value = 'You must set a currency before you proceed.'
 
-          return;
+          return
         }
 
         if (setupData.project.store.language === '') {
           errorMessage.value = 'You must set a language before you proceed.'
 
-          return;
+          return
         }
 
         if (setupData.project.store.tax === '') {
           errorMessage.value = 'You must select a tax setting before you proceed.'
 
-          return;
+          return
         }
 
         if (setupData.project.store.logo.store !== ''
             || setupData.project.store.logo.email !== '') {
 
+          const formData = new FormData()
+
           Object.entries(setupData.project.store.logo).forEach((image, key) => {
-            if (image[1] !== '') {
-              const formData = new FormData();
-              formData.append('image', image[1]);
-              formData.append('name', image[0] === 'store' ? 'store-logo' : 'email-logo')
+            formData.append('image', image[1]);
+            formData.append('name', image[0] === 'store' ? 'store-logo' : 'email-logo')
 
-              fetch(`${setupData.host}/setup/actions/save-uploaded-images`, {
-                method: 'POST',
-                body: formData,
-              })
-              .then((result) => {
-                result.json()
-                    .then(json => {
-                      if (! result.ok) throw new Error(json.message)
-                      return json
-                    })
-                    .then((json) => {
-                      if (json.success) {
-                        return advanceStep()
-                      } else {
-                        errorMessage.value = 'Could not upload images!'
-                      }
-                    })
-                    .catch((e) => {
-                      errorMessage.value = e.message
-                    })
-              })
-              .catch((_) => {
-                errorMessage.value = 'Could not upload images!'
-              })
-            }
+            fetch(`${setupData.host}/setup/actions/save-uploaded-images`, {
+              method: 'POST',
+              body: formData,
+            })
+                .then((result) => {
+                  result.json()
+                      .then(json => {
+                        if (! result.ok) throw new Error(json.message)
+                        return json
+                      })
+                      .then((json) => {
+                        if (json.success) {
+                          return advanceStep()
+                        } else {
+                          errorMessage.value = 'Could not upload images!'
+                        }
+                      })
+                      .catch((e) => {
+                        errorMessage.value = e.message
+                      })
+                })
+                .catch((_) => {
+                  errorMessage.value = 'Could not upload images!'
+                })
           })
+        } else {
+          return advanceStep()
         }
-
-        return advanceStep()
       }
 
 			return {

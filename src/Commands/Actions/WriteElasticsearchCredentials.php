@@ -3,27 +3,19 @@
 namespace Aero\Setup\Commands\Actions;
 
 
+use Aero\Setup\Commands\Traits\InteractsWithEnv;
 use Aero\Setup\Commands\Traits\StoresErrors;
 
 class WriteElasticsearchCredentials
 {
-    use StoresErrors;
+    use InteractsWithEnv, StoresErrors;
 
     public function handle($options)
     {
         try {
-            $env = file_get_contents(base_path('.env'));
-
-            $env .= "STORE_IDENTIFIER={$options->identifier}" . PHP_EOL .
-                PHP_EOL;
-
-            $env .= "ELASTICSEARCH_HOST={$options->host}" . PHP_EOL .
-                PHP_EOL;
-
-            $env .= "ELASTICSEARCH_PORT={$options->port}" . PHP_EOL .
-                PHP_EOL;
-
-            file_put_contents(base_path('.env'), $env);
+            $this->setEnvValue('STORE_IDENTIFIER', $options->identifier);
+            $this->setEnvValue('ELASTICSEARCH_HOST', $options->host);
+            $this->setEnvValue('ELASTICSEARCH_PORT', $options->port);
         } catch (\Exception $e) {
             $this->error($e);
         }
