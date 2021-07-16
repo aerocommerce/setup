@@ -22,6 +22,16 @@ trait InteractsWithEnv
             $env .= PHP_EOL."{$key}={$value}".PHP_EOL;
         }
 
+        if (isset($_SERVER[$key])) {
+            $_SERVER[$key] = $value;
+        }
+
+        if (isset($_ENV[$key])) {
+            $_ENV[$key] = $value;
+        }
+
+        putenv("{$key}={$value}");
+
         file_put_contents($file, $env);
     }
 }
