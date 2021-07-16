@@ -473,52 +473,36 @@ export default {
       return jobs
     }
 
-    // let jobs = generateJobList(setupData)
+    let jobs = generateJobList(setupData)
 
-    // fetch(`${setupData.host}/setup/actions/finalize`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({jobs})
-    // })
-    // .then((result) => {
-    //   result.json()
-    //       .then(json => {
-    //         if (! result.ok) throw new Error(json.message)
-    //         return json
-    //       })
-    //       .then((json) => {
-    //         if (json.success) {
-    //           setupData.project.errors = json.errors
-    //           updateProgress()
-    //         } else {
-    //           // ERROR
-    //         }
-    //       })
-    //       .catch((_) => {
-    //         // ERROR
-    //       })
-    // })
-    // .catch((_) => {
-    //   // ERROR
-    // })
-
-    setTimeout(()=>{
-      setupData.progress = 33;
-    }, 2000) 
-
-    setTimeout(()=>{
-      setupData.progress = 42;
-    }, 2500) 
-
-    setTimeout(()=>{
-      setupData.progress = 69;
-    }, 4000) 
-
-    setTimeout(()=>{
-      setupData.progress = 100;
-    }, 7000) 
+    fetch(`${setupData.host}/setup/actions/finalize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({jobs})
+    })
+    .then((result) => {
+      result.json()
+          .then(json => {
+            if (! result.ok) throw new Error(json.message)
+            return json
+          })
+          .then((json) => {
+            if (json.success) {
+              setupData.project.errors = json.errors
+              updateProgress()
+            } else {
+              // ERROR
+            }
+          })
+          .catch((_) => {
+            // ERROR
+          })
+    })
+    .catch((_) => {
+      // ERROR
+    })
 
     function redirectToHome() {
       window.location.href = `${setupData.host}`
