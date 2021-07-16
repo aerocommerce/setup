@@ -13,14 +13,6 @@ class CreateAdminAccount
     public function handle($options)
     {
         try {
-            $manager = new DatabaseManager(app(), app('db.factory'));
-            $manager->connection()->select("DELETE FROM {$options->database}.admins");
-            $manager->connection()->select("ALTER TABLE {$options->database}.admins AUTO_INCREMENT = 1");
-        } catch (\Exception $e) {
-            $this->error($e);
-        }
-
-        try {
             $this->runCommand([
                 PHP_BINARY,
                 base_path('artisan'),

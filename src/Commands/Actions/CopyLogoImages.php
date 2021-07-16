@@ -16,11 +16,13 @@ class CopyLogoImages
             foreach ($files as $file) {
                 if (Str::contains($file, 'email-logo')
                     || Str::contains($file, 'store-logo')) {
-                    if (! file_exists(public_path('images'))) {
-                        File::makeDirectory(public_path('images'));
+                    if (Str::contains($file, '.svg')) {
+                        File::move(storage_path("app/{$file}"), base_path("themes/{$options->theme}/logo.svg"));
+
+                        continue;
                     }
 
-                    File::move(storage_path("app/{$file}"), base_path("public/{$file}"));
+                    File::move(storage_path("app/{$file}"), public_path('logo.png'));
                 }
             }
         }

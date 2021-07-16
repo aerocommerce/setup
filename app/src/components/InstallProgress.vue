@@ -168,7 +168,9 @@ export default {
         jobs.push({
           class: 'Aero\\Setup\\Commands\\Actions\\CopyLogoImages',
           message: 'Copying resources',
-          options: {},
+          options: {
+            theme:setup.project.theme.name.split('/')[1],
+          },
         })
       }
 
