@@ -133,6 +133,7 @@ class SetupWorkerCommand extends Command
             if ($data = json_decode(file_get_contents($file))) {
                 if (is_array($data->jobs)) {
                     array_shift($data->jobs);
+
                     file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
                 }
             }
@@ -140,6 +141,10 @@ class SetupWorkerCommand extends Command
             if (file_exists($file = $this->getWorkerboardPath())) {
                 unlink($file);
             }
+
+            $this->__destruct();
+
+            exit(0);
         }
     }
 

@@ -8,10 +8,15 @@ class SaveUploadedImages
 {
     public function __invoke(Request $request)
     {
-        $name = $request->input('name');
+        try {
+            foreach ($request->files->all() as $key => $_) {
+                $file = $request->file($key);
+                $file->storeAs('', "{$key}.{$file->extension()}");
+            }
+        } catch (\Exception $e) {
+            return ['success' => false];
+        }
 
-        $file = $request->file('image')->storeAs("images", "{$name}.{$request->file('image')->extension()}");
-
-        return ['success' => $file && $name];
+        return ['success' => true];
     }
 }
