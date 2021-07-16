@@ -224,35 +224,35 @@ import {computed, inject, ref} from 'vue'
 
           const formData = new FormData()
 
-          Object.entries(setupData.project.store.logo).forEach((image, key) => {
-            formData.append('image', image[1]);
-            formData.append('name', image[0] === 'store' ? 'store-logo' : 'email-logo')
-
-            fetch(`${setupData.host}/setup/actions/save-uploaded-images`, {
-              method: 'POST',
-              body: formData,
-            })
-                .then((result) => {
-                  result.json()
-                      .then(json => {
-                        if (! result.ok) throw new Error(json.message)
-                        return json
-                      })
-                      .then((json) => {
-                        if (json.success) {
-                          return advanceStep()
-                        } else {
-                          errorMessage.value = 'Could not upload images!'
-                        }
-                      })
-                      .catch((e) => {
-                        errorMessage.value = e.message
-                      })
-                })
-                .catch((_) => {
-                  errorMessage.value = 'Could not upload images!'
-                })
+          Object.entries(setupData.project.store.logo).forEach((image) => {
+            formData.append(image[0], image[1]);
           })
+
+          fetch(`${setupData.host}/setup/actions/save-uploaded-images`, {
+            method: 'POST',
+            body: formData,
+          })
+              .then((result) => {
+                result.json()
+                    .then(json => {
+                      if (! result.ok) throw new Error(json.message)
+
+                      return json
+                    })
+                    .then((json) => {
+                      if (json.success) {
+                        return advanceStep()
+                      }
+
+                      errorMessage.value = 'Could not upload images!'
+                    })
+                    .catch((e) => {
+                      errorMessage.value = e.message
+                    })
+              })
+              .catch((_) => {
+                errorMessage.value = 'Could not upload images!'
+              })
         } else {
           return advanceStep()
         }

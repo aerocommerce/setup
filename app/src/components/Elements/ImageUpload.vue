@@ -17,7 +17,7 @@
     <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3">
 
       <template v-if="preview !== null">
-        <img :src="preview" alt="" class="mx-auto" />
+        <img :src="preview" alt="" class="mx-auto max-h-44" />
       </template>
 
       <div class="flex items-center justify-center mt-3 hover:cursor-pointer pt-4 pb-4 delete-image" @click.prevent="removeFile">
@@ -92,20 +92,20 @@ export default {
     function createFile(file) {
       if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!file.type.match('image.svg')) {
-          errorMessage.value = 'The store logo is required to be of .svg format!'
+          errorMessage.value = 'The store logo is required to be of SVG format!'
           dragging.value = false
           return
         }
       } else if (document.getElementById(props.inputName).name === 'email-logo') {
-        if (!file.type.match('image.*')) {
-          errorMessage.value = 'The uploaded email logo file is not an image!'
+        if (!file.type.match('image.png')) {
+          errorMessage.value = 'The store logo is required to be of PNG format!'
           dragging.value = false
           return
         }
       }
 
-      if (file.size > 100000000) {
-        errorMessage.value = 'File is bigger than 100MB!'
+      if (file.size > 5000000) {
+        errorMessage.value = 'File is bigger than 5MB!'
         dragging.value = false
         return
       }
@@ -137,10 +137,12 @@ export default {
       errorMessage.value = null
 
       if (document.getElementById(props.inputName).name === 'store-logo') {
-        setupData.project.store.logo.store = ""
+        if (!file.type.match('image.svg')) {
+          setupData.project.store.logo.store = ''
+        }
       } else if (document.getElementById(props.inputName).name === 'email-logo') {
-        if (!file.type.match('image.*')) {
-          setupData.project.store.logo.email = ""
+        if (!file.type.match('image.png')) {
+          setupData.project.store.logo.email = ''
         }
       }
     }
@@ -150,13 +152,13 @@ export default {
 
       if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!event.dataTransfer.files[0].type.match('image.svg')) {
-          errorMessage.value = 'The store logo is required to be of .svg format!'
+          errorMessage.value = 'The store logo is required to be of SVG format!'
           dragging.value = false
           return
         }
       } else if (document.getElementById(props.inputName).name === 'email-logo') {
-        if (!event.dataTransfer.files[0].type.match('image.*')) {
-          errorMessage.value = 'The email logo must be an image!'
+        if (!event.dataTransfer.files[0].type.match('image.png')) {
+          errorMessage.value = 'The store logo is required to be of PNG format!'
           dragging.value = false
           return
         }
