@@ -87,7 +87,7 @@
 
 		<div class="mb-6">
 			<label for="file" class="mb-1">Upload email logo <small>(optional)</small></label>
-			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the email templates. Please upload a PNG or JPG image of your logo.</small>
+			<small class="block text-alphaLight-800 mb-3">The logo you upload here will be used to populate the email templates. Please upload a PNG image of your logo.</small>
 
       <ImageUpload input-name="email-logo"></ImageUpload>
 		</div>

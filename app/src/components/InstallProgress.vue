@@ -517,6 +517,10 @@ export default {
         },
       })
       .then((result) => {
+        if (result.status === 404) {
+          complete();
+        }
+
         result.json()
             .then(json => {
               if (! result.ok) throw new Error(json.message)
@@ -530,23 +534,19 @@ export default {
                   setupData.progress = json.progress
                   setupData.progressText = json.message
 
-                  if (setupData.progress % 10 === 0) {
-                    setupData.progressStep++
-                  }
-
                   updateProgress()
                 }, 500)
 
-              } else {
-                complete()
               }
             })
             .catch((_) => {
               // ERROR
             })
       })
-      .catch((_) => {
-        // ERROR
+      .catch((response) => {
+        if (response.status === 404) {
+          complete();
+        }
       })
     }
 
