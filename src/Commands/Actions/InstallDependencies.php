@@ -24,13 +24,11 @@ class InstallDependencies
         }
 
         try {
-            $this->updateDatabaseDetails($options);
-
             $command = [
                 PHP_BINARY,
                 base_path('artisan'),
                 'aero:install',
-                //'--quiet',
+                '--quiet',
             ];
 
             if ($options->seed) {
@@ -43,22 +41,5 @@ class InstallDependencies
         }
 
         return true;
-    }
-
-    protected function updateDatabaseDetails($options): void
-    {
-        $key = 'database.connections.'.config('database.default');
-
-        $defaults = config($key, []);
-
-        $config = [
-            'host' => $options->host,
-            'port' => $options->port,
-            'username' => $options->username,
-            'password' => $options->password,
-            'database' => $options->database,
-        ];
-
-        config([$key => array_merge($defaults, $config)]);
     }
 }
