@@ -124,11 +124,13 @@ export default {
 
       if (document.getElementById(props.inputName).name === 'store-logo') {
         setupData.project.store.logo.store = file
+        setupData.project.store.logo.uploaded = true
         return
       }
 
       if (document.getElementById(props.inputName).name === 'email-logo') {
         setupData.project.store.logo.email = file
+        setupData.project.store.logo.uploaded = true
       }
     }
 
@@ -136,14 +138,16 @@ export default {
       files.value = ''
       errorMessage.value = null
 
-      if (document.getElementById(props.inputName).name === 'store-logo') {
-        if (!file.type.match('image.svg')) {
-          setupData.project.store.logo.store = ''
-        }
-      } else if (document.getElementById(props.inputName).name === 'email-logo') {
-        if (!file.type.match('image.png')) {
-          setupData.project.store.logo.email = ''
-        }
+      if (props.inputName === 'store-logo') {
+        setupData.project.store.logo.store = ''
+      }
+
+      if (props.inputName === 'email-logo') {
+        setupData.project.store.logo.email = ''
+      }
+
+      if (setupData.project.store.logo.store === '' && setupData.project.store.logo.email === '') {
+        setupData.project.store.logo.uploaded = false
       }
     }
 
@@ -188,6 +192,7 @@ export default {
     }
 
     return {
+      setupData,
       errorMessage,
       files,
       dragging,

@@ -29,6 +29,7 @@ export default {
         sender_email: '',
         tax: 'inc-tax',
         logo: {
+            uploaded: false,
             store: '',
             email: '',
         },

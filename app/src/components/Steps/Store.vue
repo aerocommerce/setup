@@ -24,17 +24,17 @@
 
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6 mb-6">
 
-			<div>
-				<label for="industry" class="mb-1">Industry <small>(optional)</small></label>
-				<select id="industry" v-model="setupData.project.store.industry" name="industry">
-					<option value="" disabled selected>Select industry</option>
-					<option>Fashion and Apparel</option>
-					<option>Beauty and Personal Care</option>
-					<option>Entertainment</option>
-					<option>Household goods</option>
-					<option>Electronics</option>
-				</select>
-			</div>
+<!--			<div>-->
+<!--				<label for="industry" class="mb-1">Industry <small>(optional)</small></label>-->
+<!--				<select id="industry" v-model="setupData.project.store.industry" name="industry">-->
+<!--					<option value="" disabled selected>Select industry</option>-->
+<!--					<option>Fashion and Apparel</option>-->
+<!--					<option>Beauty and Personal Care</option>-->
+<!--					<option>Entertainment</option>-->
+<!--					<option>Household goods</option>-->
+<!--					<option>Electronics</option>-->
+<!--				</select>-->
+<!--			</div>-->
 
 			<div>
 				<label for="country" class="mb-1">Store country</label>
@@ -60,20 +60,20 @@
 				</select>
 			</div>
 
-			<div>
-				<label for="sender-email" class="mb-1">Sender email address <small>(optional)</small></label>
-				<input type="text" id="sender-email" v-model="setupData.project.store.sender_email" name="sender-email" placeholder="Enter email address" required>
-				<small class="block text-alphaLight-800 mt-3">The email address entered here will be the address used to communicate with customers</small>
-			</div>
+      <div>
+        <label for="tax-settings" class="mb-1">Tax settings</label>
+        <select id="tax-settings" v-model="setupData.project.store.tax" name="tax-settings" required>
+          <option value="" disabled>Select tax setting</option>
+          <option value="inc-tax" selected>Prices include tax</option>
+          <option value="exc-tax">Prices exclude tax</option>
+        </select>
+        <small class="block text-alphaLight-800 mt-3">Advanced tex settings can be managed in the admin</small>
+      </div>
 
 			<div>
-				<label for="tax-settings" class="mb-1">Tax settings</label>
-				<select id="tax-settings" v-model="setupData.project.store.tax" name="tax-settings" required>
-          <option value="" disabled>Select tax setting</option>
-					<option value="inc-tax" selected>Prices include tax</option>
-					<option value="exc-tax">Prices exclude tax</option>
-				</select>
-				<small class="block text-alphaLight-800 mt-3">Advanced tex settings can be managed in the admin</small>
+				<label for="sender-email" class="mb-1">Sender email address <small>(optional)</small></label>
+				<input type="text" id="sender-email" v-model="setupData.project.store.sender_email" name="sender-email" placeholder="Enter email address">
+				<small class="block text-alphaLight-800 mt-3">The email address entered here will be the address used to communicate with customers</small>
 			</div>
 
 		</div>
