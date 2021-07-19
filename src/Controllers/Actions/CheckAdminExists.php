@@ -33,15 +33,11 @@ class CheckAdminExists
             config([$key => array_merge($defaults, $config)]);
 
             $manager = new DatabaseManager(app(), app('db.factory'));
-            $result = $manager->connection()->select('select COUNT(*) from admins');
+            $result = $manager->connection()->select('select count(*) from admins');
 
-            if ($result > 0) {
-                return response(['success' => true]);
-            } else {
-                return response(['success' => false]);
-            }
+            return response(['existing' => $result > 0]);
         } catch (\RuntimeException $_) {
-            return response(['success' => false]);
+            return response(['existing' => false]);
         }
     }
 }

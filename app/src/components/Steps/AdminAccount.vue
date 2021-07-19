@@ -115,10 +115,14 @@
               return json
             })
             .then((json) => {
-              successMessage.value = json.success
+              successMessage.value = json.existing
 
-              if (json.success) {
+              if (json.existing) {
+                setupData.project.admin.create = false
+              } else {
                 setupData.project.admin.create = true
+                setupData.project.admin.name = setupData.agora.user.name
+                setupData.project.admin.email = setupData.agora.user.email
               }
             })
             .catch((e) => {
@@ -133,38 +137,37 @@
         errorMessage.value = null
 
         if (setupData.project.admin.create === true) {
-          let name = document.getElementById('admin-username').value;
-          let email = document.getElementById('admin-email').value;
-          let password = document.getElementById('admin-password').value;
+          let name = setupData.project.admin.name
+          let email = setupData.project.admin.email
+          let password = setupData.project.admin.password
 
-          if (name === '') {
+          if (!name.length) {
             errorMessage.value = 'You must provide a user name for the admin account.'
 
-            return;
+            return
           }
 
-          if (email === '') {
+          if (!email.length) {
             errorMessage.value = 'You must provide an email for the admin account.'
 
-            return;
-          }
-
-          if (password === '') {
-            errorMessage.value = 'You must provide a password for the admin account.'
-
-            return;
+            return
           }
 
           if (! email.includes('@') || ! email.includes('.')) {
             errorMessage.value = 'Email must be in a valid email format.'
 
-            return;
+            return
           }
 
-          if (password.length < 8) {
+
+          if (!password.length) {
+            errorMessage.value = 'You must provide a password for the admin account.'
+
+            return
+          } else if (password.length < 8) {
             errorMessage.value = 'Password must be at least 8 characters long.'
 
-            return;
+            return
           }
         }
 
