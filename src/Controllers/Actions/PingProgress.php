@@ -14,6 +14,7 @@ class PingProgress
         return response([
            'progress' => isset($json->progress) ? $json->progress : null,
            'message' => isset($json->currentJobMessage) ? $json->currentJobMessage : null,
+           'errors' => isset($json->errors) ? $json->errors : null,
         ]);
     }
 }

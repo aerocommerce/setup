@@ -50,55 +50,55 @@
         <g id="screen-content" clip-path="url(#screenClip)">
           <g id="i2-scrolling">
             <path d="M299.27,139.41l-2.6,2.35V139.5a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V144.54l4-3.59a1,1,0,1,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
-                />
-                <path d="M299.27,112.18l-2.6,2.35v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V117.31l4-3.59a1,1,0,0,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
-                />
-                <path d="M299.27,166.75l-2.6,2.34v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V171.88l4-3.6a1,1,0,1,0-1.38-1.53ZM294.6,171l-6.15,5.54-3.38-3.77a1,1,0,1,0-1.54,1.38l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16H281.55v-13H294.6Z"
-                />
-                <path d="M305.92,119.66h17.63a1,1,0,0,0,0-2.07H305.92a1,1,0,0,0,0,2.07Z" />
-                <path d="M305.92,125.4h6.81a1,1,0,1,0,0-2.07h-6.81a1,1,0,0,0,0,2.07Z" />
-                <path d="M305.92,147h10.42a1,1,0,0,0,0-2.07H305.92a1,1,0,0,0,0,2.07Z" />
-                <path d="M326.15,145h-4.21a1,1,0,0,0,0,2.07h4.21a1,1,0,1,0,0-2.07Z" />
-                <path d="M305.92,152.26h8a1,1,0,1,0,0-2.07h-8a1,1,0,0,0,0,2.07Z" />
-                <path d="M305.92,173.47h6.81a1,1,0,1,0,0-2.07h-6.81a1,1,0,0,0,0,2.07Z" />
-                <path d="M326.15,171.4h-8a1,1,0,1,0,0,2.07h8a1,1,0,1,0,0-2.07Z" />
-                <path d="M322.15,177.28H305.92a1,1,0,0,0,0,2.07h16.23a1,1,0,0,0,0-2.07Z" />
-                <path d="M145.17,109.44h58.37a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
-                <path d="M210.58,108.4a1,1,0,0,0,1,1h11.18a1,1,0,0,0,0-2.07H211.61A1,1,0,0,0,210.58,108.4Z" />
-                <path
-                  
-                    d="M257,191.71s0,0,0-.06a1.36,1.36,0,0,0-.11-.25l0,0-.09-.12-.08-.06s0,0,0,0l-2.89-2.35a1,1,0,1,0-1.31,1.61l.63.5h-4.6V170.1a4.23,4.23,0,0,0,3.2-4.1,4.15,4.15,0,0,0-.12-1,45.37,45.37,0,0,0,5.11-3.69,1,1,0,1,0-1.35-1.56,47.42,47.42,0,0,1-4.74,3.42,4.26,4.26,0,0,0-2.1-1.27V139.16a1,1,0,1,0-2.07,0V161.9a4.24,4.24,0,0,0-3.2,4.1,4.09,4.09,0,0,0,.17,1.17,63.53,63.53,0,0,1-20.75,6c-8,.85-13.85.69-19.88-.58v-.07a4.23,4.23,0,0,0-3.2-4.1V139.16a1,1,0,1,0-2.07,0v29.23a4.23,4.23,0,0,0-2.67,2.07,140.49,140.49,0,0,1-15.91-6.54L175,162.14l-.14-.06c-1.47-.66-2.19-1-3.32-1.44,0-.13,0-.25,0-.38a4.23,4.23,0,0,0-3.2-4.1v-17a1,1,0,1,0-2.07,0v17a4.23,4.23,0,0,0-2.43,1.67c-8.49-2.81-13.52-3-15.67-2.92v-12.4l.11.17a1,1,0,0,0,.86.45,1,1,0,0,0,.58-.18,1,1,0,0,0,.28-1.43l-2-3,0,0,0,0a1.07,1.07,0,0,0-.19-.18l0,0a1.66,1.66,0,0,0-.27-.13h0a1,1,0,0,0-.29,0h0a1,1,0,0,0-.24,0l-.06,0a1.06,1.06,0,0,0-.21.11l0,0-.06,0a1.3,1.3,0,0,0-.19.22l-2,3a1,1,0,1,0,1.73,1.13l.09-.13V192a1,1,0,0,0,1,1h106.2l-.81.77a1,1,0,0,0-.05,1.46,1,1,0,0,0,1.46.05l2.73-2.56a.43.43,0,0,0,.09-.1l0,0a1.16,1.16,0,0,0,.14-.24,0,0,0,0,1,0,0s0,0,0,0a.87.87,0,0,0,0-.28A1.27,1.27,0,0,0,257,191.71Zm-90.69-.79H148.2V157c1.8-.09,6.6,0,14.93,2.78a3.91,3.91,0,0,0,0,.49,4.24,4.24,0,0,0,3.2,4.1Zm-1.13-30.66a2.17,2.17,0,1,1,2.17,2.16A2.17,2.17,0,0,1,165.17,160.26Zm32.3,30.66h-29.1V164.36a4.27,4.27,0,0,0,2.5-1.76c1,.42,1.75.74,3.14,1.37l.14.06c1.36.61,2.65,1.2,3.88,1.77a140.5,140.5,0,0,0,16.24,6.66v0a4.24,4.24,0,0,0,3.2,4.1Zm-1.13-18.43a2.17,2.17,0,1,1,2.17,2.17A2.17,2.17,0,0,1,196.34,172.49Zm50.06,18.43H199.54V176.59a4.21,4.21,0,0,0,2.66-2,53.76,53.76,0,0,0,11.43,1.18,86.89,86.89,0,0,0,9.21-.54A65.45,65.45,0,0,0,244.41,169a4.24,4.24,0,0,0,2,1.14ZM245.27,166a2.17,2.17,0,1,1,2.17,2.17A2.17,2.17,0,0,1,245.27,166Z"
-                />
-                <path d="M151.14,196.7h-8.75a1,1,0,0,0,0,2.08h8.75a1,1,0,0,0,0-2.08Z" />
-                <path d="M168.83,196.7h-7.66a1,1,0,0,0,0,2.08h7.66a1,1,0,0,0,0-2.08Z" />
-                <path d="M145.17,116.27h20.17a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
-                <path d="M216.68,115.23a1,1,0,0,0-1-1H174.36a1,1,0,1,0,0,2.07h41.29A1,1,0,0,0,216.68,115.23Z" />
-                <path d="M145.17,124h11.94a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
-                <path d="M165.34,122a1,1,0,0,0,0,2.07h23.45a1,1,0,1,0,0-2.07Z" />
-                <path d="M207.87,89.91a1,1,0,0,0,0,2.07h6a1,1,0,1,0,0-2.07Z" />
-                <path d="M194.17,86.74h19.27a1,1,0,0,0,0-2.07H194.17a1,1,0,1,0,0,2.07Z" />
-                <path d="M368.07,91.93h2.65a1,1,0,0,0,0-2.07h-2.65a1,1,0,0,0,0,2.07Z" />
-                <path d="M163.25,100.39a2.19,2.19,0,1,0,0-4.37H150.81a.62.62,0,0,0-.57.85l1.25,3.13a.63.63,0,0,0,.58.39Z" />
-                <path d="M169.31,81H144.76a.62.62,0,0,0-.58.85L146,86.33a.92.92,0,0,0,.86.58h9.19a.65.65,0,0,0,.61-.41l.39-1a.33.33,0,0,1,.3-.2h11.9a2.22,2.22,0,0,0,2.24-2.1A2.19,2.19,0,0,0,169.31,81Z" />
-                <path d="M166.28,88.49h-18.5a.62.62,0,0,0-.57.85L149,93.86a.92.92,0,0,0,.86.58h3.16a.65.65,0,0,0,.61-.41l.39-1a.33.33,0,0,1,.3-.2h11.88a2.22,2.22,0,0,0,2.23-2.11A2.18,2.18,0,0,0,166.28,88.49Z" />
-                <path d="M161.37,248.45l-2.6,2.34v-2.26a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V253.58l4-3.6a1,1,0,1,0-1.38-1.53Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,1,0-1.54,1.38l4.08,4.55a1.06,1.06,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16h-13v-13h13Z"
-                />
-                <path d="M161.37,221.22l-2.6,2.34V221.3a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V226.35l4-3.6a1,1,0,1,0-1.38-1.53Zm-4.67,4.21L150.55,231l-3.38-3.77a1,1,0,0,0-1.54,1.38l4.08,4.55a1.06,1.06,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16h-13v-13h13Z"
-                />
-                <path d="M161.37,275.78l-2.6,2.35v-2.26a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1V291a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V280.92l4-3.6a1,1,0,1,0-1.38-1.54ZM156.7,280l-6.15,5.54-3.38-3.78a1,1,0,0,0-1.54,1.39l4.08,4.54a1,1,0,0,0,.71.35h.06a1,1,0,0,0,.69-.27l5.53-5V290h-13V276.9h13Z"
-                />
-                <path d="M168,228.69h17.63a1,1,0,0,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
-                <path d="M168,234.43h6.81a1,1,0,1,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
-                <path d="M168,256.08h10.42a1,1,0,0,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
-                <path d="M188.25,254H184a1,1,0,0,0,0,2.07h4.21a1,1,0,1,0,0-2.07Z" />
-                <path d="M168,261.3h8a1,1,0,1,0,0-2.07h-8a1,1,0,0,0,0,2.07Z" />
-                <path d="M168,282.51h6.81a1,1,0,0,0,0-2.08H168a1,1,0,0,0,0,2.08Z" />
-                <path d="M188.25,280.43h-8a1,1,0,1,0,0,2.08h8a1,1,0,0,0,0-2.08Z" />
-                <path d="M184.25,286.31H168a1,1,0,0,0,0,2.08h16.23a1,1,0,0,0,0-2.08Z" />
-                <path d="M331.53,280s0,0,0-.06a.8.8,0,0,0-.11-.25l0,0a.48.48,0,0,0-.09-.11.46.46,0,0,0-.07-.07l0,0-2.89-2.34a1,1,0,0,0-1.3,1.6l.62.51H323V258.34a4.19,4.19,0,0,0,3.07-5.11,48.78,48.78,0,0,0,5.12-3.68,1,1,0,0,0-1.36-1.57,44.56,44.56,0,0,1-4.73,3.42,4.21,4.21,0,0,0-2.1-1.26V227.39a1,1,0,0,0-2.07,0v22.75a4.23,4.23,0,0,0-3.2,4.1,4.45,4.45,0,0,0,.16,1.16,63.55,63.55,0,0,1-20.74,6c-8,.86-13.85.69-19.89-.57,0,0,0-.05,0-.07a4.26,4.26,0,0,0-3.2-4.11V227.39a1,1,0,0,0-2.07,0v29.23a4.26,4.26,0,0,0-2.68,2.07,140.39,140.39,0,0,1-15.9-6.54l-3.89-1.77-.14-.06c-1.46-.67-2.19-1-3.31-1.44,0-.13,0-.26,0-.39a4.26,4.26,0,0,0-3.2-4.1v-17a1,1,0,0,0-2.07,0v17a4.27,4.27,0,0,0-2.44,1.68c-8.48-2.81-13.51-3-15.67-2.92v-12.4l.12.17a1,1,0,0,0,.85.45,1.07,1.07,0,0,0,.59-.18,1,1,0,0,0,.27-1.44l-2-2.94a0,0,0,0,0,0,0l0,0-.19-.19,0,0a.84.84,0,0,0-.27-.13H222a.92.92,0,0,0-.29,0h-.05a1,1,0,0,0-.24,0l-.06,0-.21.1,0,0-.05.05a.8.8,0,0,0-.2.21l-2,3.06a1,1,0,0,0,.3,1.43,1,1,0,0,0,1.44-.3l.08-.13v49.31a1,1,0,0,0,1,1h106.2l-.82.77a1,1,0,0,0,.71,1.79,1.05,1.05,0,0,0,.7-.28l2.74-2.56.08-.1,0,0a1.19,1.19,0,0,0,.13-.25v0a0,0,0,0,0,0,0,.92.92,0,0,0,.05-.28A1.27,1.27,0,0,0,331.53,280Zm-90.68-.79H222.74V245.23c1.8-.1,6.6,0,14.94,2.77a4,4,0,0,0,0,.49,4.23,4.23,0,0,0,3.2,4.1Zm-1.13-30.67a2.17,2.17,0,1,1,2.16,2.17A2.16,2.16,0,0,1,239.72,248.49ZM272,279.16h-29.1V252.59a4.23,4.23,0,0,0,2.49-1.76c1,.42,1.75.74,3.15,1.37l.14.07,3.88,1.76a139.94,139.94,0,0,0,16.24,6.67v0a4.24,4.24,0,0,0,3.2,4.1Zm-1.13-18.43a2.17,2.17,0,1,1,2.16,2.16A2.17,2.17,0,0,1,270.89,260.73ZM321,279.16H274.09V264.83a4.25,4.25,0,0,0,2.65-2A53.86,53.86,0,0,0,288.18,264a87.37,87.37,0,0,0,9.21-.55A65.74,65.74,0,0,0,319,257.2a4.14,4.14,0,0,0,2,1.14Zm-1.13-24.92A2.16,2.16,0,1,1,322,256.4,2.17,2.17,0,0,1,319.82,254.24Z"
-                />
-                <path d="M265.69,284.94h-8.75a1,1,0,1,0,0,2.07h8.75a1,1,0,0,0,0-2.07Z" />
-                <path d="M283.38,284.94h-7.67a1,1,0,0,0,0,2.07h7.67a1,1,0,0,0,0-2.07Z" />
+            />
+            <path d="M299.27,112.18l-2.6,2.35v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V117.31l4-3.59a1,1,0,0,0-1.38-1.54Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,0,0-1.46-.08,1,1,0,0,0-.08,1.46l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.26l5.53-5v7.16H281.55v-13H294.6Z"
+            />
+            <path d="M299.27,166.75l-2.6,2.34v-2.26a1,1,0,0,0-1-1H280.52a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V171.88l4-3.6a1,1,0,1,0-1.38-1.53ZM294.6,171l-6.15,5.54-3.38-3.77a1,1,0,1,0-1.54,1.38l4.08,4.55a1,1,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16H281.55v-13H294.6Z"
+            />
+            <path d="M305.92,119.66h17.63a1,1,0,0,0,0-2.07H305.92a1,1,0,0,0,0,2.07Z" />
+            <path d="M305.92,125.4h6.81a1,1,0,1,0,0-2.07h-6.81a1,1,0,0,0,0,2.07Z" />
+            <path d="M305.92,147h10.42a1,1,0,0,0,0-2.07H305.92a1,1,0,0,0,0,2.07Z" />
+            <path d="M326.15,145h-4.21a1,1,0,0,0,0,2.07h4.21a1,1,0,1,0,0-2.07Z" />
+            <path d="M305.92,152.26h8a1,1,0,1,0,0-2.07h-8a1,1,0,0,0,0,2.07Z" />
+            <path d="M305.92,173.47h6.81a1,1,0,1,0,0-2.07h-6.81a1,1,0,0,0,0,2.07Z" />
+            <path d="M326.15,171.4h-8a1,1,0,1,0,0,2.07h8a1,1,0,1,0,0-2.07Z" />
+            <path d="M322.15,177.28H305.92a1,1,0,0,0,0,2.07h16.23a1,1,0,0,0,0-2.07Z" />
+            <path d="M145.17,109.44h58.37a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
+            <path d="M210.58,108.4a1,1,0,0,0,1,1h11.18a1,1,0,0,0,0-2.07H211.61A1,1,0,0,0,210.58,108.4Z" />
+            <path
+
+                d="M257,191.71s0,0,0-.06a1.36,1.36,0,0,0-.11-.25l0,0-.09-.12-.08-.06s0,0,0,0l-2.89-2.35a1,1,0,1,0-1.31,1.61l.63.5h-4.6V170.1a4.23,4.23,0,0,0,3.2-4.1,4.15,4.15,0,0,0-.12-1,45.37,45.37,0,0,0,5.11-3.69,1,1,0,1,0-1.35-1.56,47.42,47.42,0,0,1-4.74,3.42,4.26,4.26,0,0,0-2.1-1.27V139.16a1,1,0,1,0-2.07,0V161.9a4.24,4.24,0,0,0-3.2,4.1,4.09,4.09,0,0,0,.17,1.17,63.53,63.53,0,0,1-20.75,6c-8,.85-13.85.69-19.88-.58v-.07a4.23,4.23,0,0,0-3.2-4.1V139.16a1,1,0,1,0-2.07,0v29.23a4.23,4.23,0,0,0-2.67,2.07,140.49,140.49,0,0,1-15.91-6.54L175,162.14l-.14-.06c-1.47-.66-2.19-1-3.32-1.44,0-.13,0-.25,0-.38a4.23,4.23,0,0,0-3.2-4.1v-17a1,1,0,1,0-2.07,0v17a4.23,4.23,0,0,0-2.43,1.67c-8.49-2.81-13.52-3-15.67-2.92v-12.4l.11.17a1,1,0,0,0,.86.45,1,1,0,0,0,.58-.18,1,1,0,0,0,.28-1.43l-2-3,0,0,0,0a1.07,1.07,0,0,0-.19-.18l0,0a1.66,1.66,0,0,0-.27-.13h0a1,1,0,0,0-.29,0h0a1,1,0,0,0-.24,0l-.06,0a1.06,1.06,0,0,0-.21.11l0,0-.06,0a1.3,1.3,0,0,0-.19.22l-2,3a1,1,0,1,0,1.73,1.13l.09-.13V192a1,1,0,0,0,1,1h106.2l-.81.77a1,1,0,0,0-.05,1.46,1,1,0,0,0,1.46.05l2.73-2.56a.43.43,0,0,0,.09-.1l0,0a1.16,1.16,0,0,0,.14-.24,0,0,0,0,1,0,0s0,0,0,0a.87.87,0,0,0,0-.28A1.27,1.27,0,0,0,257,191.71Zm-90.69-.79H148.2V157c1.8-.09,6.6,0,14.93,2.78a3.91,3.91,0,0,0,0,.49,4.24,4.24,0,0,0,3.2,4.1Zm-1.13-30.66a2.17,2.17,0,1,1,2.17,2.16A2.17,2.17,0,0,1,165.17,160.26Zm32.3,30.66h-29.1V164.36a4.27,4.27,0,0,0,2.5-1.76c1,.42,1.75.74,3.14,1.37l.14.06c1.36.61,2.65,1.2,3.88,1.77a140.5,140.5,0,0,0,16.24,6.66v0a4.24,4.24,0,0,0,3.2,4.1Zm-1.13-18.43a2.17,2.17,0,1,1,2.17,2.17A2.17,2.17,0,0,1,196.34,172.49Zm50.06,18.43H199.54V176.59a4.21,4.21,0,0,0,2.66-2,53.76,53.76,0,0,0,11.43,1.18,86.89,86.89,0,0,0,9.21-.54A65.45,65.45,0,0,0,244.41,169a4.24,4.24,0,0,0,2,1.14ZM245.27,166a2.17,2.17,0,1,1,2.17,2.17A2.17,2.17,0,0,1,245.27,166Z"
+            />
+            <path d="M151.14,196.7h-8.75a1,1,0,0,0,0,2.08h8.75a1,1,0,0,0,0-2.08Z" />
+            <path d="M168.83,196.7h-7.66a1,1,0,0,0,0,2.08h7.66a1,1,0,0,0,0-2.08Z" />
+            <path d="M145.17,116.27h20.17a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
+            <path d="M216.68,115.23a1,1,0,0,0-1-1H174.36a1,1,0,1,0,0,2.07h41.29A1,1,0,0,0,216.68,115.23Z" />
+            <path d="M145.17,124h11.94a1,1,0,1,0,0-2.07H145.17a1,1,0,0,0,0,2.07Z" />
+            <path d="M165.34,122a1,1,0,0,0,0,2.07h23.45a1,1,0,1,0,0-2.07Z" />
+            <path d="M207.87,89.91a1,1,0,0,0,0,2.07h6a1,1,0,1,0,0-2.07Z" />
+            <path d="M194.17,86.74h19.27a1,1,0,0,0,0-2.07H194.17a1,1,0,1,0,0,2.07Z" />
+            <path d="M368.07,91.93h2.65a1,1,0,0,0,0-2.07h-2.65a1,1,0,0,0,0,2.07Z" />
+            <path d="M163.25,100.39a2.19,2.19,0,1,0,0-4.37H150.81a.62.62,0,0,0-.57.85l1.25,3.13a.63.63,0,0,0,.58.39Z" />
+            <path d="M169.31,81H144.76a.62.62,0,0,0-.58.85L146,86.33a.92.92,0,0,0,.86.58h9.19a.65.65,0,0,0,.61-.41l.39-1a.33.33,0,0,1,.3-.2h11.9a2.22,2.22,0,0,0,2.24-2.1A2.19,2.19,0,0,0,169.31,81Z" />
+            <path d="M166.28,88.49h-18.5a.62.62,0,0,0-.57.85L149,93.86a.92.92,0,0,0,.86.58h3.16a.65.65,0,0,0,.61-.41l.39-1a.33.33,0,0,1,.3-.2h11.88a2.22,2.22,0,0,0,2.23-2.11A2.18,2.18,0,0,0,166.28,88.49Z" />
+            <path d="M161.37,248.45l-2.6,2.34v-2.26a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V253.58l4-3.6a1,1,0,1,0-1.38-1.53Zm-4.67,4.21-6.15,5.54-3.38-3.77a1,1,0,1,0-1.54,1.38l4.08,4.55a1.06,1.06,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16h-13v-13h13Z"
+            />
+            <path d="M161.37,221.22l-2.6,2.34V221.3a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1v15.11a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V226.35l4-3.6a1,1,0,1,0-1.38-1.53Zm-4.67,4.21L150.55,231l-3.38-3.77a1,1,0,0,0-1.54,1.38l4.08,4.55a1.06,1.06,0,0,0,.71.34h.06a1,1,0,0,0,.69-.27l5.53-5v7.16h-13v-13h13Z"
+            />
+            <path d="M161.37,275.78l-2.6,2.35v-2.26a1,1,0,0,0-1-1H142.62a1,1,0,0,0-1,1V291a1,1,0,0,0,1,1h15.11a1,1,0,0,0,1-1V280.92l4-3.6a1,1,0,1,0-1.38-1.54ZM156.7,280l-6.15,5.54-3.38-3.78a1,1,0,0,0-1.54,1.39l4.08,4.54a1,1,0,0,0,.71.35h.06a1,1,0,0,0,.69-.27l5.53-5V290h-13V276.9h13Z"
+            />
+            <path d="M168,228.69h17.63a1,1,0,0,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
+            <path d="M168,234.43h6.81a1,1,0,1,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
+            <path d="M168,256.08h10.42a1,1,0,0,0,0-2.07H168a1,1,0,0,0,0,2.07Z" />
+            <path d="M188.25,254H184a1,1,0,0,0,0,2.07h4.21a1,1,0,1,0,0-2.07Z" />
+            <path d="M168,261.3h8a1,1,0,1,0,0-2.07h-8a1,1,0,0,0,0,2.07Z" />
+            <path d="M168,282.51h6.81a1,1,0,0,0,0-2.08H168a1,1,0,0,0,0,2.08Z" />
+            <path d="M188.25,280.43h-8a1,1,0,1,0,0,2.08h8a1,1,0,0,0,0-2.08Z" />
+            <path d="M184.25,286.31H168a1,1,0,0,0,0,2.08h16.23a1,1,0,0,0,0-2.08Z" />
+            <path d="M331.53,280s0,0,0-.06a.8.8,0,0,0-.11-.25l0,0a.48.48,0,0,0-.09-.11.46.46,0,0,0-.07-.07l0,0-2.89-2.34a1,1,0,0,0-1.3,1.6l.62.51H323V258.34a4.19,4.19,0,0,0,3.07-5.11,48.78,48.78,0,0,0,5.12-3.68,1,1,0,0,0-1.36-1.57,44.56,44.56,0,0,1-4.73,3.42,4.21,4.21,0,0,0-2.1-1.26V227.39a1,1,0,0,0-2.07,0v22.75a4.23,4.23,0,0,0-3.2,4.1,4.45,4.45,0,0,0,.16,1.16,63.55,63.55,0,0,1-20.74,6c-8,.86-13.85.69-19.89-.57,0,0,0-.05,0-.07a4.26,4.26,0,0,0-3.2-4.11V227.39a1,1,0,0,0-2.07,0v29.23a4.26,4.26,0,0,0-2.68,2.07,140.39,140.39,0,0,1-15.9-6.54l-3.89-1.77-.14-.06c-1.46-.67-2.19-1-3.31-1.44,0-.13,0-.26,0-.39a4.26,4.26,0,0,0-3.2-4.1v-17a1,1,0,0,0-2.07,0v17a4.27,4.27,0,0,0-2.44,1.68c-8.48-2.81-13.51-3-15.67-2.92v-12.4l.12.17a1,1,0,0,0,.85.45,1.07,1.07,0,0,0,.59-.18,1,1,0,0,0,.27-1.44l-2-2.94a0,0,0,0,0,0,0l0,0-.19-.19,0,0a.84.84,0,0,0-.27-.13H222a.92.92,0,0,0-.29,0h-.05a1,1,0,0,0-.24,0l-.06,0-.21.1,0,0-.05.05a.8.8,0,0,0-.2.21l-2,3.06a1,1,0,0,0,.3,1.43,1,1,0,0,0,1.44-.3l.08-.13v49.31a1,1,0,0,0,1,1h106.2l-.82.77a1,1,0,0,0,.71,1.79,1.05,1.05,0,0,0,.7-.28l2.74-2.56.08-.1,0,0a1.19,1.19,0,0,0,.13-.25v0a0,0,0,0,0,0,0,.92.92,0,0,0,.05-.28A1.27,1.27,0,0,0,331.53,280Zm-90.68-.79H222.74V245.23c1.8-.1,6.6,0,14.94,2.77a4,4,0,0,0,0,.49,4.23,4.23,0,0,0,3.2,4.1Zm-1.13-30.67a2.17,2.17,0,1,1,2.16,2.17A2.16,2.16,0,0,1,239.72,248.49ZM272,279.16h-29.1V252.59a4.23,4.23,0,0,0,2.49-1.76c1,.42,1.75.74,3.15,1.37l.14.07,3.88,1.76a139.94,139.94,0,0,0,16.24,6.67v0a4.24,4.24,0,0,0,3.2,4.1Zm-1.13-18.43a2.17,2.17,0,1,1,2.16,2.16A2.17,2.17,0,0,1,270.89,260.73ZM321,279.16H274.09V264.83a4.25,4.25,0,0,0,2.65-2A53.86,53.86,0,0,0,288.18,264a87.37,87.37,0,0,0,9.21-.55A65.74,65.74,0,0,0,319,257.2a4.14,4.14,0,0,0,2,1.14Zm-1.13-24.92A2.16,2.16,0,1,1,322,256.4,2.17,2.17,0,0,1,319.82,254.24Z"
+            />
+            <path d="M265.69,284.94h-8.75a1,1,0,1,0,0,2.07h8.75a1,1,0,0,0,0-2.07Z" />
+            <path d="M283.38,284.94h-7.67a1,1,0,0,0,0,2.07h7.67a1,1,0,0,0,0-2.07Z" />
           </g>
         </g>
 
@@ -265,7 +265,7 @@
         <p class="text-xl md:text-3xl uppercase font-medium xl:max-w-screen-1/3 px-24">Creating your new store</p>
         <!-- <span class="text-sm md:text-base text-alphaLight-900">{{ setupData.project.name }}</span> -->
       </div>
-      
+
       <!-- <div class="px-12 my-9">
         <progress :value="setupData.progress" max="100"></progress>
       </div> -->
@@ -286,23 +286,14 @@
       </template>
     </div>
 
-    <ol class="absolute top-0 left-1/2 flex flex-wrap gap-3 items-center text-alpha transform -translate-x-1/2 duration-300 delay-300" :class="setupData.installComplete ? 'opacity-100 translate-y-6' : 'opacity-0'">
-      <li v-for="(step, stepIndex) in steps">
-        {{setupData.progressStep.split}}
-        <span>
-          <component :is="step.icon" class="h-6 w-6 text-green" />
-        </span>
-      </li>
-    </ol>
-
     <transition name="delayFadeTwo">
       <div v-if="setupData.installComplete" class="flex flex-col items-center">
           <span class="w-full max-w-64 mb-6">
             <Logo />
           </span>
-          <h3 class="text-2xl mb-24">We're all set</h3>
-          <button type="button" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center" @click="redirectToHome">View store</button>
-          <button type="button" class="button button-transparent uppercase text-white underline" @click="redirectToAdmin">Login to admin</button>
+        <h3 class="text-2xl mb-24">We're all set</h3>
+        <a href="/" class="button button-green hover:no-underline uppercase px-12 py-4 mb-3 text-center">View store</a>
+        <a href="/admin" class="button button-transparent uppercase text-white underline">Login to admin</a>
       </div>
     </transition>
 
@@ -320,11 +311,12 @@ const steps = Steps
 export default {
 
   components: {
-		Logo,
-	},
+    Logo,
+  },
 
   setup() {
     const setupData = inject('setupData')
+    const serviceWorker = inject('serviceWorker')
     const storeDomain = document.location.hostname
     setupData.progress = 0
     setupData.progressText = 'Getting warmed up'
@@ -410,6 +402,22 @@ export default {
 
       jobs.push(
           {
+            class: 'Aero\\Setup\\Commands\\Actions\\CreateStoreConfig',
+            message: 'Creating store configuration',
+            options: {
+              store_language: setupData.project.store.language,
+              store_country: setupData.project.store.country,
+              store_currency: setupData.project.store.currency,
+              country: setupData.project.store.address.country,
+              line_1: setupData.project.store.address.line_1,
+              line_2: setupData.project.store.address.line_2,
+              city: setupData.project.store.address.city,
+              post_code: setupData.project.store.address.post_code,
+              phone: setupData.project.store.address.phone,
+              tax_id: setupData.project.store.address.tax_id,
+            },
+          },
+          {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
             message: 'Installing dependencies',
             options: {
@@ -482,35 +490,27 @@ export default {
       },
       body: JSON.stringify({jobs})
     })
-    .then((result) => {
-      result.json()
-          .then(json => {
-            if (! result.ok) throw new Error(json.message)
-            return json
-          })
-          .then((json) => {
-            if (json.success) {
-              setupData.project.errors = json.errors
-              updateProgress()
-            } else {
-              // ERROR
-            }
-          })
-          .catch((_) => {
-            // ERROR
-          })
-    })
-    .catch((_) => {
-      // ERROR
-    })
-
-    function redirectToHome() {
-      window.location.href = `${setupData.host}`
-    }
-
-    function redirectToAdmin() {
-      window.location.href = `${setupData.host}/admin`
-    }
+        .then((result) => {
+          result.json()
+              .then(json => {
+                if (! result.ok) throw new Error(json.message)
+                return json
+              })
+              .then((json) => {
+                if (json.success) {
+                  setupData.project.errors = json.errors
+                  updateProgress()
+                } else {
+                  // ERROR
+                }
+              })
+              .catch((_) => {
+                // ERROR
+              })
+        })
+        .catch((_) => {
+          // ERROR
+        })
 
     function complete() {
       window.onbeforeunload = null
@@ -525,423 +525,425 @@ export default {
           'Content-Type': 'application/json',
         },
       })
-      .then((result) => {
-        if (result.status === 404) {
-          complete();
-        }
+          .then((result) => {
+            if (result.status === 404) {
+              complete();
+            }
 
-        result.json()
-            .then(json => {
-              if (! result.ok) throw new Error(json.message)
+            result.json()
+                .then(json => {
+                  if (! result.ok) throw new Error(json.message)
 
-              return json
-            })
-            .then((json) => {
-              if (setupData.progress < 100) {
+                  return json
+                })
+                .then((json) => {
+                  if (setupData.progress < 100) {
 
-                setTimeout(() => {
-                  setupData.progress = json.progress
-                  setupData.progressText = json.message
+                    setTimeout(() => {
+                      setupData.progress = json.progress
+                      setupData.progressText = json.message
 
-                  updateProgress()
-                }, 500)
+                      updateProgress()
+                    }, 500)
 
-              }
-            })
-            .catch((_) => {
-              // ERROR
-            })
-      })
-      .catch((response) => {
-        if (response.status === 404) {
-          complete();
-        }
-      })
+                  }
+
+                  if (setupData.project.errors.length) {
+                    setupData.project.errors = json.errors
+                  }
+                })
+                .catch((_) => {
+                  // ERROR
+                })
+          })
+          .catch((response) => {
+            if (response.status === 404) {
+              complete();
+            }
+          })
     }
 
     return {
-				setupData,
-        storeDomain,
-        steps,
-        Logo,
-        redirectToHome,
-        redirectToAdmin,
-			}
+      setupData,
+      storeDomain,
+      steps,
+      Logo,
+    }
   }
 }
 </script>
 
 <style scoped>
 
-  .custom-progress {
-    background: rgb(124,196,63);
-    background: linear-gradient(60deg, rgba(124,196,63,1) 0%, rgba(124,196,63,1) 40%, rgb(185, 255, 123) 50%, rgba(124,196,63,1) 60%, rgba(124,196,63,1) 100%);
-    background-size: 300% 100%;
-    animation: progressAnimation 2.5s ease infinite;
-    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+.custom-progress {
+  background: rgb(124,196,63);
+  background: linear-gradient(60deg, rgba(124,196,63,1) 0%, rgba(124,196,63,1) 40%, rgb(185, 255, 123) 50%, rgba(124,196,63,1) 60%, rgba(124,196,63,1) 100%);
+  background-size: 300% 100%;
+  animation: progressAnimation 2.5s ease infinite;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes progressAnimation {
+  0%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.animated-svg {
+  --color-alpha: #54E0E4;
+  --color-base-background: #181926;
+  --global-duration: 7s;
+
+  width: 100%;
+  height: auto;
+  fill: var(--color-alpha);
+  stroke-width: 0;
+  stroke: var(--color-alpha);
+  color: var(--color-base-background);
+}
+
+#cogs path {
+  --duration: 4s;
+  --delay: calc(var(--global-duration) / 3.7);
+  transform-box: fill-box;
+  animation: rotate var(--duration) var(--delay) infinite linear;
+  transform: rotate(0);
+  transform-origin: center;
+}
+
+#cogs path:nth-of-type(3) {
+  animation-direction: reverse;
+}
+
+#cog1,
+#cog2 {
+  transform-box: fill-box;
+  animation: rotate 4s 4s infinite linear;
+  transform: rotate(0);
+  transform-origin: center;
+}
+
+#cog2 {
+  animation-direction: reverse;
+}
+
+#i2-dashes path {
+  --duration: var(--global-duration);
+  --delay: calc(var(--global-duration) / 57);
+  opacity: 0;
+  animation: opacity var(--duration) infinite linear;
+}
+#i2-dashes path:nth-of-type(1) {
+  animation-delay: calc(var(--delay) * 1);
+}
+#i2-dashes path:nth-of-type(2) {
+  animation-delay: calc(var(--delay) * 2);
+}
+#i2-dashes path:nth-of-type(3) {
+  animation-delay: calc(var(--delay) * 3);
+}
+#i2-dashes path:nth-of-type(4) {
+  animation-delay: calc(var(--delay) * 4);
+}
+#i2-dashes path:nth-of-type(5) {
+  animation-delay: calc(var(--delay) * 5);
+}
+#i2-dashes path:nth-of-type(6) {
+  animation-delay: calc(var(--delay) * 6);
+}
+#i2-dashes path:nth-of-type(7) {
+  animation-delay: calc(var(--delay) * 7);
+}
+#i2-dashes path:nth-of-type(8) {
+  animation-delay: calc(var(--delay) * 8);
+}
+#i2-dashes path:nth-of-type(9) {
+  animation-delay: calc(var(--delay) * 9);
+}
+#i2-dashes path:nth-of-type(10) {
+  animation-delay: calc(var(--delay) * 10);
+}
+#i2-dashes path:nth-of-type(11) {
+  animation-delay: calc(var(--delay) * 11);
+}
+#i2-dashes path:nth-of-type(12) {
+  animation-delay: calc(var(--delay) * 12);
+}
+#i2-dashes path:nth-of-type(13) {
+  animation-delay: calc(var(--delay) * 13);
+}
+#i2-dashes path:nth-of-type(14) {
+  animation-delay: calc(var(--delay) * 14);
+}
+#i2-dashes path:nth-of-type(15) {
+  animation-delay: calc(var(--delay) * 15);
+}
+#i2-dashes path:nth-of-type(16) {
+  animation-delay: calc(var(--delay) * 16);
+}
+#i2-dashes path:nth-of-type(17) {
+  animation-delay: calc(var(--delay) * 17);
+}
+#i2-dashes path:nth-of-type(18) {
+  animation-delay: calc(var(--delay) * 18);
+}
+#i2-dashes path:nth-of-type(19) {
+  animation-delay: calc(var(--delay) * 19);
+}
+#i2-dashes path:nth-of-type(20) {
+  animation-delay: calc(var(--delay) * 20);
+}
+#i2-dashes path:nth-of-type(21) {
+  animation-delay: calc(var(--delay) * 21);
+}
+#i2-dashes path:nth-of-type(22) {
+  animation-delay: calc(var(--delay) * 22);
+}
+#i2-dashes path:nth-of-type(23) {
+  animation-delay: calc(var(--delay) * 23);
+}
+#i2-dashes path:nth-of-type(24) {
+  animation-delay: calc(var(--delay) * 24);
+}
+#i2-dashes path:nth-of-type(25) {
+  animation-delay: calc(var(--delay) * 25);
+}
+#i2-dashes path:nth-of-type(26) {
+  animation-delay: calc(var(--delay) * 26);
+}
+#i2-dashes path:nth-of-type(27) {
+  animation-delay: calc(var(--delay) * 27);
+}
+#i2-dashes path:nth-of-type(28) {
+  animation-delay: calc(var(--delay) * 28);
+}
+#i2-dashes path:nth-of-type(29) {
+  animation-delay: calc(var(--delay) * 29);
+}
+#i2-dashes path:nth-of-type(30) {
+  animation-delay: calc(var(--delay) * 30);
+}
+#i2-dashes path:nth-of-type(31) {
+  animation-delay: calc(var(--delay) * 31);
+}
+#i2-dashes path:nth-of-type(32) {
+  animation-delay: calc(var(--delay) * 32);
+}
+#i2-dashes path:nth-of-type(33) {
+  animation-delay: calc(var(--delay) * 33);
+}
+#i2-dashes path:nth-of-type(34) {
+  animation-delay: calc(var(--delay) * 34);
+}
+#i2-dashes path:nth-of-type(35) {
+  animation-delay: calc(var(--delay) * 35);
+}
+#i2-dashes path:nth-of-type(36) {
+  animation-delay: calc(var(--delay) * 36);
+}
+#i2-dashes path:nth-of-type(37) {
+  animation-delay: calc(var(--delay) * 37);
+}
+#i2-dashes path:nth-of-type(38) {
+  animation-delay: calc(var(--delay) * 38);
+}
+#i2-dashes path:nth-of-type(39) {
+  animation-delay: calc(var(--delay) * 39);
+}
+#i2-dashes path:nth-of-type(40) {
+  animation-delay: calc(var(--delay) * 40);
+}
+#i2-dashes path:nth-of-type(41) {
+  animation-delay: calc(var(--delay) * 41);
+}
+#i2-dashes path:nth-of-type(42) {
+  animation-delay: calc(var(--delay) * 42);
+}
+#i2-dashes path:nth-of-type(43) {
+  animation-delay: calc(var(--delay) * 43);
+}
+#i2-dashes path:nth-of-type(44) {
+  animation-delay: calc(var(--delay) * 44);
+}
+#i2-dashes path:nth-of-type(45) {
+  animation-delay: calc(var(--delay) * 45);
+}
+#i2-dashes path:nth-of-type(46) {
+  animation-delay: calc(var(--delay) * 46);
+}
+#i2-dashes path:nth-of-type(47) {
+  animation-delay: calc(var(--delay) * 47);
+}
+#i2-dashes path:nth-of-type(48) {
+  animation-delay: calc(var(--delay) * 48);
+}
+#i2-dashes path:nth-of-type(49) {
+  animation-delay: calc(var(--delay) * 49);
+}
+#i2-dashes path:nth-of-type(50) {
+  animation-delay: calc(var(--delay) * 50);
+}
+#i2-dashes path:nth-of-type(51) {
+  animation-delay: calc(var(--delay) * 51);
+}
+#i2-dashes path:nth-of-type(52) {
+  animation-delay: calc(var(--delay) * 52);
+}
+#i2-dashes path:nth-of-type(53) {
+  animation-delay: calc(var(--delay) * 53);
+}
+#i2-dashes path:nth-of-type(54) {
+  animation-delay: calc(var(--delay) * 54);
+}
+#i2-dashes path:nth-of-type(55) {
+  animation-delay: calc(var(--delay) * 55);
+}
+#i2-dashes path:nth-of-type(56) {
+  animation-delay: calc(var(--delay) * 56);
+}
+#i2-dashes path:nth-of-type(57) {
+  animation-delay: calc(var(--delay) * 57);
+}
+#i2-circles path {
+  --duration: 4s;
+  --delay: calc(var(--global-duration) / 9.5);
+  opacity: 0;
+  animation: opacity var(--duration) infinite linear;
+}
+#i2-circles path:nth-of-type(1) {
+  animation-delay: calc(var(--delay) * 1);
+}
+#i2-circles path:nth-of-type(2) {
+  animation-delay: calc(var(--delay) * 2);
+}
+#i2-circles path:nth-of-type(3) {
+  animation-delay: calc(var(--delay) * 3);
+}
+#i2-circles path:nth-of-type(4) {
+  animation-delay: calc(var(--delay) * 4);
+}
+#i2-crosses path {
+  --duration: 3s;
+  --delay: calc(var(--global-duration) / 28.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin var(--duration) infinite linear;
+}
+#i2-crosses path:nth-of-type(1) {
+  animation-delay: calc(var(--delay) * 1);
+}
+#i2-crosses path:nth-of-type(2) {
+  animation-delay: calc(var(--delay) * 2);
+}
+#i2-crosses path:nth-of-type(3) {
+  animation-delay: calc(var(--delay) * 3);
+}
+#i2-crosses path:nth-of-type(4) {
+  animation-delay: calc(var(--delay) * 4);
+}
+#i2-crosses path:nth-of-type(5) {
+  animation-delay: calc(var(--delay) * 5);
+}
+
+#i2-scrolling {
+  --duration: 12s;
+  --delay: var(--global-duration);
+  animation: contentScroll2 var(--duration) var(--delay) infinite;
+}
+#i2-pie-chart {
+  --duration: 250ms;
+  --delay: calc(var(--global-duration) / 1.727272727);
+  transform-box: fill-box;
+}
+#i2-pie-chart g {
+  transform-origin: 185.5px 22.5px;
+}
+#i2-pie-chart g:nth-of-type(1) path {
+  animation-delay: calc((var(--duration) * 1) + var(--delay));
+}
+#i2-pie-chart g:nth-of-type(2) path {
+  animation-delay: calc((var(--duration) * 2) + var(--delay));
+}
+#i2-pie-chart g:nth-of-type(3) path {
+  animation-delay: calc((var(--duration) * 3) + var(--delay));
+}
+#i2-pie-chart g:nth-of-type(4) path {
+  animation-delay: calc((var(--duration) * 4) + var(--delay));
+}
+#i2-pie-chart path {
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: draw2 var(--duration) var(--delay) linear forwards;
+}
+
+#i2-wifi path {
+  --duration: 3s;
+  --delay: calc(var(--global-duration) / 1.461538462);
+  opacity: 0;
+  animation: streak var(--duration) infinite linear;
+}
+#i2-wifi path:nth-of-type(1) {
+  animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 1));
+}
+#i2-wifi path:nth-of-type(2) {
+  animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 2));
+}
+#i2-wifi path:nth-of-type(3) {
+  animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 3));
+}
+#i2-wifi path:nth-of-type(4) {
+  animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 4));
+}
+#i2-clock g path {
+  --duration: 1.333s;
+  --delay: calc(var(--global-duration) / 1.1875);
+  transform-box: fill-box;
+  transform-origin: 1px 8px;
+  animation: rotate var(--duration) var(--delay) infinite linear;
+}
+#i2-clock g path:nth-of-type(2) {
+  transform-origin: 7px 4px;
+  animation-duration: calc(var(--duration) * 12);
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
-
-  @keyframes progressAnimation {
-    0%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+}
+@keyframes opacity {
+  7% {
+    opacity: 1;
   }
-
-  .animated-svg {
-    --color-alpha: #54E0E4;
-    --color-base-background: #181926;
-    --global-duration: 7s;
-
-    width: 100%;
-    height: auto;
-    fill: var(--color-alpha);
-    stroke-width: 0;
-    stroke: var(--color-alpha);
-    color: var(--color-base-background);
+  93% {
+    opacity: 1;
   }
-
-  #cogs path {
-    --duration: 4s;
-    --delay: calc(var(--global-duration) / 3.7);
-    transform-box: fill-box;
-    animation: rotate var(--duration) var(--delay) infinite linear;
-    transform: rotate(0);
-    transform-origin: center;
+}
+@keyframes draw2 {
+  100% {
+    transform: scaleY(1);
   }
-
-  #cogs path:nth-of-type(3) {
-    animation-direction: reverse;
+}
+@keyframes streak {
+  13% {
+    opacity: 1;
   }
-
-  #cog1,
-  #cog2 {
-    transform-box: fill-box;
-    animation: rotate 4s 4s infinite linear;
-    transform: rotate(0);
-    transform-origin: center;
+  25% {
+    opacity: 1;
   }
-
-  #cog2 {
-    animation-direction: reverse;
-  }
-
-  #i2-dashes path {
-    --duration: var(--global-duration);
-    --delay: calc(var(--global-duration) / 57);
+  50% {
     opacity: 0;
-    animation: opacity var(--duration) infinite linear;
   }
-  #i2-dashes path:nth-of-type(1) {
-    animation-delay: calc(var(--delay) * 1);
+}
+@keyframes contentScroll2 {
+  50% {
+    transform: translateY(-100px);
   }
-  #i2-dashes path:nth-of-type(2) {
-    animation-delay: calc(var(--delay) * 2);
+}
+@keyframes twistReveal {
+  100% {
+    transform: rotate(-12deg);
   }
-  #i2-dashes path:nth-of-type(3) {
-    animation-delay: calc(var(--delay) * 3);
-  }
-  #i2-dashes path:nth-of-type(4) {
-    animation-delay: calc(var(--delay) * 4);
-  }
-  #i2-dashes path:nth-of-type(5) {
-    animation-delay: calc(var(--delay) * 5);
-  }
-  #i2-dashes path:nth-of-type(6) {
-    animation-delay: calc(var(--delay) * 6);
-  }
-  #i2-dashes path:nth-of-type(7) {
-    animation-delay: calc(var(--delay) * 7);
-  }
-  #i2-dashes path:nth-of-type(8) {
-    animation-delay: calc(var(--delay) * 8);
-  }
-  #i2-dashes path:nth-of-type(9) {
-    animation-delay: calc(var(--delay) * 9);
-  }
-  #i2-dashes path:nth-of-type(10) {
-    animation-delay: calc(var(--delay) * 10);
-  }
-  #i2-dashes path:nth-of-type(11) {
-    animation-delay: calc(var(--delay) * 11);
-  }
-  #i2-dashes path:nth-of-type(12) {
-    animation-delay: calc(var(--delay) * 12);
-  }
-  #i2-dashes path:nth-of-type(13) {
-    animation-delay: calc(var(--delay) * 13);
-  }
-  #i2-dashes path:nth-of-type(14) {
-    animation-delay: calc(var(--delay) * 14);
-  }
-  #i2-dashes path:nth-of-type(15) {
-    animation-delay: calc(var(--delay) * 15);
-  }
-  #i2-dashes path:nth-of-type(16) {
-    animation-delay: calc(var(--delay) * 16);
-  }
-  #i2-dashes path:nth-of-type(17) {
-    animation-delay: calc(var(--delay) * 17);
-  }
-  #i2-dashes path:nth-of-type(18) {
-    animation-delay: calc(var(--delay) * 18);
-  }
-  #i2-dashes path:nth-of-type(19) {
-    animation-delay: calc(var(--delay) * 19);
-  }
-  #i2-dashes path:nth-of-type(20) {
-    animation-delay: calc(var(--delay) * 20);
-  }
-  #i2-dashes path:nth-of-type(21) {
-    animation-delay: calc(var(--delay) * 21);
-  }
-  #i2-dashes path:nth-of-type(22) {
-    animation-delay: calc(var(--delay) * 22);
-  }
-  #i2-dashes path:nth-of-type(23) {
-    animation-delay: calc(var(--delay) * 23);
-  }
-  #i2-dashes path:nth-of-type(24) {
-    animation-delay: calc(var(--delay) * 24);
-  }
-  #i2-dashes path:nth-of-type(25) {
-    animation-delay: calc(var(--delay) * 25);
-  }
-  #i2-dashes path:nth-of-type(26) {
-    animation-delay: calc(var(--delay) * 26);
-  }
-  #i2-dashes path:nth-of-type(27) {
-    animation-delay: calc(var(--delay) * 27);
-  }
-  #i2-dashes path:nth-of-type(28) {
-    animation-delay: calc(var(--delay) * 28);
-  }
-  #i2-dashes path:nth-of-type(29) {
-    animation-delay: calc(var(--delay) * 29);
-  }
-  #i2-dashes path:nth-of-type(30) {
-    animation-delay: calc(var(--delay) * 30);
-  }
-  #i2-dashes path:nth-of-type(31) {
-    animation-delay: calc(var(--delay) * 31);
-  }
-  #i2-dashes path:nth-of-type(32) {
-    animation-delay: calc(var(--delay) * 32);
-  }
-  #i2-dashes path:nth-of-type(33) {
-    animation-delay: calc(var(--delay) * 33);
-  }
-  #i2-dashes path:nth-of-type(34) {
-    animation-delay: calc(var(--delay) * 34);
-  }
-  #i2-dashes path:nth-of-type(35) {
-    animation-delay: calc(var(--delay) * 35);
-  }
-  #i2-dashes path:nth-of-type(36) {
-    animation-delay: calc(var(--delay) * 36);
-  }
-  #i2-dashes path:nth-of-type(37) {
-    animation-delay: calc(var(--delay) * 37);
-  }
-  #i2-dashes path:nth-of-type(38) {
-    animation-delay: calc(var(--delay) * 38);
-  }
-  #i2-dashes path:nth-of-type(39) {
-    animation-delay: calc(var(--delay) * 39);
-  }
-  #i2-dashes path:nth-of-type(40) {
-    animation-delay: calc(var(--delay) * 40);
-  }
-  #i2-dashes path:nth-of-type(41) {
-    animation-delay: calc(var(--delay) * 41);
-  }
-  #i2-dashes path:nth-of-type(42) {
-    animation-delay: calc(var(--delay) * 42);
-  }
-  #i2-dashes path:nth-of-type(43) {
-    animation-delay: calc(var(--delay) * 43);
-  }
-  #i2-dashes path:nth-of-type(44) {
-    animation-delay: calc(var(--delay) * 44);
-  }
-  #i2-dashes path:nth-of-type(45) {
-    animation-delay: calc(var(--delay) * 45);
-  }
-  #i2-dashes path:nth-of-type(46) {
-    animation-delay: calc(var(--delay) * 46);
-  }
-  #i2-dashes path:nth-of-type(47) {
-    animation-delay: calc(var(--delay) * 47);
-  }
-  #i2-dashes path:nth-of-type(48) {
-    animation-delay: calc(var(--delay) * 48);
-  }
-  #i2-dashes path:nth-of-type(49) {
-    animation-delay: calc(var(--delay) * 49);
-  }
-  #i2-dashes path:nth-of-type(50) {
-    animation-delay: calc(var(--delay) * 50);
-  }
-  #i2-dashes path:nth-of-type(51) {
-    animation-delay: calc(var(--delay) * 51);
-  }
-  #i2-dashes path:nth-of-type(52) {
-    animation-delay: calc(var(--delay) * 52);
-  }
-  #i2-dashes path:nth-of-type(53) {
-    animation-delay: calc(var(--delay) * 53);
-  }
-  #i2-dashes path:nth-of-type(54) {
-    animation-delay: calc(var(--delay) * 54);
-  }
-  #i2-dashes path:nth-of-type(55) {
-    animation-delay: calc(var(--delay) * 55);
-  }
-  #i2-dashes path:nth-of-type(56) {
-    animation-delay: calc(var(--delay) * 56);
-  }
-  #i2-dashes path:nth-of-type(57) {
-    animation-delay: calc(var(--delay) * 57);
-  }
-  #i2-circles path {
-    --duration: 4s;
-    --delay: calc(var(--global-duration) / 9.5);
-    opacity: 0;
-    animation: opacity var(--duration) infinite linear;
-  }
-  #i2-circles path:nth-of-type(1) {
-    animation-delay: calc(var(--delay) * 1);
-  }
-  #i2-circles path:nth-of-type(2) {
-    animation-delay: calc(var(--delay) * 2);
-  }
-  #i2-circles path:nth-of-type(3) {
-    animation-delay: calc(var(--delay) * 3);
-  }
-  #i2-circles path:nth-of-type(4) {
-    animation-delay: calc(var(--delay) * 4);
-  }
-  #i2-crosses path {
-    --duration: 3s;
-    --delay: calc(var(--global-duration) / 28.5);
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: spin var(--duration) infinite linear;
-  }
-  #i2-crosses path:nth-of-type(1) {
-    animation-delay: calc(var(--delay) * 1);
-  }
-  #i2-crosses path:nth-of-type(2) {
-    animation-delay: calc(var(--delay) * 2);
-  }
-  #i2-crosses path:nth-of-type(3) {
-    animation-delay: calc(var(--delay) * 3);
-  }
-  #i2-crosses path:nth-of-type(4) {
-    animation-delay: calc(var(--delay) * 4);
-  }
-  #i2-crosses path:nth-of-type(5) {
-    animation-delay: calc(var(--delay) * 5);
-  }
-
-  #i2-scrolling {
-    --duration: 12s;
-    --delay: var(--global-duration);
-    animation: contentScroll2 var(--duration) var(--delay) infinite;
-  }
-  #i2-pie-chart {
-    --duration: 250ms;
-    --delay: calc(var(--global-duration) / 1.727272727);
-    transform-box: fill-box;
-  }
-  #i2-pie-chart g {
-    transform-origin: 185.5px 22.5px;
-  }
-  #i2-pie-chart g:nth-of-type(1) path {
-    animation-delay: calc((var(--duration) * 1) + var(--delay));
-  }
-  #i2-pie-chart g:nth-of-type(2) path {
-    animation-delay: calc((var(--duration) * 2) + var(--delay));
-  }
-  #i2-pie-chart g:nth-of-type(3) path {
-    animation-delay: calc((var(--duration) * 3) + var(--delay));
-  }
-  #i2-pie-chart g:nth-of-type(4) path {
-    animation-delay: calc((var(--duration) * 4) + var(--delay));
-  }
-  #i2-pie-chart path {
-    transform: scaleY(0);
-    transform-box: fill-box;
-    transform-origin: center bottom;
-    animation: draw2 var(--duration) var(--delay) linear forwards;
-  }
-
-  #i2-wifi path {
-    --duration: 3s;
-    --delay: calc(var(--global-duration) / 1.461538462);
-    opacity: 0;
-    animation: streak var(--duration) infinite linear;
-  }
-  #i2-wifi path:nth-of-type(1) {
-    animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 1));
-  }
-  #i2-wifi path:nth-of-type(2) {
-    animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 2));
-  }
-  #i2-wifi path:nth-of-type(3) {
-    animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 3));
-  }
-  #i2-wifi path:nth-of-type(4) {
-    animation-delay: calc(var(--delay) + (calc(var(--duration) / 9) * 4));
-  }
-  #i2-clock g path {
-    --duration: 1.333s;
-    --delay: calc(var(--global-duration) / 1.1875);
-    transform-box: fill-box;
-    transform-origin: 1px 8px;
-    animation: rotate var(--duration) var(--delay) infinite linear;
-  }
-  #i2-clock g path:nth-of-type(2) {
-    transform-origin: 7px 4px;
-    animation-duration: calc(var(--duration) * 12);
-  }
-
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes opacity {
-    7% {
-      opacity: 1;
-    }
-    93% {
-      opacity: 1;
-    }
-  }
-  @keyframes draw2 {
-    100% {
-      transform: scaleY(1);
-    }
-  }
-  @keyframes streak {
-    13% {
-      opacity: 1;
-    }
-    25% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-  @keyframes contentScroll2 {
-    50% {
-      transform: translateY(-100px);
-    }
-  }
-  @keyframes twistReveal {
-    100% {
-      transform: rotate(-12deg);
-    }
-  }
+}
 
 </style>
