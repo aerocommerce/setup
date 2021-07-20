@@ -43,10 +43,12 @@ class CreateStoreConfig
                 ],
             ], JSON_PRETTY_PRINT);
 
-            $json = str_replace('{', '[', $json);
-            $json = str_replace(':', ' =>', $json);
-            $json = str_replace('}', ']', $json);
-            $json = str_replace('"', "'", $json);
+            $json = strtr($json, [
+                '{' => '[',
+                ':' => ' =>',
+                '}' => ']',
+                '"' => "'",
+                ]);
 
             if (! File::isDirectory(config_path('aero'))) {
                 File::makeDirectory(config_path('aero'));
