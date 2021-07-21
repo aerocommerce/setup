@@ -1,5 +1,18 @@
 <template>
-  <div v-if="!files">
+  <div v-if="getPreview() !== ''">
+    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3">
+
+      <img :src="getPreview()" alt="" class="mx-auto max-h-44" />
+
+      <div class="flex items-center justify-center mt-3 hover:cursor-pointer pt-4 pb-4 delete-image" @click.prevent="removeFile">
+        <XIcon class="w-5 h-5 mr-2" />
+        Delete image
+      </div>
+
+    </label>
+  </div>
+
+  <div v-else>
     <label :for="inputName" class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 flex items-center justify-center mb-3 hover:text-bravo focus:text-bravo hover:cursor-pointer"
            :class="[dragging === true ? 'dropZone-over' : 'dropZone']" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="drop">
 
@@ -9,21 +22,6 @@
       </div>
 
       <input :id="inputName" type="file" :name="inputName ? inputName : 'image'" @change="onChange" class="hidden">
-
-    </label>
-  </div>
-
-  <div v-else>
-    <label class="[ dashed-border ] text-sm text-alphaLight-800 rounded px-6 py-12 block items-center justify-center mb-3">
-
-      <template v-if="preview !== null">
-        <img :src="preview" alt="" class="mx-auto max-h-44" />
-      </template>
-
-      <div class="flex items-center justify-center mt-3 hover:cursor-pointer pt-4 pb-4 delete-image" @click.prevent="removeFile">
-        <XIcon class="w-5 h-5 mr-2" />
-        Delete {{ files.name }}
-      </div>
 
     </label>
   </div>
@@ -104,12 +102,6 @@ export default {
         }
       }
 
-      if (file.size > 5000000) {
-        errorMessage.value = 'File is bigger than 5MB!'
-        dragging.value = false
-        return
-      }
-
       files.value = file
       dragging.value = false
 
@@ -118,36 +110,34 @@ export default {
       reader.onloadend = function () {
         baseString = reader.result
         preview.value = baseString
+
+        if (props.inputName === 'store-logo') {
+          setupData.project.store.images.store = baseString
+        } else {
+          setupData.project.store.images.email = baseString
+        }
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
 
       if (document.getElementById(props.inputName).name === 'store-logo') {
         setupData.project.store.logo.store = file
-        setupData.project.store.logo.uploaded = true
-        return
-      }
-
-      if (document.getElementById(props.inputName).name === 'email-logo') {
+      } else {
         setupData.project.store.logo.email = file
-        setupData.project.store.logo.uploaded = true
       }
     }
 
     function removeFile() {
-      files.value = ''
       errorMessage.value = null
 
       if (props.inputName === 'store-logo') {
         setupData.project.store.logo.store = ''
-      }
-
-      if (props.inputName === 'email-logo') {
+        setupData.project.store.images.store = ''
+      } else if (props.inputName === 'email-logo') {
         setupData.project.store.logo.email = ''
-      }
-
-      if (setupData.project.store.logo.store === '' && setupData.project.store.logo.email === '') {
-        setupData.project.store.logo.uploaded = false
+        setupData.project.store.images.email = ''
+      } else {
+        files.value = ''
       }
     }
 
@@ -176,7 +166,12 @@ export default {
       let baseString = null
       reader.onloadend = function () {
         baseString = reader.result
-        preview.value = baseString
+
+        if (props.inputName === 'store-logo') {
+          setupData.project.store.images.store = baseString
+        } else {
+          setupData.project.store.images.email = baseString
+        }
       };
 
       reader.readAsDataURL(event.dataTransfer.files[0])
@@ -191,6 +186,18 @@ export default {
       }
     }
 
+    function getPreview() {
+      if (preview.value !== null) {
+          return preview.value
+      } else {
+        if (props.inputName === 'store-logo') {
+          return setupData.project.store.images.store
+        } else {
+          return setupData.project.store.images.email
+        }
+      }
+    }
+
     return {
       setupData,
       errorMessage,
@@ -201,6 +208,7 @@ export default {
       onChange,
       createFile,
       removeFile,
+      getPreview,
     }
   },
 }
