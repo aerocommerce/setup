@@ -415,6 +415,10 @@ export default {
               post_code: setupData.project.store.address.post_code,
               phone: setupData.project.store.address.phone,
               tax_id: setupData.project.store.address.tax_id,
+              logos: {
+                store: setupData.project.store.images.store !== '',
+                email: setupData.project.store.images.email !== '',
+              }
             },
           },
           {

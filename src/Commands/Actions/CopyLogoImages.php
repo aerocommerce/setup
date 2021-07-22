@@ -11,7 +11,7 @@ class CopyLogoImages
     public function handle($options)
     {
         if (File::exists($file = storage_path("app/store.svg"))) {
-            File::move($file, base_path("themes/{$options->theme}/public/logo.svg"));
+            File::move($file, public_path("logo.svg"));
         }
 
         if (File::exists($file = storage_path("app/email.png"))) {

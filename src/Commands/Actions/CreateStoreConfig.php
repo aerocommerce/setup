@@ -2,11 +2,8 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-use Aero\Common\Settings\Setting;
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class CreateStoreConfig
@@ -20,44 +17,61 @@ class CreateStoreConfig
                 File::delete(config_path('aero/store.php'));
             }
 
-            $json = json_encode([
-                'default' => 'en_GB',
-                'en_GB' => [
-                    'type' => 'root',
-                    'name' => env('APP_NAME'),
-                    'language' => $options->store_language ?? 'en',
-                    'fallback_language' => 'en',
-                    'customer_tax_group_id' => 1,
-                    'country' => $options->store_country ?? 'GB',
-                    'locale' => 'en_GB',
-                    'currency_code' => $options->store_currency ?? 'GBP',
-                    'address' => [
-                        'country' => $options->country,
-                        'line_1' => $options->line_1,
-                        'line_2' => $options->line_2,
-                        'city' => $options->city,
-                        'post_code' => $options->post_code,
-                        'phone' => $options->phone,
-                        'tax_id' => $options->tax_id,
-                    ]
-                ],
-            ], JSON_PRETTY_PRINT);
+            $config = <<<TXT
+            <?php
 
-            $json = strtr($json, [
-                '{' => '[',
-                ':' => ' =>',
-                '}' => ']',
-                '"' => "'",
-                ]);
+            return [
+                'default' => '{default}',
+
+                'configurations' => [
+                    '{default}' => [
+                        'type' => 'root',
+                        'name' => '{app_name}',
+                        'language' => '{language}',
+                        'fallback_language' => 'en',
+                        'customer_tax_group_id' => 1,
+                        'country' => '{store_country}',
+                        'locale' => 'en_GB',
+                        'currency_code' => '{store_currency}',
+                        'address' => [
+                            'country' => '{country}',
+                            'line_1' => '{line_1}',
+                            'line_2' => '{line_2}',
+                            'city' => '{city}',
+                            'post_code' => '{post_code}',
+                            'phone' => '{phone}',
+                            'tax_id' => '{tax_id}'
+                        ]
+                    ]
+                ]
+            ];
+            TXT;
+
+            $map = [
+                '{default}' => 'en_GB',
+                '{app_name}' => env('APP_NAME'),
+                '{language}' => $options->store_language ?? 'en',
+                '{store_country}' => $options->store_country ?? 'GB',
+                '{store_currency}' => $options->store_currency ?? 'GBP',
+
+                '{country}' => $options->country,
+                '{line_1}' => $options->line_1,
+                '{line_2}' => $options->line_2,
+                '{city}' => $options->city,
+                '{post_code}' => $options->post_code,
+                '{phone}' => $options->phone,
+                '{tax_id}' => $options->tax_id,
+            ];
+
+            foreach ($map as $key => $replacement) {
+                $config = str_replace($key, $replacement, $config);
+            }
 
             if (! File::isDirectory(config_path('aero'))) {
                 File::makeDirectory(config_path('aero'));
             }
 
-            file_put_contents(config_path('aero/store.php'),
-            "<?php" . PHP_EOL . PHP_EOL .
-                 "return " . $json . ';'
-            );
+            file_put_contents(config_path('aero/store.php'), $config);
         } catch (\Exception $e) {
             dd($e);
         }
