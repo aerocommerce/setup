@@ -38,7 +38,7 @@
 							</div>
 						</transition>
 
-						<div class="flex flex-col xl:flex-row gap-6 justify-between xl:items-center">
+						<div class="flex flex-wrap flex-col xl:flex-row gap-6 justify-between xl:items-center">
 
 							<div class="flex items-center gap-3">
 								<span class="flex-shrink-0 w-3 h-3 block rounded-full animation-blink border-2 border-alphaLight-400" :title="serviceWorker.statusText" :class="serviceWorker.status ? 'bg-green' : 'bg-red'"></span>
@@ -70,7 +70,7 @@
 
 		<transition name="slide">
 
-			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300 delay-300 ease-linear" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-2xl' : 'w-full xl:max-w-[60rem]' ]">
+			<main v-if="!stepsComplete" class="relative bg-alpha-900 shadow z-10 xl:min-h-full overflow-auto transition-all duration-300 delay-300 ease-linear" :class="[ currentStepEntry.size === 'small' ? 'w-full xl:max-w-2xl' : 'w-full xl:max-w-[50vw]' ]">
 				<div class="xl:relative md:px-6 xl:py-0 h-full">
 					<component :is="currentStepEntry.component" />
 				</div>
