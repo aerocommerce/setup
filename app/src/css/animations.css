@@ -85,7 +85,7 @@
 
     .animate-up {
         transition: transform 600ms ease;
-        transform: translateX(-50%) translateY(-100vh) !important;
+        transform: translateX(-50%) translateY(-125vh) !important;
     }
 
 }
