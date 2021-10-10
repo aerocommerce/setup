@@ -7,18 +7,27 @@
 
         <label class="block mt-3" :for="id">
             <p class="mb-0">{{ title }}</p>	
-            <small class="block text-alphaLight-900">{{ author }}</small>
+            <small class="block text-alphaLight-900">by {{ author }}</small>
         </label>
     </div>
     
 </template>
 
 <script>
-	
 	export default {
-		props: ['id', 'modelValue', 'value', 'name', 'title', 'author', 'thumbnail'],
+		props: ['id', 'modelValue', 'value', 'name', 'theme'],
+    computed: {
+		  title() {
+		    return this.theme.name || this.theme.key
+      },
+		  thumbnail() {
+		    return this.theme.media.length ? this.theme.media[0].url : null
+      },
+      author() {
+		    return this.theme.organization ? this.theme.organization.name : this.theme.author.name
+      }
+    },
 	}
-
 </script>
 
 <style scoped>

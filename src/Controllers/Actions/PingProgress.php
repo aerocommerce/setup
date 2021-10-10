@@ -3,7 +3,6 @@
 namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PingProgress
 {

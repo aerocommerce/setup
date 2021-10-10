@@ -18,42 +18,42 @@ class CreateStoreConfig
             }
 
             $config = <<<TXT
-            <?php
+<?php
 
-            return [
-                'default' => '{default}',
+return [
+    'default' => '{default}',
 
-                'configurations' => [
-                    '{default}' => [
-                        'type' => 'root',
-                        'name' => '{app_name}',
-                        'language' => '{language}',
-                        'fallback_language' => 'en',
-                        'customer_tax_group_id' => 1,
-                        'country' => '{store_country}',
-                        'locale' => 'en_GB',
-                        'currency_code' => '{store_currency}',
-                        'address' => [
-                            'country' => '{country}',
-                            'line_1' => '{line_1}',
-                            'line_2' => '{line_2}',
-                            'city' => '{city}',
-                            'post_code' => '{post_code}',
-                            'phone' => '{phone}',
-                            'tax_id' => '{tax_id}'
-                        ]
-                    ]
-                ]
-            ];
-            TXT;
+    'configurations' => [
+        '{default}' => [
+            'type' => 'root',
+            'name' => '{app_name}',
+            'language' => '{language}',
+            'fallback_language' => 'en',
+            'customer_tax_group_id' => 1,
+            'country' => '{store_country}',
+            'locale' => '{store_locale}',
+            'currency_code' => '{store_currency}',
+            'address' => [
+                'country' => '{country}',
+                'line_1' => '{line_1}',
+                'line_2' => '{line_2}',
+                'city' => '{city}',
+                'post_code' => '{post_code}',
+                'phone' => '{phone}',
+                'tax_id' => '{tax_id}'
+            ]
+        ]
+    ]
+];
+TXT;
 
             $map = [
-                '{default}' => 'en_GB',
+                '{default}' => $options->store_key ?? 'english',
                 '{app_name}' => env('APP_NAME'),
                 '{language}' => $options->store_language ?? 'en',
                 '{store_country}' => $options->store_country ?? 'GB',
                 '{store_currency}' => $options->store_currency ?? 'GBP',
-
+                '{store_locale}' => $options->store_locale ?? 'en_GB',
                 '{country}' => $options->country,
                 '{line_1}' => $options->line_1,
                 '{line_2}' => $options->line_2,

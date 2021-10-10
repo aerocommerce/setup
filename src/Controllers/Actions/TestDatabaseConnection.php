@@ -2,6 +2,7 @@
 
 namespace Aero\Setup\Controllers\Actions;
 
+use Exception;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,7 @@ class TestDatabaseConnection
             return response([
                 'databases' => $databases,
             ]);
-        } catch (\RuntimeException $e) {
+        } catch (Exception $_) {
             //
         } finally {
             config([$key => $defaults]);

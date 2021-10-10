@@ -1,6 +1,6 @@
 <template>
     <TransitionRoot appear :show="isOpen" as="template">
-        <Dialog as="div" :open="isOpen">
+      <Dialog as="div" :open="isOpen">
         <div class="fixed inset-0 z-50 overflow-y-auto text-white">
             <div class="min-h-screen px-4 text-center">
                 <TransitionChild
@@ -28,7 +28,7 @@
                     leave-from="opacity-100 scale-100"
                     leave-to="opacity-0 scale-90"
                 >
-                    <div class="inline-block w-full max-w-3xl p-6 xl:p-9 my-12 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg bg-alpha-900">
+                    <div class="inline-block w-full max-w-3xl p-6 xl:p-9 my-12 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg" :class="isError ? 'bg-red' : 'bg-alpha-900'">
                         <DialogTitle as="h3" class="text-2xl font-medium leading-6 text-white mb-6">
                             <slot name="title" />
                         </DialogTitle>
@@ -44,7 +44,7 @@
                 </TransitionChild>
             </div>
         </div>
-        </Dialog>
+      </Dialog>
     </TransitionRoot>
 </template>
 
@@ -68,7 +68,7 @@
             DialogDescription,
         },
 
-        props: ['isOpen'],
+        props: ['isOpen', 'isError'],
 
     }
 </script>

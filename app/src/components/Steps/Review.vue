@@ -10,7 +10,7 @@
 		</template>
 
 		<div class="mb-9">
-			<SingleAccordion :model-value="true">
+			<SingleAccordion :value="false">
 				
 				<template #title>
 					<span class="text-xl py-3">Project information</span>
@@ -66,7 +66,7 @@
 		</div>
 
 		<div class="mb-9">
-			<SingleAccordion :model-value="true">
+			<SingleAccordion :value="false">
 				
 				<template #title>
 					<span class="text-xl py-3">Store information</span>
@@ -129,7 +129,7 @@
 								<PencilIcon class="w-3 h-3" />
 							</span>
 						</dt>
-						<dd class="break-all">{{ languages[setupData.project.store.language].name }}</dd>
+						<dd class="break-all">{{ languages[setupData.project.store.locale].name }}</dd>
 					</div>
 
           <div class="group cursor-pointer" @click="jumpToStep(5)">
@@ -277,7 +277,7 @@
 		</div>
 
 		<div class="mb-9">
-			<SingleAccordion :model-value="true">
+			<SingleAccordion :value="false">
 				
 				<template #title>
 					<span class="text-xl py-3">Catalog & theme</span>
@@ -316,7 +316,7 @@
 		</div>
 
     <div>
-      <SingleAccordion :model-value="true">
+      <SingleAccordion :value="false">
 
         <template #title>
           <span class="text-xl py-3">Admin account</span>
@@ -385,9 +385,9 @@
 	import SingleAccordion from '../Elements/SingleAccordion.vue'
 	import Step from '../Step.vue'
 	import { PencilIcon } from '@heroicons/vue/outline'
-  import countries from "../../countries";
-	import currencies from "../../currencies"
-  import languages from "../../languages"
+  import countries from '../../countries'
+	import currencies from '../../currencies'
+  import languages from '../../languages'
 
 	export default {
 		components: {

@@ -29,7 +29,7 @@
         <h2 class="text-5xl font-medium text-white mb-1" v-text="setupData.project.theme.name"></h2>
 
         <template v-if="setupData.project.theme.organization">
-          <p class="text-alphaLight-800" v-text="'by ' + setupData.project.theme.author.name + '(' + setupData.project.theme.organization + ')'"></p>
+          <p class="text-alphaLight-800" v-text="'by ' + setupData.project.theme.organization.name"></p>
         </template>
         <template v-else>
           <p class="text-alphaLight-800" v-text="'by ' + setupData.project.theme.author.name"></p>
@@ -39,7 +39,7 @@
 
         <div class="flex flex-wrap">
 
-          <div class="mr-12 mb-6">
+          <div class="mr-12 mb-6" v-if="setupData.project.theme.frameworks.length">
             <p class="text-xs text-alphaLight-800">Frameworks</p>
             <div v-for="(framework, index) in setupData.project.theme.frameworks" class="inline-flex">
               <span class="text-white inline" v-text="framework"></span>

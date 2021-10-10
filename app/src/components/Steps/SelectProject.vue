@@ -114,7 +114,7 @@
       watch(selectedProject, (value) => {
         existingProjects.value.forEach((project) => {
           if (project.id === value) {
-            setupData.project.token = project.token;
+            setupData.project.token = project.token
             setupData.project.name = project.name
 
             return
@@ -150,24 +150,24 @@
 
 			  if (selectedProjectType.value === 'new_project') {
           if (!setupData.project.name.length) {
-            errorMessage.value = 'Please enter a project name.'
+            errorMessage.value = 'Please enter a project name'
             return
           }
 
-          let found = false;
+          let found = false
           Object.entries(existingProjects.value).forEach((value) => {
               if (value[1].name.toLowerCase() === setupData.project.name.toLowerCase()) {
-                found = true;
+                found = true
               }
           })
 
           if (found) {
-            errorMessage.value = 'Project with the provided name already exists!'
+            errorMessage.value = 'Project with the provided name already exists'
             return
           }
         } else {
           if (!setupData.project.id) {
-            errorMessage.value = 'Please select a project.'
+            errorMessage.value = 'Please select a project'
             return
           }
         }

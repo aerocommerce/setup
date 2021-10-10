@@ -25,9 +25,9 @@ export default {
         industry: '',
         country: 'GB',
         currency: 'GBP',
-        language: 'en',
+        locale: 'en_GB',
         sender_email: '',
-        tax: 'inc-tax',
+        tax: 'inc',
         logo: {
             store: '',
             email: '',
@@ -48,6 +48,7 @@ export default {
     },
     theme: {
         id: '',
+        key: '',
         name: '',
         author: '',
         description: '',

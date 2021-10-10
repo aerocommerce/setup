@@ -3,6 +3,7 @@
 namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
+use Exception;
 use Illuminate\Database\DatabaseManager;
 
 class CreateDatabase
@@ -28,7 +29,7 @@ class CreateDatabase
 
             $manager = new DatabaseManager(app(), app('db.factory'));
             $manager->connection()->select("CREATE DATABASE {$options->database}");
-        } catch (\RuntimeException $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
 

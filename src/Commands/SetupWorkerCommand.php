@@ -3,12 +3,13 @@
 namespace Aero\Setup\Commands;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
 class SetupWorkerCommand extends Command
 {
-    protected $signature = 'aero:setup:worker';
+    protected $signature = 'setup';
     protected $description = 'Run a worker that will setup the Aero store';
     protected $id;
     protected $board;
@@ -56,6 +57,7 @@ class SetupWorkerCommand extends Command
 
             return $this->craftWorkerboard();
         }
+
         return json_decode(file_get_contents($file), true);
     }
 
@@ -75,7 +77,7 @@ class SetupWorkerCommand extends Command
             throw_if(
                 now()->subSeconds(5)
                     ->lessThan(Carbon::createFromTimestamp($this->board['lastPinged'])),
-                new \Exception('A worker is already is already running.')
+                new Exception('A worker is already is already running.')
             );
         }
         $this->running = true;
@@ -90,7 +92,7 @@ class SetupWorkerCommand extends Command
     {
         $file = storage_path('app/data.json');
 
-        if (file_exists($file)) {
+        if (false && file_exists($file)) {
             $progress = 0;
 
             $setupFile = storage_path('app/setup.json');
@@ -108,11 +110,12 @@ class SetupWorkerCommand extends Command
 
                         try {
                             $this->processAction($job->class, $job->options);
-                        } catch (\Exception $e) {
+                        } catch (Exception $_) {
                             $setup = json_decode(file_get_contents($setupFile));
                             $setup->errors[] = [
-                                'Error with job ' . substr($job->class, strpos($job->class, "\\") + 1),
+                                'Error with job '.substr($job->class, strpos($job->class, "\\") + 1),
                             ];
+
                             file_put_contents($setupFile, json_encode($setup));
 
                             continue;

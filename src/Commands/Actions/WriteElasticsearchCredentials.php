@@ -2,9 +2,9 @@
 
 namespace Aero\Setup\Commands\Actions;
 
-
 use Aero\Setup\Commands\Traits\InteractsWithEnv;
 use Aero\Setup\Commands\Traits\StoresErrors;
+use Exception;
 
 class WriteElasticsearchCredentials
 {
@@ -16,7 +16,7 @@ class WriteElasticsearchCredentials
             $this->setEnvValue('STORE_IDENTIFIER', $options->identifier);
             $this->setEnvValue('ELASTICSEARCH_HOST', $options->host);
             $this->setEnvValue('ELASTICSEARCH_PORT', $options->port);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
     }

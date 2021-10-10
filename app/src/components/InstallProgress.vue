@@ -260,7 +260,7 @@
       </svg>
 
       <div class="text-center">
-        <p class="text-xl md:text-3xl uppercase font-medium lg:max-w-screen-1/2 xl:max-w-screen-1/3 px-24">Creating your new store</p>
+        <p class="text-xl md:text-3xl uppercase font-medium lg:max-w-screen-1/2 xl:max-w-screen-1/3 px-24">Creating your store</p>
       </div>
 
       <div class="w-full my-9 px-12">
@@ -304,6 +304,7 @@
 import {inject} from 'vue'
 import Steps from '../steps'
 import Logo from './Elements/Logo.vue'
+import languages from '../languages'
 
 const steps = Steps
 
@@ -317,11 +318,6 @@ export default {
     const setupData = inject('setupData')
     const serviceWorker = inject('serviceWorker')
     const storeDomain = document.location.hostname
-    setupData.progress = 0
-    setupData.progressText = 'Getting warmed up'
-    setupData.progressStep = 0
-    setupData.highestStep = 0
-    setupData.installComplete = false
 
     const generateJobList = (setup) => {
       let jobs = []
@@ -404,9 +400,12 @@ export default {
             class: 'Aero\\Setup\\Commands\\Actions\\CreateStoreConfig',
             message: 'Creating store configuration',
             options: {
-              store_language: setupData.project.store.language,
+              store_key: languages[setupData.project.store.locale].key,
+              store_language: languages[setupData.project.store.locale].language,
+              store_locale: languages[setupData.project.store.locale].locale,
               store_country: setupData.project.store.country,
               store_currency: setupData.project.store.currency,
+              store_tax: setupData.project.store.tax,
               country: setupData.project.store.address.country,
               line_1: setupData.project.store.address.line_1,
               line_2: setupData.project.store.address.line_2,
@@ -417,18 +416,13 @@ export default {
               logos: {
                 store: setupData.project.store.images.store !== '',
                 email: setupData.project.store.images.email !== '',
-              }
+              },
             },
           },
           {
             class: 'Aero\\Setup\\Commands\\Actions\\InstallDependencies',
             message: 'Installing dependencies',
             options: {
-              host: setup.project.databaseHost,
-              port: setup.project.databasePort,
-              username: setup.project.databaseUsername,
-              password: setup.project.databasePassword,
-              database: setup.project.database,
               seed: true,
             },
           },
@@ -470,7 +464,6 @@ export default {
             name: setup.project.admin.name,
             email: setup.project.admin.email,
             password: setup.project.admin.password,
-            database: setup.project.database,
           },
         })
       }
@@ -484,14 +477,16 @@ export default {
       return jobs
     }
 
-    let jobs = generateJobList(setupData)
+    const body = JSON.stringify(setupData)
 
-    fetch(`${setupData.host}/setup/actions/finalize`, {
+    setupData.progress = 0
+    setupData.progressText = 'Getting warmed up'
+    setupData.installComplete = false
+
+    fetch(`${setupData.host}/setup/actions/install`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({jobs})
+      headers: {'Content-Type': 'application/json'},
+      body,
     })
     .then((result) => {
       result.json()
@@ -505,14 +500,17 @@ export default {
               updateProgress()
             } else {
               // ERROR
+              alert('There was a problem with the installation')
             }
           })
           .catch((_) => {
             // ERROR
+            alert('There was a problem with the installation')
           })
     })
     .catch((_) => {
       // ERROR
+      alert('There was a problem with the installation')
     })
 
     function complete() {
@@ -524,13 +522,11 @@ export default {
     const updateProgress = () => {
       fetch(`${setupData.host}/setup/actions/ping-progress`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
       })
           .then((result) => {
             if (result.status === 404) {
-              complete();
+              complete()
             }
 
             result.json()
@@ -561,7 +557,7 @@ export default {
           })
           .catch((response) => {
             if (response.status === 404) {
-              complete();
+              complete()
             }
           })
     }

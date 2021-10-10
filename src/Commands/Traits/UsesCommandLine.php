@@ -2,6 +2,7 @@
 
 namespace Aero\Setup\Commands\Traits;
 
+use Exception;
 use Symfony\Component\Process\Process;
 
 trait UsesCommandLine
@@ -10,17 +11,13 @@ trait UsesCommandLine
     {
         $process = new Process($command, null, ['COMPOSER_MEMORY_LIMIT' => '-1'], null, null);
         if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
-            try {
-                $process->setTty(true);
-            } catch (\Exception $e) {
-                dd($e);
-            }
+            $process->setTty(true);
         }
 
         $process->setTimeout(null)->run();
 
         if (! $process->isSuccessful()) {
-            dd($process->getErrorOutput());
+            throw new Exception($process->getErrorOutput());
         }
     }
 }

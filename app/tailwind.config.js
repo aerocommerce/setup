@@ -175,10 +175,10 @@ module.exports = {
 				'48': '12.944rem',
 				'56': '15.1013rem',
 				'64': '17.258666688rem',
-				'48': '12.944rem',
 			},
 			screens: {
-				'illustration': {'raw': '(min-width: 1280px) and (min-height: 768px)'},
+				'xl': '1220px',
+				'illustration': {'raw': '(min-width: 1220px) and (min-height: 630px)'},
 				// => @media (orientation: portrait) { ... }
 			},
 			transitionProperty: {

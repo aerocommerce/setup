@@ -36,7 +36,7 @@
 
             <div>
               <label for="admin-password" class="mb-1">Password</label>
-              <input type="password" id="admin-password" name="admin-password" v-model="setupData.project.admin.password" placeholder="Enter password">
+              <input type="password" id="admin-password" name="admin-password" v-model="setupData.project.admin.password" placeholder="Enter password" autocomplete="new-password">
             </div>
           </div>
 
@@ -65,13 +65,13 @@
 </template>
 
 <script>
+  import {computed, inject, ref} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
 	import SuccessMessage from '../Elements/SuccessMessage.vue'
   import ErrorMessage from '../Elements/ErrorMessage.vue'
 	import Step from '../Step.vue'
-  import {computed, inject, ref} from "vue";
 
 	export default {
 		components: {
@@ -142,30 +142,30 @@
           let password = setupData.project.admin.password
 
           if (!name.length) {
-            errorMessage.value = 'You must provide a user name for the admin account.'
+            errorMessage.value = 'You must provide a username for the admin account'
 
             return
           }
 
           if (!email.length) {
-            errorMessage.value = 'You must provide an email for the admin account.'
+            errorMessage.value = 'You must provide an email for the admin account'
 
             return
           }
 
           if (! email.includes('@') || ! email.includes('.')) {
-            errorMessage.value = 'Email must be in a valid email format.'
+            errorMessage.value = 'Email must be in a valid email format'
 
             return
           }
 
 
           if (!password.length) {
-            errorMessage.value = 'You must provide a password for the admin account.'
+            errorMessage.value = 'You must provide a password for the admin account'
 
             return
           } else if (password.length < 8) {
-            errorMessage.value = 'Password must be at least 8 characters long.'
+            errorMessage.value = 'Password must be at least 8 characters long'
 
             return
           }

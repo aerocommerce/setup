@@ -4,6 +4,7 @@ namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\InteractsWithEnv;
 use Aero\Setup\Commands\Traits\StoresErrors;
+use Exception;
 
 class WriteDatabaseCredentials
 {
@@ -18,7 +19,7 @@ class WriteDatabaseCredentials
             $this->setEnvValue('DB_DATABASE', $options->database);
             $this->setEnvValue('DB_USERNAME', $options->username);
             $this->setEnvValue('DB_PASSWORD', $options->password);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
     }

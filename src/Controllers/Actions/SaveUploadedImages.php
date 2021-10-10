@@ -2,6 +2,7 @@
 
 namespace Aero\Setup\Controllers\Actions;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class SaveUploadedImages
@@ -13,7 +14,7 @@ class SaveUploadedImages
                 $file = $request->file($key);
                 $file->storeAs('', "{$key}.{$file->extension()}");
             }
-        } catch (\Exception $e) {
+        } catch (Exception $_) {
             return ['success' => false];
         }
 

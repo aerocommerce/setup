@@ -14,7 +14,7 @@
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-x-6 gap-y-9">
 
       <div v-for="theme in existingThemes" :key="theme.id">
-        <ThemeSelector :id="theme.key" v-model="setupData.project.theme.id" :value="theme.id" name="theme" :author="'by ' + theme.author.name" :title="theme.key" :thumbnail="theme.media.length ? theme.media[0].url : null"></ThemeSelector>
+        <ThemeSelector :id="theme.key" v-model="setupData.project.theme.id" :value="theme.id" name="theme" :theme="theme"></ThemeSelector>
       </div>
 
 		</div>
@@ -84,7 +84,7 @@ import Step from '../Step.vue'
               setupData.project.themes = json.themes.length
 
               if (json.themes.length === 0) {
-                errorMessage.value = 'No themes are associated with your account!'
+                errorMessage.value = 'No themes are associated with your account'
 
                 return
               }
@@ -94,8 +94,10 @@ import Step from '../Step.vue'
                   if (count > 0) return
 
                   setupData.project.theme.id = theme[1].id
-                  setupData.project.theme.name = theme[1].key
+                  setupData.project.theme.key = theme[1].key
+                  setupData.project.theme.name = theme[1].name
                   setupData.project.theme.author = theme[1].author
+                  setupData.project.theme.organization = theme[1].organization
                   setupData.project.theme.description = theme[1].description
                   setupData.project.theme.thumbnail = theme[1].media ? theme[1].media[1].url : null
                   setupData.project.theme.frameworks = theme[1].frameworks
@@ -113,8 +115,10 @@ import Step from '../Step.vue'
       watch(selectedTheme, (value) => {
         Object.entries(existingThemes.value).forEach((theme) => {
           if (parseInt(theme[1].id) === parseInt(value)) {
-            setupData.project.theme.name = theme[1].key
+            setupData.project.theme.key = theme[1].key
+            setupData.project.theme.name = theme[1].name
             setupData.project.theme.author = theme[1].author
+            setupData.project.theme.organization = theme[1].organization
             setupData.project.theme.description = theme[1].description
             setupData.project.theme.thumbnail = theme[1].media[1] ? theme[1].media[1].url : null
             setupData.project.theme.frameworks = theme[1].frameworks
@@ -126,7 +130,7 @@ import Step from '../Step.vue'
         errorMessage.value = null
 
         if (selectedTheme === null) {
-          errorMessage.value = 'You must choose a theme before proceeding.'
+          errorMessage.value = 'You must choose a theme before proceeding'
           return
         }
 

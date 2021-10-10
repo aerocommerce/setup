@@ -38,8 +38,8 @@
 
           <div class="grid grid-cols-4 gap-6">
 
-            <div v-for="preview in setupData.project.catalog.images" class="relative bg-alpha-300">
-              <img :src="preview" alt="">
+            <div v-for="preview in setupData.project.catalog.images" class="relative rounded bg-alpha-300">
+              <img :src="preview" class="rounded" alt="">
 <!--              <PhotographIcon class="text-alphaLight-200 w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />-->
             </div>
 
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+  import {computed, inject, ref, watch} from 'vue'
 	import BackButton from '../Elements/BackButton.vue'
 	import NextButton from '../Elements/NextButton.vue'
 	import Step from '../Step.vue'
@@ -76,7 +77,6 @@
 	import WarningMessage from '../Elements/WarningMessage.vue'
 	import ContentGroup from '../Elements/ContentGroup.vue'
 	import { PhotographIcon } from '@heroicons/vue/outline'
-  import {computed, inject, ref, watch} from "vue";
 
 	export default {
 		components: {
@@ -181,11 +181,11 @@
         errorMessage.value = null
 
         if (setupData.project.catalog.type === 'import') {
-          let select = document.getElementById('select-sample');
+          let select = document.getElementById('select-sample')
           if (select.value === '') {
-            errorMessage.value = 'You must choose sample data if you wish to import, otherwise skip this step and continue!'
+            errorMessage.value = 'You must choose sample data if you wish to import, otherwise skip this step and continue'
 
-            return;
+            return
           }
         }
 
@@ -193,7 +193,7 @@
       }
 
       const changePreview = (value) => {
-        setupData.project.catalog.preview = value.target.value !== '';
+        setupData.project.catalog.preview = value.target.value !== ''
       }
 
       return {

@@ -4,6 +4,7 @@ namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
+use Exception;
 
 class SeedCatalogData
 {
@@ -19,7 +20,7 @@ class SeedCatalogData
                 $options->url,
                 '--quiet',
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
     }

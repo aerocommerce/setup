@@ -3,6 +3,7 @@
 namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
+use Exception;
 
 class CreateAuthFile
 {
@@ -19,7 +20,7 @@ class CreateAuthFile
                     ],
                 ],
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        } catch(\Exception $_) {
+        } catch(Exception $e) {
             $this->error($e);
         }
 

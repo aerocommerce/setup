@@ -136,8 +136,8 @@ import {inject, watch, ref, computed} from 'vue'
         errorMessage.value = null
 
         if (!setupData.project.database.length) {
-          if (databaseType.value === 'new_database') errorMessage.value = 'Please enter a database name.'
-          else errorMessage.value = 'Please select a database.'
+          if (databaseType.value === 'new_database') errorMessage.value = 'Please enter a database name'
+          else errorMessage.value = 'Please select a database'
           return
         } else {
           let name = setupData.project.database
@@ -145,12 +145,12 @@ import {inject, watch, ref, computed} from 'vue'
               .replace(/[a-z0-9_-]/g, '')
 
           if (name.length) {
-            errorMessage.value = 'Invalid database name.'
+            errorMessage.value = 'Invalid database name'
             return
           }
 
           if (setupData.project.databaseType === 'new_database') {
-            let found = false;
+            let found = false
             Object.entries(setupData.project.databases).forEach((value) => {
               if (value[1].toLowerCase() === setupData.project.database.toLowerCase()) {
                 found = true;
@@ -158,7 +158,7 @@ import {inject, watch, ref, computed} from 'vue'
             })
 
             if (found) {
-              errorMessage.value = 'Database with the provided name already exists!'
+              errorMessage.value = 'Database with the provided name already exists'
               return
             }
           }

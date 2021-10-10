@@ -5,6 +5,7 @@ namespace Aero\Setup\Commands\Actions;
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Aero\Setup\Commands\Traits\UsesComposer;
+use Exception;
 
 class InstallDependencies
 {
@@ -17,7 +18,7 @@ class InstallDependencies
 
             $this->runCommand([$composer, 'update', '--no-scripts', '--prefer-dist', '--quiet']);
             $this->runCommand([$composer, 'dump-autoload', '--quiet']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
            $this->error($e);
         }
 
@@ -29,7 +30,7 @@ class InstallDependencies
             }
 
             $this->runCommand($command);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
 

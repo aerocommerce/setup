@@ -11,6 +11,13 @@ class CreateProject
 {
     use StoresErrors;
 
+    protected $authAction;
+
+    public function __construct(CreateAuthFile $authAction)
+    {
+        $this->authAction = $authAction;
+    }
+
     public function handle($options): bool
     {
         $client = new Client();
@@ -35,7 +42,7 @@ class CreateProject
 
             [$username, $password] = explode(':', base64_decode($token));
 
-            return app(CreateAuthFile::class)->handle((object) [
+            return $this->authAction->handle((object) [
                 'user' => $username,
                 'pass' => $password,
             ]);

@@ -4,7 +4,7 @@ namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
-use Illuminate\Database\DatabaseManager;
+use Exception;
 
 class CreateAdminAccount
 {
@@ -21,7 +21,7 @@ class CreateAdminAccount
                 $options->password,
                 $options->name,
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
 

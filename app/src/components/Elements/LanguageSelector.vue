@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import { ref, watch } from 'vue'
 import {
 	Listbox,
 	ListboxLabel,
@@ -63,8 +63,12 @@ import {
 	ListboxOption,
 } from '@headlessui/vue'
 import { GlobeIcon, CheckIcon, ChevronDownIcon } from '@heroicons/vue/outline'
+import languages from '../../languages'
 
 export default {
+  props: {
+    modelValue: { type: String, required: true },
+  },
 	components: {
 		Listbox,
 		ListboxLabel,
@@ -76,18 +80,14 @@ export default {
 		GlobeIcon,
 	},
 
-	setup() {
-		const languages = [
-			{ name: "English" },
-			// { name: "French" },
-			// { name: "Spanish" },
-		]
+	setup(props, {emit}) {
+    const selectedLanguage = ref(languages[props.modelValue])
 
-		const selectedLanguage = ref(languages[0])
+    watch(selectedLanguage, (value) => emit('update:modelValue', value.locale))
 
 		return {
 			languages,
-			selectedLanguage,
+      selectedLanguage,
 		}
 	},
 }

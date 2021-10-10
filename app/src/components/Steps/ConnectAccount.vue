@@ -89,7 +89,7 @@
         if (setupData.agora && setupData.agora.user) return advanceStep()
 
         if (!email.length || !password.length) {
-          errorMessage.value = 'Please enter your email and password.'
+          errorMessage.value = 'Please enter your email and password'
           return
         }
 

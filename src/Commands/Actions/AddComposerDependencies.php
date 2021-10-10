@@ -5,17 +5,25 @@ namespace Aero\Setup\Commands\Actions;
 class AddComposerDependencies
 {
     protected $dependencies = [
-        'aerocommerce/admin' => '^0',
+        'aerocommerce/admin' => 'dev-master',
         'aerocommerce/checkout' => '^0',
-        'aerocommerce/core' => '^0',
+        'aerocommerce/core' => 'dev-master',
         'aerocommerce/elastic-search' => '^0',
     ];
 
     protected $devDependencies = [
-        'aerocommerce/dev' => '^0',
+        //'aerocommerce/dev' => '^0',
     ];
 
     protected $repositories = [
+        [
+            'type' => 'path',
+            'url' => '/Users/tim/code/aero/core',
+        ],
+        [
+            'type' => 'path',
+            'url' => '/Users/tim/code/aero/admin',
+        ],
         [
             'type' => 'composer',
             'url' => 'https://agora.aerocommerce.com',

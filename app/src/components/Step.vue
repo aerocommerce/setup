@@ -39,7 +39,7 @@
 		<div class="mt-auto">
 			<div class="flex items-center mb-9">
 				<QuestionMarkCircleIcon class="w-4 h-4 mr-2 text-bravo" />
-				<a href="#" target="_blank" rel="noopener noreferrer">I need help with this</a>
+				<a href="https://support.aerocommerce.com?utm_source=store-setup" target="_blank" rel="noopener noreferrer">I need help with this</a>
 			</div>
 			
 			<div class="flex flex-wrap gap-6 justify-between items-center">

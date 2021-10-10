@@ -48,10 +48,10 @@
 </style>
 
 <script>
+import {inject, ref, watch} from 'vue'
 import ErrorMessage from '../Elements/ErrorMessage.vue'
-import {CheckIcon, ChevronDownIcon, GlobeIcon, XIcon} from "@heroicons/vue/outline/esm";
-import {UploadIcon} from "@heroicons/vue/outline";
-import {inject, ref, watch} from "vue";
+import {CheckIcon, ChevronDownIcon, GlobeIcon, XIcon} from '@heroicons/vue/outline/esm'
+import {UploadIcon} from '@heroicons/vue/outline'
 
 export default {
   components: {
@@ -90,13 +90,13 @@ export default {
     function createFile(file) {
       if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!file.type.match('image.svg')) {
-          errorMessage.value = 'The store logo is required to be of SVG format!'
+          errorMessage.value = 'The store logo must be an SVG'
           dragging.value = false
           return
         }
       } else if (document.getElementById(props.inputName).name === 'email-logo') {
         if (!file.type.match('image.png')) {
-          errorMessage.value = 'The store logo is required to be of PNG format!'
+          errorMessage.value = 'The store logo must be a PNG'
           dragging.value = false
           return
         }
@@ -116,7 +116,7 @@ export default {
         } else {
           setupData.project.store.images.email = baseString
         }
-      };
+      }
 
       reader.readAsDataURL(file)
 
@@ -146,13 +146,13 @@ export default {
 
       if (document.getElementById(props.inputName).name === 'store-logo') {
         if (!event.dataTransfer.files[0].type.match('image.svg')) {
-          errorMessage.value = 'The store logo is required to be of SVG format!'
+          errorMessage.value = 'The store logo must be an SVG'
           dragging.value = false
           return
         }
       } else if (document.getElementById(props.inputName).name === 'email-logo') {
         if (!event.dataTransfer.files[0].type.match('image.png')) {
-          errorMessage.value = 'The store logo is required to be of PNG format!'
+          errorMessage.value = 'The store logo must be a PNG'
           dragging.value = false
           return
         }
@@ -172,7 +172,7 @@ export default {
         } else {
           setupData.project.store.images.email = baseString
         }
-      };
+      }
 
       reader.readAsDataURL(event.dataTransfer.files[0])
 
