@@ -17,7 +17,7 @@ class CreateStoreConfig
                 File::delete(config_path('aero/store.php'));
             }
 
-            $config = <<<TXT
+            $config = <<<'TXT'
 <?php
 
 return [

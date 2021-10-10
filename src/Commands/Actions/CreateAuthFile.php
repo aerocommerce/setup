@@ -20,7 +20,7 @@ class CreateAuthFile
                     ],
                 ],
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->error($e);
         }
 

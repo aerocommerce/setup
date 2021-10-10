@@ -26,7 +26,7 @@ class TestElasticsearchConnection
 
         if (curl_errno($ch)) {
             return response([
-                'message' => 'Could not connect to the Elasticsearch instance ('.curl_error($ch).').'
+                'message' => 'Could not connect to the Elasticsearch instance ('.curl_error($ch).').',
             ], 422);
         }
 
@@ -38,7 +38,7 @@ class TestElasticsearchConnection
 
         if (! $version || (int) $version !== 6) {
             return response([
-                'message' => 'Incorrect version of Elasticsearch.'
+                'message' => 'Incorrect version of Elasticsearch.',
             ], 422);
         }
 

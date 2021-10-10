@@ -1,5 +1,4 @@
 @layer components {
-
     .button {
         @apply flex items-center px-6 py-3 bg-alpha rounded-lg font-medium border-2 border-alpha transition-colors duration-150;
         @apply hover:bg-alpha-450;
@@ -29,5 +28,4 @@
     .button svg {
         @apply h-5 pointer-events-none;
     }
-
 }

@@ -19,7 +19,7 @@ class InstallDependencies
             $this->runCommand([$composer, 'update', '--no-scripts', '--prefer-dist', '--quiet']);
             $this->runCommand([$composer, 'dump-autoload', '--quiet']);
         } catch (Exception $e) {
-           $this->error($e);
+            $this->error($e);
         }
 
         try {

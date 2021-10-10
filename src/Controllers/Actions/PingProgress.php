@@ -11,9 +11,9 @@ class PingProgress
         $json = json_decode(file_get_contents(storage_path('app/setup.json')));
 
         return response([
-           'progress' => isset($json->progress) ? $json->progress : null,
-           'message' => isset($json->currentJobMessage) ? $json->currentJobMessage : null,
-           'errors' => isset($json->errors) ? $json->errors : null,
+            'progress' => isset($json->progress) ? $json->progress : null,
+            'message' => isset($json->currentJobMessage) ? $json->currentJobMessage : null,
+            'errors' => isset($json->errors) ? $json->errors : null,
         ]);
     }
 }

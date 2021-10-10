@@ -1,37 +1,47 @@
 <template>
-
     <div>
-        <label class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top cursor-pointer" :class="modelValue === value ? 'active' : ''" :for="id" :key="id" :style="thumbnail ? 'background-image: url(' + thumbnail + ');' : null">
-            <input type="radio" :id="id" :name="name" v-model="modelValue" :value="value" @input="$emit('update:modelValue', $event.target.value)">
+        <label
+            class="[ selector ] relative block pb-full bg-white bg-cover bg-center-top cursor-pointer"
+            :class="modelValue === value ? 'active' : ''"
+            :for="id"
+            :key="id"
+            :style="thumbnail ? 'background-image: url(' + thumbnail + ');' : null"
+        >
+            <input
+                type="radio"
+                :id="id"
+                :name="name"
+                v-model="modelValue"
+                :value="value"
+                @input="$emit('update:modelValue', $event.target.value)"
+            />
         </label>
 
         <label class="block mt-3" :for="id">
-            <p class="mb-0">{{ title }}</p>	
+            <p class="mb-0">{{ title }}</p>
             <small class="block text-alphaLight-900">by {{ author }}</small>
         </label>
     </div>
-    
 </template>
 
 <script>
-	export default {
-		props: ['id', 'modelValue', 'value', 'name', 'theme'],
-    computed: {
-		  title() {
-		    return this.theme.name || this.theme.key
-      },
-		  thumbnail() {
-		    return this.theme.media.length ? this.theme.media[0].url : null
-      },
-      author() {
-		    return this.theme.organization ? this.theme.organization.name : this.theme.author.name
-      }
-    },
-	}
+    export default {
+        props: ['id', 'modelValue', 'value', 'name', 'theme'],
+        computed: {
+            title() {
+                return this.theme.name || this.theme.key
+            },
+            thumbnail() {
+                return this.theme.media.length ? this.theme.media[0].url : null
+            },
+            author() {
+                return this.theme.organization ? this.theme.organization.name : this.theme.author.name
+            },
+        },
+    }
 </script>
 
 <style scoped>
-
     .selector::after {
         @apply absolute w-full h-full border-6 border-transparent transition-colors duration-150;
         content: '';
@@ -56,5 +66,4 @@
     .selector.active::before {
         @apply scale-100;
     }
-
 </style>

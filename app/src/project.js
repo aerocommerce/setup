@@ -44,7 +44,7 @@ export default {
             post_code: '',
             phone: '',
             tax_id: '',
-        }
+        },
     },
     theme: {
         id: '',
@@ -61,7 +61,7 @@ export default {
         name: '',
         preview: false,
         url: '',
-        images: []
+        images: [],
     },
     admin: {
         create: true,

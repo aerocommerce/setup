@@ -7,7 +7,7 @@ use Aero\Setup\CanPretendToBeAFile;
 class ServeAsset
 {
     use CanPretendToBeAFile;
-    
+
     public function __invoke(string $file)
     {
         $path = __DIR__.'/../../app/dist/assets/'.$file;

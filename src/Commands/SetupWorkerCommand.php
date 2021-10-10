@@ -73,7 +73,7 @@ class SetupWorkerCommand extends Command
 
     protected function ensureThisOneIsRunning()
     {
-        if (!$this->runningWorkerIsThisOne()) {
+        if (! $this->runningWorkerIsThisOne()) {
             throw_if(
                 now()->subSeconds(5)
                     ->lessThan(Carbon::createFromTimestamp($this->board['lastPinged'])),
@@ -113,7 +113,7 @@ class SetupWorkerCommand extends Command
                         } catch (Exception $_) {
                             $setup = json_decode(file_get_contents($setupFile));
                             $setup->errors[] = [
-                                'Error with job '.substr($job->class, strpos($job->class, "\\") + 1),
+                                'Error with job '.substr($job->class, strpos($job->class, '\\') + 1),
                             ];
 
                             file_put_contents($setupFile, json_encode($setup));

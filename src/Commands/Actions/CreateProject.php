@@ -31,7 +31,7 @@ class CreateProject
                 RequestOptions::FORM_PARAMS => [
                     'name' => $options->name,
                     'domain' => $options->domain,
-                ]
+                ],
             ]);
 
             $data = json_decode($response->getBody(), true);

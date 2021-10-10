@@ -26,7 +26,7 @@ class CreateAdminCommand extends Command
             'email' => $this->argument('email'),
             'password' => $this->argument('password'),
             'name' => $this->argument('name'),
-            'permissions' => $this->option('permissions') ? $this->option('permissions') : null
+            'permissions' => $this->option('permissions') ? $this->option('permissions') : null,
         ]);
     }
 }

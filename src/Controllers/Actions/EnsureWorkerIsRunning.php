@@ -19,7 +19,7 @@ class EnsureWorkerIsRunning
         }
 
         return response([
-           'connected' => $connected,
+            'connected' => $connected,
         ]);
     }
 }

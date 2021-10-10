@@ -1,5 +1,4 @@
 @layer components {
-
     .animation-wave {
         animation: wave 300ms 2 300ms linear forwards;
     }
@@ -16,7 +15,8 @@
         }
         75% {
             transform: rotate(-20deg);
-        },
+        }
+        ,
         100% {
             transform: rotate(0deg);
         }
@@ -28,7 +28,7 @@
 
     @keyframes rotate {
         100% {
-            transform: rotate(360deg)
+            transform: rotate(360deg);
         }
     }
 
@@ -45,7 +45,6 @@
     }
 
     @keyframes draw {
-
         80% {
             fill: transparent;
         }
@@ -54,7 +53,6 @@
             stroke-dashoffset: 0;
             fill: theme('colors.green');
         }
-        
     }
 
     .animation-float > * {
@@ -87,7 +85,6 @@
         transition: transform 600ms ease;
         transform: translateX(-50%) translateY(-125vh) !important;
     }
-
 }
 
 .fade-enter-active,

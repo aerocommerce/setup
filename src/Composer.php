@@ -2,7 +2,6 @@
 
 namespace Aero\Setup;
 
-
 class Composer extends \Illuminate\Support\Composer
 {
     public function run(array $command)
@@ -12,7 +11,7 @@ class Composer extends \Illuminate\Support\Composer
         $this->getProcess($command)->run(function ($type, $data) {
             echo $data;
         }, [
-            'COMPOSER_HOME' => '$HOME/.config/composer'
+            'COMPOSER_HOME' => '$HOME/.config/composer',
         ]);
     }
 }

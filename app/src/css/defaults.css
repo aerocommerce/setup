@@ -1,13 +1,12 @@
 @layer base {
-
     body {
-        @apply font-primary; 
+        @apply font-primary;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         line-height: 1.618;
     }
-    
+
     a {
         @apply text-bravo;
     }
@@ -20,7 +19,7 @@
     a[target='_blank'] {
         @apply mr-4 relative;
     }
-    
+
     a[target='_blank']::after {
         @apply absolute w-3 h-3 ml-1;
         content: '';
@@ -34,5 +33,4 @@
     hr {
         @apply border-alpha-300;
     }
-
 }
