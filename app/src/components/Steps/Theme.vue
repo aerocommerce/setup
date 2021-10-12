@@ -51,6 +51,7 @@
             const errorMessage = ref(null)
             const selectedTheme = computed(() => setupData.project.theme.id)
             const existingThemes = ref([])
+            let canAdvance = false
 
             let themeFetch
 
@@ -106,6 +107,8 @@
                                     setupData.project.theme.frameworks = theme[1].frameworks
                                 })
                             }
+
+                          canAdvance = true
                         })
                         .catch((e) => {
                             errorMessage.value = e.message
@@ -131,6 +134,8 @@
 
             const attemptAdvance = () => {
                 errorMessage.value = null
+
+              if (!canAdvance) return
 
                 if (selectedTheme === null) {
                     errorMessage.value = 'You must choose a theme before proceeding'
