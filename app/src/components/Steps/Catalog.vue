@@ -107,7 +107,7 @@
             const successMessage = ref(null)
             const existingCatalog = ref([])
 
-          let canAdvance = false
+            let canAdvance = false
 
             const connectionInfo = computed(() => {
                 return {
@@ -139,7 +139,7 @@
                         .then((json) => {
                             existingCatalog.value = json.catalog
 
-                          canAdvance = true
+                            canAdvance = true
                         })
                         .catch((e) => {
                             errorMessage.value = e.message
@@ -196,7 +196,7 @@
             const attemptAdvance = () => {
                 errorMessage.value = null
 
-              if (!canAdvance) return
+                if (!canAdvance) return
 
                 if (setupData.project.catalog.type === 'import') {
                     let select = document.getElementById('select-sample')

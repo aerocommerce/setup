@@ -108,7 +108,7 @@
                                 })
                             }
 
-                          canAdvance = true
+                            canAdvance = true
                         })
                         .catch((e) => {
                             errorMessage.value = e.message
@@ -135,7 +135,7 @@
             const attemptAdvance = () => {
                 errorMessage.value = null
 
-              if (!canAdvance) return
+                if (!canAdvance) return
 
                 if (selectedTheme === null) {
                     errorMessage.value = 'You must choose a theme before proceeding'
