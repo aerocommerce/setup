@@ -4,6 +4,7 @@ namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
+use RuntimeException;
 
 class CheckCatalogContents
 {
@@ -21,26 +22,14 @@ class CheckCatalogContents
 
         $defaults = config($key, []);
 
-        $config = [
-            'host' => $data['host'],
-            'port' => $data['port'],
-            'username' => $data['username'],
-            'password' => $data['password'],
-            'database' => $data['database'],
-        ];
-
         try {
-            config([$key => array_merge($defaults, $config)]);
+            config([$key => array_merge($defaults, $data)]);
 
             $manager = new DatabaseManager(app(), app('db.factory'));
             $result = $manager->connection()->select('select COUNT(*) from products');
 
-            if ($result > 0) {
-                return response(['success' => true]);
-            } else {
-                return response(['success' => false]);
-            }
-        } catch (\RuntimeException $_) {
+            return response(['success' => $result > 0]);
+        } catch (RuntimeException $_) {
             return response(['success' => false]);
         }
     }

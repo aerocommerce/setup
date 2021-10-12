@@ -4,6 +4,7 @@ namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
+use RuntimeException;
 
 class CheckAdminExists
 {
@@ -36,7 +37,7 @@ class CheckAdminExists
             $result = $manager->connection()->select('select count(*) from admins');
 
             return response(['existing' => $result > 0]);
-        } catch (\RuntimeException $_) {
+        } catch (RuntimeException $_) {
             return response(['existing' => false]);
         }
     }

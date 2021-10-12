@@ -37,7 +37,7 @@ export default {
             email: '',
         },
         address: {
-            country: '',
+            country: null,
             line_1: '',
             line_2: '',
             city: '',

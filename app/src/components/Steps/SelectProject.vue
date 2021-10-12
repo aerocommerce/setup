@@ -74,6 +74,7 @@
             const advanceStep = inject('advanceStep')
             const errorMessage = ref(null)
             const existingProjects = ref([])
+            let canAdvance = false
 
             errorMessage.value = null
 
@@ -93,6 +94,7 @@
                         })
                         .then((json) => {
                             existingProjects.value = json.projects
+                            canAdvance = true
                         })
                         .catch((e) => {
                             errorMessage.value = e.message
@@ -129,7 +131,7 @@
             })
 
             watch(selectProjectName, (value) => {
-                setupData.project.database = ''
+                if (!setupData.initial.hasOwnProperty('database')) setupData.project.database = ''
                 setupData.project.store.name = value
             })
 
@@ -139,10 +141,16 @@
                         !setupData.project.name.length && projectName.value && projectName.value.focus()
                     }, 50)
                 })
+
+              if (setupData.project.name.length && !setupData.project.store.name.length) {
+                setupData.project.store.name = setupData.project.name
+              }
             })
 
             const attemptAdvance = () => {
                 errorMessage.value = null
+
+              if (!canAdvance) return
 
                 if (selectedProjectType.value === 'new_project') {
                     if (!setupData.project.name.length) {

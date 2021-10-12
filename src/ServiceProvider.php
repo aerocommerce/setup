@@ -10,6 +10,7 @@ use Aero\Setup\Controllers\Actions\EnsureWorkerIsRunning;
 use Aero\Setup\Controllers\Actions\Install;
 use Aero\Setup\Controllers\Actions\PingProgress;
 use Aero\Setup\Controllers\Actions\SaveUploadedImages;
+use Aero\Setup\Controllers\Actions\SyncExistingSetup;
 use Aero\Setup\Controllers\Actions\TestDatabaseConnection;
 use Aero\Setup\Controllers\Actions\TestElasticsearchConnection;
 use Aero\Setup\Controllers\RedirectToSetup;
@@ -29,6 +30,7 @@ class ServiceProvider extends BaseServiceProvider
             Route::middleware(AttachCorsHeaders::class)->prefix('/setup')->group(function ($route) {
                 $route->options('/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
 
+                $route->get('/actions/sync', '\\'.SyncExistingSetup::class);
                 $route->post('/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
                 $route->post('/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
                 $route->post('/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);

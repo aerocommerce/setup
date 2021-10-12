@@ -448,10 +448,10 @@
         components: {
             Logo,
         },
-
         setup() {
             const setupData = inject('setupData')
             const serviceWorker = inject('serviceWorker')
+            const installFailed = inject('installFailed')
             const storeDomain = document.location.hostname
 
             const generateJobList = (setup) => {
@@ -628,6 +628,7 @@
                         .json()
                         .then((json) => {
                             if (!result.ok) throw new Error(json.message)
+
                             return json
                         })
                         .then((json) => {
@@ -635,18 +636,15 @@
                                 setupData.project.errors = json.errors
                                 updateProgress()
                             } else {
-                                // ERROR
-                                alert('There was a problem with the installation')
+                                installFailed(json.errors || {})
                             }
                         })
                         .catch((_) => {
-                            // ERROR
-                            alert('There was a problem with the installation')
+                            installFailed()
                         })
                 })
                 .catch((_) => {
-                    // ERROR
-                    alert('There was a problem with the installation')
+                    installFailed()
                 })
 
             function complete() {
@@ -661,11 +659,8 @@
                     headers: { 'Content-Type': 'application/json' },
                 })
                     .then((result) => {
-                        if (result.status === 404) {
-                            complete()
-                        }
-
-                        result
+                        if (result.status === 404) complete()
+                        else result
                             .json()
                             .then((json) => {
                                 if (!result.ok) throw new Error(json.message)
@@ -682,18 +677,14 @@
                                     }, 500)
                                 }
 
-                                if (setupData.project.errors.length) {
-                                    setupData.project.errors = json.errors
-                                }
+                                if (setupData.project.errors.length) setupData.project.errors = json.errors
                             })
                             .catch((_) => {
                                 // ERROR
                             })
                     })
                     .catch((response) => {
-                        if (response.status === 404) {
-                            complete()
-                        }
+                        if (response.status === 404) complete()
                     })
             }
 

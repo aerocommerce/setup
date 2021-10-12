@@ -40,7 +40,7 @@
             <div>
                 <label for="country" class="mb-1">Default country</label>
                 <select id="country" v-model="setupData.project.store.country" name="country" required>
-                    <option value="" selected disabled>Select country</option>
+                    <option :value="null" selected disabled>Select country</option>
                     <option v-for="(country, key) in countries" :value="key">{{ country.name }}</option>
                 </select>
             </div>
@@ -116,7 +116,7 @@
             <div>
                 <label for="address-country" class="mb-1">Address country</label>
                 <select id="address-country" v-model="setupData.project.store.address.country" name="address-country">
-                    <option value="" disabled selected>Select country</option>
+                    <option :value="null" selected>Select country</option>
                     <option v-for="(country, key) in countries" :value="key">{{ country.name }}</option>
                 </select>
             </div>

@@ -5,6 +5,7 @@ namespace Aero\Setup\Controllers\Actions;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class Install
 {
@@ -18,41 +19,51 @@ class Install
                 'project' => 'required|array',
                 'project.type' => 'required|string|in:new_project,existing_project',
                 'project.name' => 'required|string',
-                'project.token' => 'requiredIf:project.type,existing_project',
+                'project.token' => 'required_if:project.type,existing_project',
                 'project.databaseType' => 'required|string|in:new_database,existing_database',
                 'project.database' => 'required|string',
                 'project.databaseHost' => 'required|string',
                 'project.databasePort' => 'required|int',
                 'project.databaseUsername' => 'required|string',
-                'project.databasePassword' => 'required|string',
+                'project.databasePassword' => 'nullable|string',
                 'project.storeIdentifier' => 'required|string',
                 'project.elasticsearchConnectionType' => 'required|in:local,remote',
                 'project.elasticsearchHost' => 'required|string',
                 'project.elasticsearchPort' => 'required|int',
                 'project.theme' => 'required|array',
                 'project.theme.key' => 'required|string',
-                'admin' => 'required|array',
-                'admin.create' => 'required|boolean',
-                'admin.name' => 'requiredIf:admin.create|string',
-                'admin.email' => 'requiredIf:admin.create|string',
-                'admin.password' => 'requiredIf:admin.create|string',
-                'catalog' => 'required|array',
-                'catalog.type' => 'required|string|in:import,skip_import',
-                'catalog.url' => 'requiredIf:catalog.type,import|string',
+                'project.admin' => 'required|array',
+                'project.admin.create' => 'required|boolean',
+                'project.admin.name' => 'required_with:admin.create|string',
+                'project.admin.email' => 'required_with:admin.create|string',
+                'project.admin.password' => 'required_with:admin.create|string',
+                'project.catalog' => 'required|array',
+                'project.catalog.type' => 'required|string|in:import,skip_import',
+                'project.catalog.url' => 'required_if:catalog.type,import|string',
             ]);
-        } catch (Exception $_) {
-            return ['success' => false];
+        } catch (Exception $e) {
+            if ($e instanceof ValidationException) {
+                $errors = $e->errors();
+            } else {
+                $errors = [$e->getMessage()];
+            }
+
+            return ['success' => false, 'errors' => $errors];
         }
 
-        $data['total'] = count($data['jobs']);
+        $json = json_decode(Storage::get('setup.json'), true);
 
-        Storage::put('data.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $json['data'] = $data;
 
-        $json = json_decode(Storage::get('setup.json'));
+        Storage::put('setup.json', json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+        $jobs = [];
+
+        Storage::put('jobs.json', json_encode($jobs, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
         return [
             'success' => true,
-            'errors' => $json->errors ?? [],
+            'errors' => $json['errors'] ?? [],
         ];
     }
 }

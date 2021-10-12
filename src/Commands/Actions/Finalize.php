@@ -18,7 +18,7 @@ class Finalize
 
             $this->runCommand([$composer, 'remove', 'aerocommerce/setup', '--quiet']);
 
-            @unlink(storage_path('app/data.json'));
+            @unlink(storage_path('app/jobs.json'));
             @unlink(storage_path('app/setup.json'));
             @unlink(storage_path('app/worker.json'));
         } catch (Exception $e) {

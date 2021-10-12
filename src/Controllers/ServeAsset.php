@@ -2,7 +2,7 @@
 
 namespace Aero\Setup\Controllers;
 
-use Aero\Setup\CanPretendToBeAFile;
+use Aero\Setup\Controllers\Traits\CanPretendToBeAFile;
 
 class ServeAsset
 {

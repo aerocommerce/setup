@@ -22,11 +22,17 @@ class CreateAdminCommand extends Command
 
     public function handle()
     {
-        Admin::create([
-            'email' => $this->argument('email'),
-            'password' => $this->argument('password'),
-            'name' => $this->argument('name'),
-            'permissions' => $this->option('permissions') ? $this->option('permissions') : null,
-        ]);
+        if (class_exists('Aero\Admin\Models\Admin')) {
+            Admin::create([
+                'email' => $this->argument('email'),
+                'password' => $this->argument('password'),
+                'name' => $this->argument('name'),
+                'permissions' => $this->option('permissions') ? $this->option('permissions') : null,
+            ]);
+
+            $this->info('Admin user has been created!');
+        } else {
+            $this->error('The admin module is not installed.');
+        }
     }
 }

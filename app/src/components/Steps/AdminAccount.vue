@@ -43,6 +43,7 @@
                                 name="admin-email"
                                 v-model="setupData.project.admin.email"
                                 placeholder="Enter email address"
+                                autocomplete="email"
                             />
                         </div>
 

@@ -534,7 +534,7 @@
         </g>
 
         <g id="overlay">
-            <g :class="step <= 8 ? '' : 'animation-draw'" class="end">
+            <g :class="step <= totalSteps - 2 ? '' : 'animation-draw'" class="end">
                 <g class="delay-2">
                     <path
                         d="M6119,283.31h14.16a1.5,1.5,0,0,1,1.5,1.5v37.91a1.5,1.5,0,0,1-1.5,1.5H6119a1.5,1.5,0,0,1-1.5-1.5V284.81A1.5,1.5,0,0,1,6119,283.31Zm12.66,37.91V286.31h-11.16v34.91Z"
@@ -707,8 +707,17 @@
 </template>
 
 <script>
+    import { inject } from 'vue'
+
     export default {
         props: ['step'],
+      setup() {
+          const totalSteps = inject('totalSteps')
+
+        return {
+          totalSteps,
+        }
+      },
     }
 </script>
 
@@ -716,7 +725,7 @@
     .end path {
         stroke-dasharray: 1750;
         stroke-dashoffset: -1750;
-        fill: transparent;
+        fill: #54e0e4;
         transition: stroke-dashoffset 500ms, fill 500ms;
         stroke: theme('colors.green');
         stroke-width: 1;

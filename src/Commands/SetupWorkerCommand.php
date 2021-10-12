@@ -90,9 +90,9 @@ class SetupWorkerCommand extends Command
 
     protected function readJobChain()
     {
-        $file = storage_path('app/data.json');
+        $file = storage_path('app/jobs.json');
 
-        if (false && file_exists($file)) {
+        if (file_exists($file)) {
             $progress = 0;
 
             $setupFile = storage_path('app/setup.json');
@@ -132,7 +132,7 @@ class SetupWorkerCommand extends Command
 
     protected function removeJob(): void
     {
-        if (file_exists($file = storage_path('app/data.json'))) {
+        if (file_exists($file = storage_path('app/jobs.json'))) {
             if ($data = json_decode(file_get_contents($file))) {
                 if (is_array($data->jobs)) {
                     array_shift($data->jobs);
