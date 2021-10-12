@@ -17,7 +17,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('project')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Project name</span>
-                            <span v-if="hasStepWithKey('project')"
+                            <span
+                                v-if="hasStepWithKey('project')"
                                 class="
                                     absolute
                                     top-0
@@ -41,7 +42,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('databaseServer')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Database server</span>
-                            <span v-if="hasStepWithKey('databaseServer')"
+                            <span
+                                v-if="hasStepWithKey('databaseServer')"
                                 class="
                                     absolute
                                     top-0
@@ -65,7 +67,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('database')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Database name</span>
-                            <span v-if="hasStepWithKey('database')"
+                            <span
+                                v-if="hasStepWithKey('database')"
                                 class="
                                     absolute
                                     top-0
@@ -87,7 +90,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('elasticsearch')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Elasticsearch server</span>
-                            <span v-if="hasStepWithKey('elasticsearch')"
+                            <span
+                                v-if="hasStepWithKey('elasticsearch')"
                                 class="
                                     absolute
                                     top-0
@@ -121,7 +125,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Store name</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -145,7 +150,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Default country</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -167,7 +173,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Default currency</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -189,7 +196,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Default language</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -211,7 +219,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Sender email address (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -238,7 +247,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Logos (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -261,17 +271,18 @@
                             <dd class="break-all">No store logo</dd>
                         </template>
                         <template v-if="setupData.project.store.logo.email">
-                          <dd class="break-all">Email logo ✅</dd>
+                            <dd class="break-all">Email logo ✅</dd>
                         </template>
                         <template v-else>
-                          <dd class="break-all">No email logo</dd>
+                            <dd class="break-all">No email logo</dd>
                         </template>
                     </div>
 
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address country (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -298,7 +309,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address line 1 (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -325,7 +337,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address line 2 (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -352,7 +365,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address city (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -379,7 +393,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address postal code (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -406,7 +421,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Address telephone number (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -433,7 +449,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('store')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Tax ID (optional)</span>
-                            <span v-if="hasStepWithKey('store')"
+                            <span
+                                v-if="hasStepWithKey('store')"
                                 class="
                                     absolute
                                     top-0
@@ -470,7 +487,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('catalog')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Catalog</span>
-                            <span v-if="hasStepWithKey('catalog')"
+                            <span
+                                v-if="hasStepWithKey('catalog')"
                                 class="
                                     absolute
                                     top-0
@@ -503,7 +521,8 @@
                     <div class="group cursor-pointer" @click="jumpToStepWithKey('theme')">
                         <dt class="text-alphaLight-900 text-sm flex items-center relative">
                             <span>Theme</span>
-                            <span v-if="hasStepWithKey('theme')"
+                            <span
+                                v-if="hasStepWithKey('theme')"
                                 class="
                                     absolute
                                     top-0
@@ -536,7 +555,8 @@
                         <div class="group cursor-pointer" @click="jumpToStepWithKey('admin')">
                             <dt class="text-alphaLight-900 text-sm flex items-center relative">
                                 <span>Email address</span>
-                                <span v-if="hasStepWithKey('admin')"
+                                <span
+                                    v-if="hasStepWithKey('admin')"
                                     class="
                                         absolute
                                         top-0
@@ -558,7 +578,8 @@
                         <div class="group cursor-pointer" @click="jumpToStepWithKey('admin')">
                             <dt class="text-alphaLight-900 text-sm flex items-center relative">
                                 <span>Password</span>
-                                <span v-if="hasStepWithKey('admin')"
+                                <span
+                                    v-if="hasStepWithKey('admin')"
                                     class="
                                         absolute
                                         top-0
@@ -589,7 +610,8 @@
                         <div class="group cursor-pointer" @click="jumpToStepWithKey('admin')">
                             <dt class="text-alphaLight-900 text-sm flex items-center relative">
                                 <span>Existing account</span>
-                                <span v-if="hasStepWithKey('admin')"
+                                <span
+                                    v-if="hasStepWithKey('admin')"
                                     class="
                                         absolute
                                         top-0

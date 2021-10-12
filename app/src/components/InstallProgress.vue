@@ -660,28 +660,29 @@
                 })
                     .then((result) => {
                         if (result.status === 404) complete()
-                        else result
-                            .json()
-                            .then((json) => {
-                                if (!result.ok) throw new Error(json.message)
+                        else
+                            result
+                                .json()
+                                .then((json) => {
+                                    if (!result.ok) throw new Error(json.message)
 
-                                return json
-                            })
-                            .then((json) => {
-                                if (setupData.progress < 100) {
-                                    setTimeout(() => {
-                                        setupData.progress = json.progress
-                                        setupData.progressText = json.message
+                                    return json
+                                })
+                                .then((json) => {
+                                    if (setupData.progress < 100) {
+                                        setTimeout(() => {
+                                            setupData.progress = json.progress
+                                            setupData.progressText = json.message
 
-                                        updateProgress()
-                                    }, 500)
-                                }
+                                            updateProgress()
+                                        }, 500)
+                                    }
 
-                                if (setupData.project.errors.length) setupData.project.errors = json.errors
-                            })
-                            .catch((_) => {
-                                // ERROR
-                            })
+                                    if (setupData.project.errors.length) setupData.project.errors = json.errors
+                                })
+                                .catch((_) => {
+                                    // ERROR
+                                })
                     })
                     .catch((response) => {
                         if (response.status === 404) complete()

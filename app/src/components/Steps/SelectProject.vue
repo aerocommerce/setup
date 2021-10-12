@@ -142,15 +142,15 @@
                     }, 50)
                 })
 
-              if (setupData.project.name.length && !setupData.project.store.name.length) {
-                setupData.project.store.name = setupData.project.name
-              }
+                if (setupData.project.name.length && !setupData.project.store.name.length) {
+                    setupData.project.store.name = setupData.project.name
+                }
             })
 
             const attemptAdvance = () => {
                 errorMessage.value = null
 
-              if (!canAdvance) return
+                if (!canAdvance) return
 
                 if (selectedProjectType.value === 'new_project') {
                     if (!setupData.project.name.length) {

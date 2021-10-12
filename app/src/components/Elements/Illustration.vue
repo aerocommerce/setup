@@ -711,13 +711,13 @@
 
     export default {
         props: ['step'],
-      setup() {
-          const totalSteps = inject('totalSteps')
+        setup() {
+            const totalSteps = inject('totalSteps')
 
-        return {
-          totalSteps,
-        }
-      },
+            return {
+                totalSteps,
+            }
+        },
     }
 </script>
 
