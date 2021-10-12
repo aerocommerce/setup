@@ -725,7 +725,7 @@
     .end path {
         stroke-dasharray: 1750;
         stroke-dashoffset: -1750;
-        fill: #54e0e4;
+        fill: transparent;
         transition: stroke-dashoffset 500ms, fill 500ms;
         stroke: theme('colors.green');
         stroke-width: 1;

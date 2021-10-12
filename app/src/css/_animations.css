@@ -44,7 +44,7 @@
     }
 
     @keyframes draw {
-        99% {
+        80% {
             fill: transparent;
         }
 
