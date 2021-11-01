@@ -265,7 +265,7 @@
                             </span>
                         </dt>
                         <template v-if="setupData.project.store.logo.store">
-                          <dd class="break-all">✅ Store logo</dd>
+                            <dd class="break-all">✅ Store logo</dd>
                         </template>
                         <template v-if="setupData.project.store.logo.email">
                             <dd class="break-all">✅ Email logo</dd>
