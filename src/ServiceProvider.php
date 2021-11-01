@@ -3,7 +3,8 @@
 namespace Aero\Setup;
 
 use Aero\Setup\Commands\CreateAdminCommand;
-use Aero\Setup\Commands\SetupWorkerCommand;
+use Aero\Setup\Commands\SailCommand;
+use Aero\Setup\Commands\SetupCommand;
 use Aero\Setup\Controllers\Actions\CheckAdminExists;
 use Aero\Setup\Controllers\Actions\CheckCatalogContents;
 use Aero\Setup\Controllers\Actions\EnsureWorkerIsRunning;
@@ -48,7 +49,8 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         $this->commands([
-            SetupWorkerCommand::class,
+            SailCommand::class,
+            SetupCommand::class,
             CreateAdminCommand::class,
         ]);
     }

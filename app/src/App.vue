@@ -219,7 +219,7 @@
                 <template #description>
                     We have lost connection to the setup worker, please run the following command in the project root
                     directory:
-                    <code class="block rounded bg-white text-black mt-6 px-4 py-3">php artisan setup</code>
+                    <code class="block rounded bg-white text-black mt-6 px-4 py-3">php artisan aero:setup</code>
                 </template>
 
                 <div class="flex flex-wrap justify-end gap-6">

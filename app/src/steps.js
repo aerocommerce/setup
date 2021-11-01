@@ -48,6 +48,13 @@ const steps = {
         size: 'small',
         illustrationShift: 2,
         include(data) {
+            if (!data.databaseConnectionType) return true
+            if (!data.databaseHost) return true
+            if (!data.databasePort) return true
+            if (!data.databaseUsername) return true
+            if (!data.databaseType) return true
+            if (!data.database) return true
+
             return false
         },
     },
@@ -57,7 +64,12 @@ const steps = {
         size: 'small',
         illustrationShift: 3,
         include(data) {
-            return false
+            if (!data.databaseConnectionType) return true
+            if (!data.databaseHost) return true
+            if (!data.databasePort) return true
+            if (!data.databaseUsername) return true
+            if (!data.databaseType) return true
+            if (!data.database) return true
         },
     },
     elasticsearch: {
@@ -66,7 +78,13 @@ const steps = {
         size: 'small',
         illustrationShift: 4,
         include(data) {
-            return true
+            if (!data.elasticsearchConnectionType) return true
+            if (!data.elasticsearchVersion) return true
+            if (!data.elasticsearchHost) return true
+            if (!data.elasticsearchPort) return true
+            if (!data.storeIdentifier) return true
+
+            return false
         },
     },
     store: {

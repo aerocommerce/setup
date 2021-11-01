@@ -7,9 +7,9 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-class SetupWorkerCommand extends Command
+class SetupCommand extends Command
 {
-    protected $signature = 'setup';
+    protected $signature = 'aero:setup';
     protected $description = 'Run a worker that will setup the Aero store';
     protected $id;
     protected $board;
@@ -18,6 +18,11 @@ class SetupWorkerCommand extends Command
     public function handle()
     {
         $this->id = Str::uuid()->toString();
+
+        if (! file_exists($file = storage_path('app/setup.json'))) {
+            file_put_contents($file, '{}');
+        }
+
         $this->listen();
     }
 

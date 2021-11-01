@@ -265,16 +265,13 @@
                             </span>
                         </dt>
                         <template v-if="setupData.project.store.logo.store">
-                            <dd class="break-all">Store logo ✅</dd>
-                        </template>
-                        <template v-else>
-                            <dd class="break-all">No store logo</dd>
+                          <dd class="break-all">✅ Store logo</dd>
                         </template>
                         <template v-if="setupData.project.store.logo.email">
-                            <dd class="break-all">Email logo ✅</dd>
+                            <dd class="break-all">✅ Email logo</dd>
                         </template>
-                        <template v-else>
-                            <dd class="break-all">No email logo</dd>
+                        <template v-if="!setupData.project.store.logo.store && !setupData.project.store.logo.email">
+                            <dd class="break-all">-</dd>
                         </template>
                     </div>
 
@@ -514,7 +511,7 @@
                             </dd>
                         </template>
                         <template v-else>
-                            <dd class="break-all">No catalog data</dd>
+                            <dd class="break-all">-</dd>
                         </template>
                     </div>
 
