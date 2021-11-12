@@ -364,7 +364,7 @@
                     headers: { 'Content-Type': 'application/json' },
                 }).then((result) => {
                     result.json().then((json) => {
-                        serviceWorkerConnected.value = json.hasOwnProperty('connected') && json.connected
+                      if (!stepsComplete.value) serviceWorkerConnected.value = json.hasOwnProperty('connected') && json.connected
                     })
                 })
             }

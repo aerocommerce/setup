@@ -140,7 +140,9 @@
 
                             if (json.existing) {
                                 setupData.project.admin.create = false
+                                setupData.project.seed = false
                             } else {
+                                setupData.project.seed = true
                                 setupData.project.admin.create = true
                                 setupData.project.admin.name = setupData.agora.user.name
                                 setupData.project.admin.email = setupData.agora.user.email

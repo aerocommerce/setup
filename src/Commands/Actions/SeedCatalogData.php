@@ -13,6 +13,7 @@ class SeedCatalogData
     public function handle($options)
     {
         try {
+            return;
             $this->runCommand([
                 PHP_BINARY,
                 base_path('artisan'),

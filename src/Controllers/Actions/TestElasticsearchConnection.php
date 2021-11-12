@@ -37,7 +37,7 @@ class TestElasticsearchConnection
 
         $version = $json['version']['number'] ?? null;
 
-        if (! $version || (int) $version !== 6) {
+        if (! $version || (int) $version !== 7) {
             return response([
                 'message' => 'Incorrect version of Elasticsearch.',
             ], 422);

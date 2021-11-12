@@ -33,7 +33,5 @@ class InstallDependencies
         } catch (Exception $e) {
             $this->error($e);
         }
-
-        return true;
     }
 }

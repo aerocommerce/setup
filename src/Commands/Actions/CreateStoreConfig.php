@@ -4,6 +4,7 @@ namespace Aero\Setup\Commands\Actions;
 
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
+use Exception;
 use Illuminate\Support\Facades\File;
 
 class CreateStoreConfig
@@ -13,8 +14,10 @@ class CreateStoreConfig
     public function handle($options)
     {
         try {
-            if (file_exists(config_path('aero/store.php'))) {
-                File::delete(config_path('aero/store.php'));
+            $file = config_path('aero/store.php');
+
+            if (File::exists($file)) {
+                File::delete($file);
             }
 
             $config = <<<'TXT'
@@ -67,15 +70,13 @@ TXT;
                 $config = str_replace($key, $replacement, $config);
             }
 
-            if (! File::isDirectory(config_path('aero'))) {
-                File::makeDirectory(config_path('aero'));
+            if (! File::isDirectory($directory = config_path('aero'))) {
+                File::makeDirectory($directory);
             }
 
-            file_put_contents(config_path('aero/store.php'), $config);
-        } catch (\Exception $e) {
-            dd($e);
+            File::put($file, $config);
+        } catch (Exception $e) {
+            $this->error($e);
         }
-
-        return true;
     }
 }

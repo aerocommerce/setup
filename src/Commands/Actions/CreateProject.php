@@ -18,7 +18,7 @@ class CreateProject
         $this->authAction = $authAction;
     }
 
-    public function handle($options): bool
+    public function handle($options)
     {
         $client = new Client();
 
@@ -37,19 +37,14 @@ class CreateProject
             $data = json_decode($response->getBody(), true);
 
             if (! ($token = $data['token'] ?? null)) {
-                return false;
+                return;
             }
 
-            [$username, $password] = explode(':', base64_decode($token));
-
-            return $this->authAction->handle((object) [
-                'user' => $username,
-                'pass' => $password,
+            $this->authAction->handle((object) [
+                'token' => $token,
             ]);
         } catch (GuzzleException $e) {
             $this->error($e);
         }
-
-        return false;
     }
 }

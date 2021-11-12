@@ -32,7 +32,5 @@ class CreateDatabase
         } catch (Exception $e) {
             $this->error($e);
         }
-
-        return true;
     }
 }

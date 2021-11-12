@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 trait StoresErrors
 {
-    protected function error(Exception $error): bool
+    protected function error(Exception $error)
     {
         $file = Files::SETUP;
 
@@ -24,6 +24,6 @@ trait StoresErrors
             }
         }
 
-        return false;
+        throw $error;
     }
 }

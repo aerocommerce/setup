@@ -5,10 +5,10 @@ namespace Aero\Setup\Commands\Actions;
 class AddComposerDependencies
 {
     protected $dependencies = [
-        'aerocommerce/admin' => 'dev-master',
+        'aerocommerce/admin' => '^1',
         'aerocommerce/checkout' => '^0',
-        'aerocommerce/core' => 'dev-master',
-        'aerocommerce/elastic-search' => '^0',
+        'aerocommerce/core' => '^0',
+        'aerocommerce/elastic-search' => '^1',
     ];
 
     protected $devDependencies = [

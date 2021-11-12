@@ -15,6 +15,7 @@ class SetupCommand extends Command
     protected $description = 'Run a worker that will setup the Aero store';
 
     protected $id;
+    protected $i = 0;
     protected $board;
     protected $running = false;
 
@@ -62,17 +63,25 @@ class SetupCommand extends Command
 
     protected function listen()
     {
-        $i = 0;
-
         while (true) {
-            $this->board = $this->getWorkerboard($i++ === 0);
-            $this->ensureThisOneIsRunning();
-            $this->board['id'] = $this->id;
-            $this->board['lastPinged'] = now()->timestamp;
+            $this->preFlight();
             $this->readJobChain();
-            $this->commitWorkerboard($this->board);
-            $this->wait();
+            $this->postFlight();
         }
+    }
+
+    protected function preFlight()
+    {
+        $this->board = $this->getWorkerboard($this->i++ === 0);
+        $this->ensureThisOneIsRunning();
+        $this->board['id'] = $this->id;
+        $this->board['lastPinged'] = now()->timestamp;
+    }
+
+    protected function postFlight()
+    {
+        $this->commitWorkerboard($this->board);
+        $this->wait();
     }
 
     protected function craftWorkerboard(): array
@@ -131,41 +140,51 @@ class SetupCommand extends Command
         $file = Files::JOBS;
 
         if (Storage::exists($file)) {
-            $progress = 0;
+            $this->postFlight();
 
             $setupFile = Files::SETUP;
 
-            if ($data = json_decode(Storage::get($setupFile), true)) {
-                foreach ($data['jobs'] ?? [] as $job) {
-                    $progress += (100 / ($data['total'] ?? 1));
+            $data = json_decode(Storage::get($file), true);
 
-                    Storage::put($setupFile, json_encode(array_merge($data, [
+            $total = $data['total'] ?? 1;
+            $increment = 100 / $total;
+
+            $jobs = $data['jobs'] ?? [];
+            $progress = ($total - count($jobs)) * $increment;
+
+            if (count($jobs) && ($setupData = json_decode(Storage::get($setupFile), true))) {
+                foreach ($jobs as $job) {
+                    $this->preFlight();
+
+                    $progress += $increment;
+
+                    Storage::put($setupFile, json_encode(array_merge($setupData, [
                         'progress' => $progress,
                         'currentJob' => $job['class'],
                         'currentJobMessage' => $job['message'],
                     ]), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
                     try {
-                        $this->processAction($job['class'], $job['options']);
+                        $this->processAction($job['class'], (object) ($job['options'] ?? []));
+
+                        $this->removeJob();
                     } catch (Exception $_) {
                         $setup = json_decode(Storage::get($setupFile), true);
 
                         $setup['errors'][] = [
-                            'Error with job '.substr($job['class'], strpos($job['class'], '\\') + 1),
+                            'Error with job '.class_basename($job['class']),
                         ];
 
                         Storage::put($setupFile, json_encode($setup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
                         break;
+                    } finally {
+                        $this->postFlight();
                     }
-
-                    $this->removeJob();
-
-                    $this->wait();
                 }
             }
 
-            Storage::put($setupFile, json_encode(array_merge($data ?? [], [
+            Storage::put($setupFile, json_encode(array_merge($setupData ?? [], [
                 'progress' => $progress,
             ]), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         }

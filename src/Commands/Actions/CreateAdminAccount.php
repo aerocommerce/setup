@@ -24,7 +24,5 @@ class CreateAdminAccount
         } catch (Exception $e) {
             $this->error($e);
         }
-
-        return true;
     }
 }

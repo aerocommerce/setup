@@ -27,7 +27,7 @@ class CheckCatalogContents
             config([$key => array_merge($defaults, $data)]);
 
             $manager = new DatabaseManager(app(), app('db.factory'));
-            $result = $manager->connection()->select('select COUNT(*) from products');
+            $result = $manager->connection()->select('select count(*) from products');
 
             return response(['success' => $result > 0]);
         } catch (RuntimeException $_) {
