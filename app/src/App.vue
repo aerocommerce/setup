@@ -180,11 +180,7 @@
                 <div class="flex flex-wrap justify-between gap-6">
                     <button type="button" class="button button-red" @click="installModal = false">Cancel</button>
 
-                    <button
-                        type="button"
-                        class="button button-secondary uppercase"
-                        @click="installStore()"
-                    >
+                    <button type="button" class="button button-secondary uppercase" @click="installStore()">
                         Install my store
                         <span class="ml-4"><LightningBoltIcon /></span>
                     </button>
@@ -194,8 +190,8 @@
             <Modal :is-open="serviceWorkerConnected === false" :is-error="true">
                 <template #title> There was a problem </template>
                 <template #description>
-                    We were unable to automatically start the worker that is required to modify the installation.
-                    Please run the following command:
+                    We were unable to automatically start the worker that is required to modify the installation. Please
+                    run the following command:
                     <code class="block rounded bg-white text-black mt-6 px-4 py-3">php artisan aero:setup</code>
                 </template>
 
