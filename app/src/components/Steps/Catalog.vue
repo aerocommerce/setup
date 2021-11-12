@@ -22,12 +22,6 @@
             >
                 <template #title> Import sample data </template>
 
-                <div class="mb-6" v-if="setupData.project.databaseType !== 'new_database'">
-                    <WarningMessage
-                        >Importing sample data will override any catalog data that already exists</WarningMessage
-                    >
-                </div>
-
                 <div class="mb-6">
                     <label for="select-sample" class="mb-1">Select sample</label>
                     <select

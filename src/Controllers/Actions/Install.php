@@ -163,7 +163,7 @@ class Install
             'class' => InstallDependencies::class,
             'message' => 'Installing Composer dependencies',
             'options' => [
-                'seed' => $data['project.seed'],
+                'seed' => $data['project']['seed'],
             ],
         ];
 
