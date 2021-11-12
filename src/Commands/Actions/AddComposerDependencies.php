@@ -7,23 +7,15 @@ class AddComposerDependencies
     protected $dependencies = [
         'aerocommerce/admin' => '^1',
         'aerocommerce/checkout' => '^0',
-        'aerocommerce/core' => '^0',
+        'aerocommerce/core' => 'dev-master',
         'aerocommerce/elastic-search' => '^1',
     ];
 
     protected $devDependencies = [
-        //'aerocommerce/dev' => '^0',
+        'aerocommerce/dev' => 'dev-master',
     ];
 
     protected $repositories = [
-        [
-            'type' => 'path',
-            'url' => '/Users/tim/code/aero/core',
-        ],
-        [
-            'type' => 'path',
-            'url' => '/Users/tim/code/aero/admin',
-        ],
         [
             'type' => 'composer',
             'url' => 'https://agora.aerocommerce.com',
