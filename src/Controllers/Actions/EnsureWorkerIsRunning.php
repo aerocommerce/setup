@@ -2,17 +2,22 @@
 
 namespace Aero\Setup\Controllers\Actions;
 
+use Aero\Setup\Files;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class EnsureWorkerIsRunning
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $connected = false;
 
-        if (file_exists($file = storage_path('app/worker.json'))) {
-            $json = json_decode(file_get_contents($file));
+        $file = Files::WORKER;
+
+        if (Storage::exists($file)) {
+            $json = json_decode(Storage::get($file));
 
             $connected = now()->subSeconds(5)
                 ->lessThan(Carbon::createFromTimestamp($json->lastPinged));

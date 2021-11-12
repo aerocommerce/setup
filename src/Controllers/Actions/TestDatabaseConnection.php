@@ -5,10 +5,11 @@ namespace Aero\Setup\Controllers\Actions;
 use Exception;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TestDatabaseConnection
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $data = $request->validate([
             'host' => 'required',

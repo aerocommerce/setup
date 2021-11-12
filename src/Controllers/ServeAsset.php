@@ -28,6 +28,7 @@ class ServeAsset
                 $mime = 'image/svg+xml';
                 break;
             default:
+                $mime = null;
                 abort(404);
         }
 

@@ -4,11 +4,12 @@ namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use RuntimeException;
 
 class CheckAdminExists
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $data = $request->validate([
             'database' => 'required',

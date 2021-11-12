@@ -26,7 +26,7 @@ class SailCommand extends Command
 
         $app['command'] = 'pwd';
 
-        $app['depends_on'] = 'elasticsearch';
+        $app['depends_on'][] = 'elasticsearch';
 
         $config['services']['elasticsearch'] = [
             'image' => 'elasticsearch:7.14.2',

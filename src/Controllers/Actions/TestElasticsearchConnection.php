@@ -3,10 +3,11 @@
 namespace Aero\Setup\Controllers\Actions;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TestElasticsearchConnection
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $data = $request->validate([
             'host' => 'required',

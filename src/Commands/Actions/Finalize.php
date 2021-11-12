@@ -5,7 +5,9 @@ namespace Aero\Setup\Commands\Actions;
 use Aero\Setup\Commands\Traits\StoresErrors;
 use Aero\Setup\Commands\Traits\UsesCommandLine;
 use Aero\Setup\Commands\Traits\UsesComposer;
+use Aero\Setup\Files;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class Finalize
 {
@@ -18,9 +20,11 @@ class Finalize
 
             $this->runCommand([$composer, 'remove', 'aerocommerce/setup', '--quiet']);
 
-            @unlink(storage_path('app/jobs.json'));
-            @unlink(storage_path('app/setup.json'));
-            @unlink(storage_path('app/worker.json'));
+            Storage::delete([
+                Files::JOBS,
+                Files::SETUP,
+                Files::WORKER,
+            ]);
         } catch (Exception $e) {
             $this->error($e);
         }

@@ -7,11 +7,6 @@ use Illuminate\Console\Command;
 
 class CreateAdminCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'aero:setup:admin
                             {email : Admin email}
                             {password : Admin password}

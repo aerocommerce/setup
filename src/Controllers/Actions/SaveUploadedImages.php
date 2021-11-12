@@ -4,10 +4,11 @@ namespace Aero\Setup\Controllers\Actions;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SaveUploadedImages
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         try {
             foreach ($request->files->all() as $key => $_) {
@@ -15,9 +16,9 @@ class SaveUploadedImages
                 $file->storeAs('', "{$key}.{$file->extension()}");
             }
         } catch (Exception $_) {
-            return ['success' => false];
+            return response(['success' => false]);
         }
 
-        return ['success' => true];
+        return response(['success' => true]);
     }
 }

@@ -2,23 +2,25 @@
 
 namespace Aero\Setup\Commands\Traits;
 
+use Aero\Setup\Files;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 trait StoresErrors
 {
     protected function error(Exception $error): bool
     {
-        if (file_exists($file = storage_path('app/setup.json'))) {
-            if ($setup = json_decode(file_get_contents($file))) {
-                if (! isset($setup->errors)) {
-                    $setup->errors = [];
-                }
+        $file = Files::SETUP;
 
-                $setup->errors[] = [
+        if (Storage::exists($file)) {
+            if ($setup = json_decode(Storage::get($file), true)) {
+                $setup['errors'] = $setup['errors'] ?? [];
+
+                $setup['errors'][] = [
                     $error->getMessage(),
                 ];
 
-                file_put_contents($file, json_encode($setup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+                Storage::put($file, json_encode($setup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
             }
         }
 

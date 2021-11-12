@@ -25,33 +25,45 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function boot()
     {
-        if (file_exists(storage_path('app/setup.json'))) {
-            Route::get('/assets/{file}', '\\'.ServeAsset::class)->where('file', '.*');
-
-            Route::middleware(AttachCorsHeaders::class)->prefix('/setup')->group(function ($route) {
-                $route->options('/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
-
-                $route->get('/actions/sync', '\\'.SyncExistingSetup::class);
-                $route->post('/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
-                $route->post('/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
-                $route->post('/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);
-                $route->post('/actions/check-admin-exists', '\\'.CheckAdminExists::class);
-                $route->post('/actions/save-uploaded-images', '\\'.SaveUploadedImages::class);
-                $route->post('/actions/install', '\\'.Install::class);
-
-                $route->get('/actions/check-connection', '\\'.EnsureWorkerIsRunning::class);
-                $route->get('/actions/ping-progress', '\\'.PingProgress::class);
-
-                $route->get('/', '\\'.ServeSetup::class)->name('aero.setup');
-            });
-
-            Route::fallback('\\'.RedirectToSetup::class);
-        }
+        $this->registerRoutes();
 
         $this->commands([
             SailCommand::class,
             SetupCommand::class,
             CreateAdminCommand::class,
         ]);
+    }
+
+    protected function shouldRegisterSetup(): bool
+    {
+        return file_exists(storage_path('app/'.Files::SETUP));
+    }
+
+    protected function registerRoutes(): void
+    {
+        if (! $this->shouldRegisterSetup()) {
+            return;
+        }
+
+        Route::get('/assets/{file}', '\\'.ServeAsset::class)->where('file', '.*');
+
+        Route::middleware(AttachCorsHeaders::class)->prefix('/setup')->group(function ($route) {
+            $route->options('/actions/{endpoint}', '\\'.ServeOptionsHeaders::class)->where('endpoint', '.*');
+
+            $route->get('/actions/sync', '\\'.SyncExistingSetup::class);
+            $route->post('/actions/test-database-connection', '\\'.TestDatabaseConnection::class);
+            $route->post('/actions/test-elasticsearch-connection', '\\'.TestElasticsearchConnection::class);
+            $route->post('/actions/check-catalog-contents', '\\'.CheckCatalogContents::class);
+            $route->post('/actions/check-admin-exists', '\\'.CheckAdminExists::class);
+            $route->post('/actions/save-uploaded-images', '\\'.SaveUploadedImages::class);
+            $route->post('/actions/install', '\\'.Install::class);
+
+            $route->get('/actions/check-connection', '\\'.EnsureWorkerIsRunning::class);
+            $route->get('/actions/ping-progress', '\\'.PingProgress::class);
+
+            $route->get('/', '\\'.ServeSetup::class)->name('aero.setup');
+        });
+
+        Route::fallback('\\'.RedirectToSetup::class);
     }
 }

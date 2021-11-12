@@ -2,19 +2,23 @@
 
 namespace Aero\Setup\Controllers\Actions;
 
+use Aero\Setup\Files;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class SyncExistingSetup
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
-        $json = json_decode(Storage::get('setup.json'), true);
+        $file = Files::SETUP;
 
-        if (! isset($json['initial'])) {
-            return response('{}');
-        }
+        abort_unless(Storage::exists($file), 404);
 
-        return response($json['initial']);
+        $json = json_decode(Storage::get($file), true);
+
+        return response($json['initial'] ?? '{}', 200, [
+            'Content-Type' => 'application/json',
+        ]);
     }
 }
