@@ -74,17 +74,17 @@ class SailCommand extends Command
         Init::boot([
             'name' => str_replace(['-', '_'], ' ', $name),
             'databaseConnectionType' => 'local',
-            'databaseHost' => 'mysql',
-            'databasePort' => 3306,
-            'databaseUsername' => 'sail',
-            'databasePassword' => 'password',
+            'databaseHost' => $_SERVER['DB_HOST'],
+            'databasePort' => $_SERVER['DB_PORT'],
+            'databaseUsername' => $_SERVER['DB_USERNAME'],
+            'databasePassword' => $_SERVER['DB_PASSWORD'],
             'databaseType' => 'existing_database',
-            'database' => 'sail',
+            'database' => $_SERVER['DB_DATABASE'],
             'elasticsearchConnectionType' => 'local',
             'elasticsearchVersion' => 7,
             'elasticsearchHost' => 'elasticsearch',
             'elasticsearchPort' => 9200,
-            'storeIdentifier' => 'aero',
+            'storeIdentifier' => $_SERVER['DB_DATABASE'],
         ]);
     }
 }
