@@ -26,7 +26,9 @@ class SailCommand extends Command
         $appKey = array_keys($config['services'])[0];
         $app = $config['services'][$appKey];
 
-        $app['depends_on'][] = 'elasticsearch';
+        if (! in_array('elasticsearch', $app['depends_on'])) {
+            $app['depends_on'][] = 'elasticsearch';
+        }
 
         $config['services']['elasticsearch'] = [
             'image' => 'elasticsearch:7.14.2',
@@ -67,8 +69,10 @@ class SailCommand extends Command
 
         file_put_contents($file, $yaml);
 
+        $name = Str::title(Str::before(parse_url(config('app.url'), PHP_URL_HOST), '.'));
+
         Init::boot([
-            'name' => Str::title(Str::before(parse_url(config('app.url'), PHP_URL_HOST), '.')),
+            'name' => str_replace(['-', '_'], ' ', $name),
             'databaseConnectionType' => 'local',
             'databaseHost' => 'mysql',
             'databasePort' => 3306,
