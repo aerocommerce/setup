@@ -1,6 +1,6 @@
 <?php
 
-namespace Aero\Setup;
+namespace Aero\Setup\Controllers\Traits;
 
 trait CanPretendToBeAFile
 {

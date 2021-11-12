@@ -2,13 +2,13 @@
 
 namespace Aero\Setup\Controllers;
 
-use Aero\Setup\CanPretendToBeAFile;
+use Aero\Setup\Controllers\Traits\CanPretendToBeAFile;
 
-class AssetController
+class ServeAsset
 {
     use CanPretendToBeAFile;
-    
-    public function file(string $file)
+
+    public function __invoke(string $file)
     {
         $path = __DIR__.'/../../app/dist/assets/'.$file;
 
@@ -24,7 +24,11 @@ class AssetController
             case 'png':
                 $mime = 'image/png';
                 break;
+            case 'svg':
+                $mime = 'image/svg+xml';
+                break;
             default:
+                $mime = null;
                 abort(404);
         }
 

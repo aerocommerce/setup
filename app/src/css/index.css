@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import './_defaults.css';
+@import './_forms.css';
+@import 'tailwindcss/components';
+@import './_buttons.css';
+@import './_animations.css';
+@import 'tailwindcss/utilities';

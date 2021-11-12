@@ -1,0 +1,161 @@
+@layer base {
+    /* Default styling for input, select and textarea */
+    input,
+    select,
+    textarea {
+        @apply font-primary w-full border-2 border-transparent py-3 px-4 bg-white rounded-md text-gray-700 outline-none;
+        @apply ring-offset-alpha-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-bravo;
+    }
+
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+        @apply bg-gray-100 cursor-not-allowed text-alpha-0;
+    }
+
+    /* Style Read only state */
+    input:not([type='submit']):-moz-read-only,
+    textarea:-moz-read-only {
+        /* Firefox */
+        @apply bg-gray-200;
+    }
+
+    input:not([type='submit']):read-only,
+    textarea:read-only {
+        /* Chrome */
+        @apply bg-gray-200;
+    }
+
+    select:not([multiple]) {
+        @apply bg-no-repeat pt-3 pr-12 pb-3 pl-3;
+        @apply appearance-none;
+
+        background-image: url('../images/caret.svg');
+        background-position: center right theme('spacing.4');
+        background-size: theme('spacing.4') theme('spacing.3');
+    }
+
+    select:not([multiple])::-ms-expand {
+        @apply hidden;
+    }
+
+    select:not([multiple]):required:invalid {
+        @apply text-alpha-0;
+    }
+
+    /* select:not([multiple]) option[value=''][disabled] {
+        @apply hidden;
+    } */
+
+    select:not([multiple]) option {
+        @apply text-gray-700;
+    }
+
+    /* Default styling for textarea */
+    textarea {
+        @apply max-w-full resize-y;
+    }
+
+    /* Default styling for label */
+    label {
+        @apply block;
+    }
+
+    /* Default style for checkboxes */
+    input[type='checkbox'],
+    input[type='radio'] {
+        @apply absolute opacity-0 pointer-events-none w-0 m-0 invisible transition-colors duration-150;
+    }
+
+    input[type='checkbox'] + label,
+    input[type='radio'] + label {
+        @apply flex items-center text-alphaLight-900 uppercase transition-colors duration-150;
+    }
+
+    input[type='checkbox'] + label::before,
+    input[type='radio'] + label::before {
+        content: '';
+        @apply w-5 h-5 border-2 border-alphaLight-900 mr-3 rounded-md flex-none;
+    }
+
+    input[type='checkbox']:checked + label,
+    input[type='radio']:checked + label {
+        @apply text-white;
+    }
+
+    input[type='checkbox']:checked + label::before,
+    input[type='radio']:checked + label::before {
+        content: '';
+        @apply bg-white;
+        box-shadow: 0 0 0 theme('spacing.1') theme('colors.alpha.900') inset;
+    }
+
+    /* Fully round radio buttons */
+    input[type='radio'] + label::before {
+        @apply rounded-full;
+    }
+
+    /* Default styling for fieldset */
+    fieldset {
+        @apply p-6 border-2 border-alpha-1200 rounded-md;
+    }
+
+    /* Default styling for legend */
+    legend {
+        @apply py-0 px-3 -mb-3;
+    }
+
+    /* Default styling for native progress bars */
+    progress {
+        @apply bg-alpha rounded-full w-full h-2 relative block overflow-hidden appearance-none;
+    }
+
+    progress[value]::-moz-progress-bar {
+        @apply bg-green rounded-full duration-1000;
+        transition: all 1s ease;
+    }
+
+    progress[value]::-webkit-progress-bar {
+        @apply shadow-inner bg-alpha rounded-full;
+        animation: gradient 30s ease infinite;
+    }
+
+    progress[value]::-webkit-progress-value {
+        @apply bg-green rounded-full duration-1000;
+        transition: all 1s ease;
+    }
+
+    /* Style placeholders */
+    input::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        @apply text-alpha-0 opacity-100;
+    }
+
+    input::-moz-placeholder {
+        /* Firefox 19+ */
+        @apply text-alpha-0 opacity-100;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+
+@layer components {
+    .dashed-border {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23afb1bd' stroke-width='1' stroke-dasharray='6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    }
+
+    .dashed-border:hover,
+    .dashed-border:focus {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%2354E0E4' stroke-width='1' stroke-dasharray='6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    }
+}
