@@ -12,20 +12,18 @@ class InstallTheme
 
     public function handle($options)
     {
-        if ($options->themeKey && $options->themeName) {
-            try {
-                $this->runCommand([
-                    PHP_BINARY,
-                    base_path('artisan'),
-                    'theme:install',
-                    $options->themeKey,
-                    "--name={$options->themeName}",
-                    '--no-interaction',
-                    '--quiet',
-                ]);
-            } catch (Exception $e) {
-                $this->error($e);
-            }
+        try {
+            $this->runCommand([
+                PHP_BINARY,
+                base_path('artisan'),
+                'theme:install',
+                $options->themeKey,
+                "--name={$options->themeName}",
+                '--no-interaction',
+                '--quiet',
+            ]);
+        } catch (Exception $e) {
+            $this->error($e);
         }
     }
 }
