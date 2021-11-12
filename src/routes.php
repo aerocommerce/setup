@@ -3,7 +3,6 @@
 use Aero\Setup\AttachCorsHeaders;
 use Aero\Setup\Controllers\Actions\CheckAdminExists;
 use Aero\Setup\Controllers\Actions\CheckCatalogContents;
-use Aero\Setup\Controllers\Actions\EnsureWorkerIsRunning;
 use Aero\Setup\Controllers\Actions\Install;
 use Aero\Setup\Controllers\Actions\PingProgress;
 use Aero\Setup\Controllers\Actions\SaveUploadedImages;
@@ -29,7 +28,6 @@ Route::middleware(AttachCorsHeaders::class)->prefix('/setup')->group(function ($
     $route->post('/actions/save-uploaded-images', '\\'.SaveUploadedImages::class);
     $route->post('/actions/install', '\\'.Install::class);
 
-    $route->get('/actions/check-connection', '\\'.EnsureWorkerIsRunning::class);
     $route->get('/actions/ping-progress', '\\'.PingProgress::class);
 
     $route->get('/', '\\'.ServeSetup::class)->name('aero.setup');

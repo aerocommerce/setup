@@ -102,29 +102,7 @@
                             </transition>
 
                             <div class="flex flex-wrap flex-col xl:flex-row gap-6 justify-between xl:items-center">
-                                <div class="flex items-center gap-3">
-                                    <span
-                                        class="
-                                            flex-shrink-0
-                                            w-3
-                                            h-3
-                                            block
-                                            rounded-full
-                                            animation-blink
-                                            border-2 border-alphaLight-400
-                                        "
-                                        :title="serviceWorkerStatus"
-                                        :class="
-                                            serviceWorkerConnected
-                                                ? 'bg-green'
-                                                : serviceWorkerConnected === false
-                                                ? 'bg-red'
-                                                : 'bg-gray'
-                                        "
-                                    ></span>
-                                    <span class="text-sm text-alpha-100">{{ serviceWorkerStatus }}</span>
-                                </div>
-
+                                <div></div>
                                 <ol class="flex flex-wrap gap-3 items-center text-alpha">
                                     <li v-for="(step, stepIndex) in steps" class="flex items-center">
                                         <button
@@ -206,7 +184,6 @@
                         type="button"
                         class="button button-secondary uppercase"
                         @click="installStore()"
-                        :disabled="!serviceWorkerConnected"
                     >
                         Install my store
                         <span class="ml-4"><LightningBoltIcon /></span>
@@ -215,10 +192,10 @@
             </Modal>
 
             <Modal :is-open="serviceWorkerConnected === false" :is-error="true">
-                <template #title> Connection lost </template>
+                <template #title> There was a problem </template>
                 <template #description>
-                    We have lost connection to the setup worker, please run the following command in the project root
-                    directory:
+                    We were unable to automatically start the worker that is required to modify the installation.
+                    Please run the following command:
                     <code class="block rounded bg-white text-black mt-6 px-4 py-3">php artisan aero:setup</code>
                 </template>
 
@@ -259,7 +236,6 @@
     const totalSteps = computed(() => steps.value.length)
 
     let serviceWorkerConnected = ref(null)
-    let serviceWorkerStatus = ref(null)
 
     let baseData = {
         initial: {},
@@ -344,44 +320,6 @@
 
             const storeDomain = document.location.hostname
 
-            watch(serviceWorkerConnected, (value) => {
-                switch (value) {
-                    case true:
-                        serviceWorkerStatus.value = 'Connected'
-                        break
-                    case null:
-                        serviceWorkerStatus.value = 'Connecting...'
-                        break
-                    case false:
-                        serviceWorkerStatus.value = 'Disconnected'
-                        break
-                }
-            })
-
-            const checkConnection = () => {
-                fetch(`${setupData.host}/setup/actions/check-connection`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' },
-                }).then((result) => {
-                    result.json().then((json) => {
-                        if (!stepsComplete.value)
-                            serviceWorkerConnected.value = json.hasOwnProperty('connected') && json.connected
-                    })
-                })
-            }
-
-            let connectionInterval = setInterval(() => {
-                if (setupData.installComplete) {
-                    clearInterval(connectionInterval)
-
-                    return
-                }
-
-                checkConnection()
-            }, 5000)
-
-            setTimeout(checkConnection, 500)
-
             const syncData = () => {
                 fetch(`${setupData.host}/setup/actions/sync`, {
                     method: 'GET',
@@ -426,7 +364,6 @@
                 currentStepEntry,
                 getStepKeyIndex,
                 serviceWorkerConnected,
-                serviceWorkerStatus,
                 installModal,
                 installStore,
             }

@@ -2,7 +2,9 @@
 
 namespace Aero\Setup\Commands;
 
+use Aero\Setup\Init;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Yaml\Yaml;
 
 class SailCommand extends Command
@@ -23,8 +25,6 @@ class SailCommand extends Command
 
         $appKey = array_keys($config['services'])[0];
         $app = $config['services'][$appKey];
-
-        $app['command'] = 'pwd';
 
         $app['depends_on'][] = 'elasticsearch';
 
@@ -66,5 +66,21 @@ class SailCommand extends Command
         $yaml = Yaml::dump($config, 4);
 
         file_put_contents($file, $yaml);
+
+        Init::boot([
+            'name' => Str::title(Str::before(parse_url(config('app.url'), PHP_URL_HOST), '.')),
+            'databaseConnectionType' => 'local',
+            'databaseHost' => 'mysql',
+            'databasePort' => 3306,
+            'databaseUsername' => 'sail',
+            'databasePassword' => 'password',
+            'databaseType' => 'existing_database',
+            'database' => 'sail',
+            'elasticsearchConnectionType' => 'local',
+            'elasticsearchVersion' => 7,
+            'elasticsearchHost' => 'elasticsearch',
+            'elasticsearchPort' => 9200,
+            'storeIdentifier' => 'aero',
+        ]);
     }
 }
