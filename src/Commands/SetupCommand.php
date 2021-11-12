@@ -22,13 +22,42 @@ class SetupCommand extends Command
     {
         $this->id = Str::uuid()->toString();
 
-        $file = Files::SETUP;
-
-        if (! Storage::exists($file)) {
-            Storage::put($file, '{}');
+        if (! Storage::exists(Files::SETUP)) {
+            $this->initialBoot();
         }
 
         $this->listen();
+    }
+
+    protected function initialBoot()
+    {
+        $filesToRemove = [
+            public_path('/robots.txt'),
+            base_path('/resources/views/welcome.blade.php'),
+        ];
+
+        foreach ($filesToRemove as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
+
+        $routesFilesToClear = [
+            base_path('/routes/web.php'),
+            base_path('/routes/api.php'),
+        ];
+
+        foreach ($routesFilesToClear as $path) {
+            if (file_exists($path)) {
+                $contents = file_get_contents($path);
+
+                $contents = preg_replace('/(^Route::.*\;)/ms', '', $contents);
+
+                file_put_contents($path, $contents);
+            }
+        }
+
+        Storage::put(Files::SETUP, '{}');
     }
 
     protected function listen()
