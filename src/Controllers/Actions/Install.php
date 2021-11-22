@@ -21,8 +21,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
-use RuntimeException;
-use Symfony\Component\Process\Process;
 
 class Install
 {
@@ -209,14 +207,6 @@ class Install
             'jobs' => $jobs,
             'total' => count($jobs),
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-
-        $process = Process::fromShellCommandline('php artisan aero:setup > /dev/null 2>&1 &', base_path());
-
-        try {
-            $process->mustRun();
-        } catch (RuntimeException $e) {
-            //
-        }
 
         return response([
             'success' => true,
