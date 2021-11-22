@@ -400,10 +400,9 @@
                             <clipPath id="progress-bar">
                                 <rect
                                     rx="6"
-                                    width="100%"
                                     height="0.539333334rem"
-                                    class="origin-left transition-transform duration-1000"
-                                    :style="{ transform: 'scaleX(' + setupData.progress / 100 + ')' }"
+                                    class="origin-left transition-all duration-1000"
+                                    :style="{ width: (setupData.progress / 100) + '%' }"
                                 />
                             </clipPath>
                         </defs>
