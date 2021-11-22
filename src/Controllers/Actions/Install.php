@@ -210,7 +210,7 @@ class Install
             'total' => count($jobs),
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
-        $process = Process::fromShellCommandline("php artisan aero:setup > /dev/null 2>&1 &", base_path());
+        $process = Process::fromShellCommandline('php artisan aero:setup > /dev/null 2>&1 &', base_path());
 
         try {
             $process->mustRun();
