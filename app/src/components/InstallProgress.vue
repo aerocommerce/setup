@@ -399,10 +399,10 @@
                         <defs>
                             <clipPath id="progress-bar">
                                 <rect
-                                    rx="6"
+                                    rx="4"
                                     height="0.539333334rem"
                                     class="origin-left transition-all duration-1000"
-                                    :style="{ width: (setupData.progress / 100) + '%' }"
+                                    :style="{ width: setupData.progress + '%' }"
                                 />
                             </clipPath>
                         </defs>
@@ -526,6 +526,7 @@
                     })
                     .catch((response) => {
                         if (response.status === 404) complete()
+                        else setTimeout(updateProgress, 500)
                     })
             }
 
