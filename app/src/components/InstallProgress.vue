@@ -521,7 +521,7 @@
                                     if (setupData.project.errors.length) setupData.project.errors = json.errors
                                 })
                                 .catch((_) => {
-                                    // ERROR
+                                    setTimeout(updateProgress, 500)
                                 })
                     })
                     .catch((response) => {
