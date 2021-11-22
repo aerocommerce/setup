@@ -186,7 +186,7 @@ class Install
             ];
         }
 
-        if ($data['project.admin.create'] ?? false) {
+        if ($data['project']['admin']['create'] ?? false) {
             $jobs[] = [
                 'class' => CreateAdminAccount::class,
                 'message' => 'Creating an admin user account',
