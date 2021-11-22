@@ -516,7 +516,7 @@
                                             setupData.progressText = json.message
 
                                             updateProgress()
-                                        }, 500)
+                                        }, 2000)
                                     }
 
                                     if (setupData.project.errors.length) setupData.project.errors = json.errors
