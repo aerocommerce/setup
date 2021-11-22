@@ -402,7 +402,7 @@
                                     rx="6"
                                     height="0.539333334rem"
                                     class="origin-left transition-all duration-1000"
-                                    :style="{ width: (setupData.progress / 100) + '%' }"
+                                    :style="{ width: setupData.progress / 100 + '%' }"
                                 />
                             </clipPath>
                         </defs>
